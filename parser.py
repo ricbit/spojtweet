@@ -19,23 +19,20 @@ def ParseStatusPage(text):
     raise ParseError()
   country = match.group(1).strip()
 
-
   return name, country
 
 def ParseDetailsPage(usertext):
-  problem_map = {}
+  problems = []
   for line in usertext.split('\n'):
     fields = [field.strip() for field in line.split('|')]
-    if len(fields) != 9 or not fields[1].isdigit() or fields[4] != 'AC':
+    if len(fields) != 9 or not fields[1].isdigit():
       continue
     date = datetime.datetime.strptime(fields[2], "%Y-%m-%d %H:%M:%S")
     code = fields[3]
+    status = fields[4]
     language = fields[7]
-    problem_map.setdefault((code, language), []).append(date)
-  problems = []
-  for (code, language), date_list in problem_map.iteritems():
-    problems.append(spojuser.SpojProblem(
-        code=code, date=min(date_list), language=language))
+    problems.append(spojuser.UserProblem(
+        code=code, status=status, date=date, language=language))
   return problems
 
 def Test():

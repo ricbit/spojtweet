@@ -9,6 +9,7 @@ import spojuser
 
 class RefreshUserPage(webapp.RequestHandler):
   def get(self, user):
+    before = datetime.datetime.now()
     try:
       url = 'http://www.spoj.pl/users/%s' % user
       status_page = urlfetch.fetch(url).content
@@ -23,12 +24,17 @@ class RefreshUserPage(webapp.RequestHandler):
     except parser.ParseError:
       self.Page404('parse')
       return
-    user = spojuser.SpojUser(key_name=user, name=name, country=country)
+    user = spojuser.SpojUser(key_name=user,
+                             name=name,
+			     country=country,
+			     last_update=datetime.datetime.now())
     user.put()
     for problem in problems:
       problem.user = user
       problem.put()
-    self.response.out.write('updated user %s' % user)
+    after = datetime.datetime.now()
+    self.response.out.write(
+        'updated user %s in %s' % (user, str(after - before)))
 
   def Page404(self, error):
     self.error(404)
