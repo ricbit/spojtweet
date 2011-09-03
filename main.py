@@ -15,11 +15,12 @@ class MainPage(webapp.RequestHandler):
 
 class UserPage(webapp.RequestHandler):
   def get(self, user):
-    model = model.SpojUser.get_by_key_name(user)
-    if model is not None:
-      self.response.out.write('Hello user %s' % model.name)
-      for problem in model.problems:
-        self.response.out.write('<br>%s' % problem.code)
+    spojuser = model.SpojUser.get_by_key_name(user)
+    if spojuser is not None:
+      self.response.out.write('User: %s<br>' % spojuser.name)
+      self.response.out.write('Country: %s<br>' % spojuser.country)
+      for badge in spojuser.badges:
+        self.response.out.write('<br>Badge: %s' % badge)
     else:
       self.response.out.write('not present')
 

@@ -4,6 +4,7 @@ class SpojUser(db.Model):
   name = db.StringProperty(required=True)
   country = db.StringProperty(required=True)
   last_update = db.DateTimeProperty(required=True)
+  badges = db.StringListProperty(required=True)
   # problems
 
 class UserProblem(db.Model):

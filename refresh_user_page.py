@@ -5,6 +5,7 @@ from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.api import urlfetch
 
+import badge
 import parser
 import model
 
@@ -33,7 +34,6 @@ class RefreshUserPage(webapp.RequestHandler):
   def InsertNewUser(self, user, name, country, problems):
     user_problems = []
     for code, properties in problems.iteritems():
-      self.response.out.write('<p>%s' % code)
       properties.sort()
       solved = False
       languages = set()
@@ -64,9 +64,10 @@ class RefreshUserPage(webapp.RequestHandler):
         problem.best_time = best_time
         problem.first_ac_date = first_ac_date
       user_problems.append(problem)
+      badges = badge.GrantBadges(user_problems)
     entity = model.SpojUser(
         key_name=user, name=name, country=country, language=language,
-	last_update=datetime.datetime.now())
+	badges=badges, last_update=datetime.datetime.now())
     entity.put()
     for problem in user_problems:
       problem.user = entity
