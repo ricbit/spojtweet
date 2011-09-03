@@ -5,7 +5,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 
-import spojuser
+import model
 import parser
 import refresh_user_page
 
@@ -15,7 +15,7 @@ class MainPage(webapp.RequestHandler):
 
 class UserPage(webapp.RequestHandler):
   def get(self, user):
-    model = spojuser.SpojUser.get_by_key_name(user)
+    model = model.SpojUser.get_by_key_name(user)
     if model is not None:
       self.response.out.write('Hello user %s' % model.name)
       for problem in model.problems:

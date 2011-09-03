@@ -5,7 +5,7 @@ from google.appengine.ext import webapp
 from google.appengine.api import urlfetch
 
 import parser
-import spojuser
+import model
 
 class RefreshUserPage(webapp.RequestHandler):
   def get(self, user):
@@ -51,7 +51,7 @@ class RefreshUserPage(webapp.RequestHandler):
 	    first_ac_date = date
 	  else:
 	    tries_before_ac += 1
-      problem = spojuser.UserProblem(code=code)
+      problem = model.UserProblem(code=code)
       problem.languages = list(languages)
       problem.tries_before_ac = tries_before_ac
       problem.solved = solved
@@ -59,7 +59,7 @@ class RefreshUserPage(webapp.RequestHandler):
       if first_ac_date is not None:
         problem.first_ac_date = first_ac_date
       user_problems.append(problem)
-    entity = spojuser.SpojUser(
+    entity = model.SpojUser(
         key_name=user, name=name, country=country, language=language,
 	last_update=datetime.datetime.now())
     entity.put()

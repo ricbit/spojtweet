@@ -1,8 +1,6 @@
 import datetime
 import re
 
-import spojuser
-
 class ParseError(Exception):
   pass
 
