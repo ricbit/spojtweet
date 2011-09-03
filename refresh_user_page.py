@@ -41,15 +41,18 @@ class RefreshUserPage(webapp.RequestHandler):
       first_attempt_date = properties[0][0]
       first_ac_date = None
       best_time = None
-      for date, status, language in properties:
+      for date, status, language, time in properties:
         if solved:
 	  if status == 'AC':
 	    languages.add(language)
+	    if time < best_time:
+	      best_time = time
 	else:
 	  if status == 'AC':
 	    solved = True
 	    languages.add(language)
 	    first_ac_date = date
+	    best_time = time
 	  else:
 	    tries_before_ac += 1
       problem = model.UserProblem(key_name=(user + code), code=code)
@@ -57,7 +60,8 @@ class RefreshUserPage(webapp.RequestHandler):
       problem.tries_before_ac = tries_before_ac
       problem.solved = solved
       problem.first_attempt_date = first_attempt_date
-      if first_ac_date is not None:
+      if solved:
+        problem.best_time = best_time
         problem.first_ac_date = first_ac_date
       user_problems.append(problem)
     entity = model.SpojUser(

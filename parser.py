@@ -28,8 +28,9 @@ def ParseDetailsPage(usertext):
     date = datetime.datetime.strptime(fields[2], "%Y-%m-%d %H:%M:%S")
     code = fields[3]
     status = fields[4]
+    time = int(fields[5].replace('.', ''))
     language = fields[7]
-    problems.setdefault(code, []).append((date, status, language))
+    problems.setdefault(code, []).append((date, status, language, time))
   return problems
 
 def Test():
