@@ -22,7 +22,7 @@ def ParseStatusPage(text):
   return name, country
 
 def ParseDetailsPage(usertext):
-  problems = []
+  problems = {}
   for line in usertext.split('\n'):
     fields = [field.strip() for field in line.split('|')]
     if len(fields) != 9 or not fields[1].isdigit():
@@ -31,8 +31,7 @@ def ParseDetailsPage(usertext):
     code = fields[3]
     status = fields[4]
     language = fields[7]
-    problems.append(spojuser.UserProblem(
-        code=code, status=status, date=date, language=language))
+    problems.setdefault(code, []).append((date, status, language))
   return problems
 
 def Test():
