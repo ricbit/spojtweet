@@ -1,6 +1,7 @@
 import datetime
 import urllib2
 
+from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.api import urlfetch
 
@@ -65,8 +66,7 @@ class RefreshUserPage(webapp.RequestHandler):
     entity.put()
     for problem in user_problems:
       problem.user = entity
-      problem.put()
-
+    db.put(user_problems)
 
   def Page404(self, error):
     self.error(404)
