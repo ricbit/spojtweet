@@ -52,7 +52,7 @@ class RefreshUserPage(webapp.RequestHandler):
 	    first_ac_date = date
 	  else:
 	    tries_before_ac += 1
-      problem = model.UserProblem(code=code)
+      problem = model.UserProblem(key_name=(user + code), code=code)
       problem.languages = list(languages)
       problem.tries_before_ac = tries_before_ac
       problem.solved = solved
