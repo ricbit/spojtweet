@@ -21,7 +21,7 @@ LANGUAGE_CONVERT = {
 
 def GrantBadges(problems):
   language_set = {}
-  for problem in problems:
+  for problem in problems.problems:
     for language in problem.languages:
       if language in LANGUAGE_CONVERT:
         language = LANGUAGE_CONVERT[language]

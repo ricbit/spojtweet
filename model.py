@@ -1,19 +1,63 @@
+import pickle
 from google.appengine.ext import db
+
+class UserProblem(object):
+  def __init__(self, code,
+	       solved=False,
+               languages=None,
+	       tries_before_ac=None,
+               first_attempt_date=None,
+	       first_ac_date=None,
+	       best_time=None):
+    self.code = code
+    self.solved = solved
+    self.languages = languages
+    self.tries_before_ac = tries_before_ac
+    self.first_attempt_date = first_attempt_date
+    self.first_ac_date = first_ac_date
+    self.best_time = best_time
+  
+  def __str__(self):
+    return ",".join(str(i) for i in
+        [self.code, self.solved, self.languages, self.tries_before_ac,
+	 self.first_attempt_date, self.first_ac_date, self.best_time])
+
+
+class UserProblemList(object):
+  def __init__(self):
+    self.problems = []
+
+  def __str__(self):
+    return ",".join(str(i) for i in self.problems)
+
+class UserProblemProperty(db.Property):
+  data_type = UserProblemList
+
+  def get_value_for_datastore(self, model_instance):
+    problem = super(UserProblemProperty,
+                    self).get_value_for_datastore(model_instance)
+    return db.Blob(pickle.dumps(problem, 2))
+
+  def make_value_from_datastore(self, value):
+    if value is None:
+      return None
+    return pickle.loads(value)
+
+class UserProblemProperty2(db.Property):
+  #user = db.ReferenceProperty(SpojUser, collection_name='problems')
+  best_time = db.IntegerProperty()
 
 class SpojUser(db.Model):
   name = db.StringProperty(required=True)
   country = db.StringProperty(required=True)
   last_update = db.DateTimeProperty(required=True)
   badges = db.StringListProperty(required=True)
+  problems = UserProblemProperty()
   # problems
 
-class UserProblem(db.Model):
-  user = db.ReferenceProperty(SpojUser, collection_name='problems')
-  code = db.StringProperty(required=True)
-  languages = db.StringListProperty()
-  solved = db.BooleanProperty()
-  tries_before_ac = db.IntegerProperty()
-  first_attempt_date = db.DateTimeProperty()
-  first_ac_date = db.DateTimeProperty()
-  best_time = db.IntegerProperty()
+  def __str__(self):
+    return ",".join([self.name, self.country, 
+                     str(self.last_update), str(self.badges),
+		     str(self.problems)])
+
 
