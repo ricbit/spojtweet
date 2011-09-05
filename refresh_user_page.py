@@ -9,36 +9,42 @@ import badge
 import parser
 import model
 
+class RefreshException(Exception):
+  pass
+
 class RefreshUserPage(webapp.RequestHandler):
   def get(self, user):
+    self.user = user
+    self.Measure(self.LoadSpojUserPages, 'Loading Time')
+    self.Measure(self.ParseSpojUserPages, 'Parsing Time')
     before = datetime.datetime.now()
-    try:
-      url = 'http://www.spoj.pl/users/%s' % user
-      status_page = urlfetch.fetch(url).content
-      url = 'http://www.spoj.pl/status/%s/signedlist/' % user
-      details_page = urlfetch.fetch(url).content
-    except urlfetch.DownloadError:
-      self.Page404('page')
-      return
-    after = datetime.datetime.now()
-    self.response.out.write(
-        'loading time %s<br>' % (str(after - before)))
-    before = after
-    try:
-      name, country = parser.ParseStatusPage(status_page)
-      problems = parser.ParseDetailsPage(details_page)
-    except parser.ParseError:
-      self.Page404('parse')
-      return
-    after = datetime.datetime.now()
-    self.response.out.write(
-        'parsing time %s<br>' % (str(after - before)))
-    before = after
-    self.InsertNewUser(user, name, country, problems)
+    self.InsertNewUser(self.user, self.name, self.country, self.problems)
     after = datetime.datetime.now()
     self.response.out.write(
         'updated user %s in datestore %s' % (user, str(after - before)))
 
+  def Measure(self, method, message):
+    before = datetime.datetime.now()
+    method()
+    after = datetime.datetime.now()
+    self.response.out.write("%s: %s<br>" % (message, str(after - before)))
+
+  def LoadSpojUserPages(self):
+    try:
+      url = 'http://www.spoj.pl/users/%s' % self.user
+      self.status_page = urlfetch.fetch(url).content
+      url = 'http://www.spoj.pl/status/%s/signedlist/' % self.user
+      self.details_page = urlfetch.fetch(url).content
+    except urlfetch.DownloadError:
+      raise RefreshException()
+
+  def ParseSpojUserPages(self):
+    try:
+      self.name, self.country = parser.ParseStatusPage(self.status_page)
+      self.problems = parser.ParseDetailsPage(self.details_page)
+    except parser.ParseError:
+      raise RefreshException()
+ 
   def InsertNewUser(self, user, name, country, problems):
     user_problems = model.UserProblemList()
     for code, properties in problems.iteritems():
