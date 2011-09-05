@@ -71,13 +71,13 @@ class RefreshUserPage(webapp.RequestHandler):
       if solved:
         problem.best_time = best_time
         problem.first_ac_date = first_ac_date
-      user_problems.problems.append(problem)
-      badges = badge.GrantBadges(user_problems)
+      user_problems.append(problem)
+    badges = badge.GrantBadges(user_problems)
     entity = model.SpojUser(
         key_name=user, name=name, country=country, language=language,
 	badges=badges, last_update=datetime.datetime.now())
-    entity.problems = user_problems
     entity.put()
+    model.SpojUserMetadata(code=user, user=entity, problems=user_problems).put()
 
   def Page404(self, error):
     self.error(404)

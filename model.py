@@ -27,8 +27,14 @@ class UserProblemList(object):
   def __init__(self):
     self.problems = []
 
+  def __iter__(self):
+    return self.problems.__iter__()
+
   def __str__(self):
     return ",".join(str(i) for i in self.problems)
+
+  def append(self, value):
+    self.problems.append(value)
 
 class UserProblemProperty(db.Property):
   data_type = UserProblemList
@@ -43,21 +49,19 @@ class UserProblemProperty(db.Property):
       return None
     return pickle.loads(value)
 
-class UserProblemProperty2(db.Property):
-  #user = db.ReferenceProperty(SpojUser, collection_name='problems')
-  best_time = db.IntegerProperty()
-
 class SpojUser(db.Model):
   name = db.StringProperty(required=True)
   country = db.StringProperty(required=True)
   last_update = db.DateTimeProperty(required=True)
   badges = db.StringListProperty(required=True)
-  problems = UserProblemProperty()
-  # problems
+  # metadata
 
   def __str__(self):
     return ",".join([self.name, self.country, 
-                     str(self.last_update), str(self.badges),
-		     str(self.problems)])
+                     str(self.last_update), str(self.badges)])
 
+class SpojUserMetadata(db.Model):
+  code = db.StringProperty(required=True)
+  user = db.ReferenceProperty(SpojUser, collection_name='metadata')
+  problems = UserProblemProperty()
 
