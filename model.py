@@ -36,6 +36,7 @@ class UserProblemList(object):
   def append(self, value):
     self.problems.append(value)
 
+
 class UserProblemProperty(db.Property):
   data_type = UserProblemList
 
@@ -49,6 +50,7 @@ class UserProblemProperty(db.Property):
       return None
     return pickle.loads(value)
 
+
 class SpojUser(db.Model):
   name = db.StringProperty(required=True)
   country = db.StringProperty(required=True)
@@ -60,8 +62,8 @@ class SpojUser(db.Model):
     return ",".join([self.name, self.country, 
                      str(self.last_update), str(self.badges)])
 
+
 class SpojUserMetadata(db.Model):
-  code = db.StringProperty(required=True)
   user = db.ReferenceProperty(SpojUser, collection_name='metadata')
   problems = UserProblemProperty()
 

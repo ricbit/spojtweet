@@ -77,7 +77,8 @@ class RefreshUserPage(webapp.RequestHandler):
         key_name=user, name=name, country=country, language=language,
 	badges=badges, last_update=datetime.datetime.now())
     entity.put()
-    model.SpojUserMetadata(code=user, user=entity, problems=user_problems).put()
+    model.SpojUserMetadata(
+        key_name=user, user=entity, problems=user_problems).put()
 
   def Page404(self, error):
     self.error(404)
