@@ -1,5 +1,4 @@
 import datetime
-import urllib2
 
 from google.appengine.ext import db
 from google.appengine.ext import webapp
