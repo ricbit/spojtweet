@@ -14,14 +14,16 @@ class RefreshException(Exception):
 
 class RefreshUserPage(webapp.RequestHandler):
   def get(self, user):
-    self.user = user
-    self.Measure(self.LoadSpojUserPages, 'Loading Time')
-    self.Measure(self.ParseSpojUserPages, 'Parsing Time')
-    before = datetime.datetime.now()
-    self.InsertNewUser(self.user, self.name, self.country, self.problems)
-    after = datetime.datetime.now()
-    self.response.out.write(
-        'updated user %s in datestore %s' % (user, str(after - before)))
+    try:
+      self.user = user
+      self.Measure(self.LoadSpojUserPages, 'Loading Time')
+      self.Measure(self.ParseSpojUserPages, 'Parsing Time')
+      self.Measure(self.CreateUserProblems, 'Create UserProblems Time')
+      self.Measure(self.GrantBadges, 'Grant Badges Time')
+      self.Measure(self.WriteDatastore, 'Write Datastore Time')
+      self.response.out.write('Finished updating user %s' % user)
+    except RefreshException:
+      self.Page404()
 
   def Measure(self, method, message):
     before = datetime.datetime.now()
@@ -49,9 +51,9 @@ class RefreshUserPage(webapp.RequestHandler):
     except parser.ParseError:
       raise RefreshException()
  
-  def InsertNewUser(self, user, name, country, problems):
-    user_problems = model.UserProblemList()
-    for code, properties in problems.iteritems():
+  def CreateUserProblems(self):
+    self.user_problems = model.UserProblemList()
+    for code, properties in self.problems.iteritems():
       properties.sort()
       solved = False
       languages = set()
@@ -81,16 +83,19 @@ class RefreshUserPage(webapp.RequestHandler):
       if solved:
         problem.best_time = best_time
         problem.first_ac_date = first_ac_date
-      user_problems.append(problem)
-    badges = badge.GrantBadges(user_problems)
+      self.user_problems.append(problem)
+
+  def GrantBadges(self):    
+    self.badges = badge.GrantBadges(self.user_problems)
+
+  def WriteDatastore(self):
     entity = model.SpojUser(
-        key_name=user, name=name, country=country, language=language,
-	badges=badges, last_update=datetime.datetime.now())
+        key_name=self.user, name=self.name, country=self.country,
+	badges=self.badges, last_update=datetime.datetime.now())
     entity.put()
     model.SpojUserMetadata(
-        key_name=user, user=entity, problems=user_problems).put()
+        key_name=self.user, user=entity, problems=self.user_problems).put()
 
-  def Page404(self, error):
+  def Page404(self):
     self.error(404)
-    self.response.out.write('404, %s' % error)
 
