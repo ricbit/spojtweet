@@ -30,6 +30,9 @@ class UserProblemList(object):
   def __iter__(self):
     return self.problems.__iter__()
 
+  def __len__(self):
+    return len(self.problems)
+
   def __str__(self):
     return ",".join(str(i) for i in self.problems)
 
