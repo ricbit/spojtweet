@@ -53,7 +53,11 @@ def SharpshooterBadge(metadata):
       count += 1
   return ['Sharpshooter'] if count >= 25 else []
 
-BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge]
+def StubbornBadge(metadata):
+  stubborn = any(problem.tries_before_ac >= 50 for problem in metadata.problems)
+  return ['Stubborn'] if stubborn else []
+
+BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge]
 
 def EvalLanguageCount(problems):
   language_count = {}
