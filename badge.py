@@ -46,14 +46,20 @@ def SolvedProblemsBadge(metadata):
   requirements = [10, 100, 1000]
   return ProgressiveBadge(len(metadata.problems), titles, requirements)
 
-BADGES = [LanguageBadge, SolvedProblemsBadge]
+def SharpshooterBadge(metadata):
+  count = 0
+  for problem in metadata.problems:
+    if problem.tries_before_ac == 0:
+      count += 1
+  return ['Sharpshooter'] if count >= 25 else []
+
+BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge]
 
 def EvalLanguageCount(problems):
   language_count = {}
   for problem in problems:
     for language in problem.languages:
-      if language in LANGUAGE_CONVERT:
-        language = LANGUAGE_CONVERT[language]
+      language = LANGUAGE_CONVERT.get(language, language)
       language_count[language] = 1 + language_count.get(language, 0)
   return language_count
 
