@@ -31,10 +31,14 @@ class RefreshUserPage(webapp.RequestHandler):
 
   def LoadSpojUserPages(self):
     try:
-      url = 'http://www.spoj.pl/users/%s' % self.user
-      self.status_page = urlfetch.fetch(url).content
-      url = 'http://www.spoj.pl/status/%s/signedlist/' % self.user
-      self.details_page = urlfetch.fetch(url).content
+      status_url = 'http://www.spoj.pl/users/%s' % self.user
+      status_rpc = urlfetch.create_rpc()
+      urlfetch.make_fetch_call(status_rpc, status_url)
+      details_url = 'http://www.spoj.pl/status/%s/signedlist/' % self.user
+      details_rpc = urlfetch.create_rpc()
+      urlfetch.make_fetch_call(details_rpc, details_url)
+      self.status_page = status_rpc.get_result().content
+      self.details_page = details_rpc.get_result().content
     except urlfetch.DownloadError:
       raise RefreshException()
 
