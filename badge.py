@@ -29,7 +29,7 @@ def ProgressiveBadge(count, titles, requirements):
   for title, requirement in zip(titles, requirements):
     if count >= requirement:
       badge = title
-  return badge if badge is not None else []
+  return [badge] if badge is not None else []
 
 def LanguageBadge(metadata):
   badges = []
@@ -38,13 +38,13 @@ def LanguageBadge(metadata):
     titles = ['Novice', 'User', 'Master', 'Guru']
     badge_titles = ["%s %s" % (language_name, title) for title in titles]
     requirements = [3, 10, 100, 500]
-    badges.append(ProgressiveBadge(count, badge_titles, requirements))
+    badges.extend(ProgressiveBadge(count, badge_titles, requirements))
   return badges    
 
 def SolvedProblemsBadge(metadata):
   titles = ['Apprentice', 'Mage', 'Warlock']
   requirements = [10, 100, 1000]
-  return [ProgressiveBadge(len(metadata.problems), titles, requirements)]
+  return ProgressiveBadge(len(metadata.problems), titles, requirements)
 
 BADGES = [LanguageBadge, SolvedProblemsBadge]
 
