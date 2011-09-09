@@ -54,7 +54,8 @@ def SharpshooterBadge(metadata):
   return ['Sharpshooter'] if count >= 25 else []
 
 def StubbornBadge(metadata):
-  stubborn = any(problem.tries_before_ac >= 50 for problem in metadata.problems)
+  stubborn = any(problem.tries_before_ac >= 50 and problem.solved
+                 for problem in metadata.problems)
   return ['Stubborn'] if stubborn else []
 
 BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge]
