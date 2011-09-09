@@ -5,6 +5,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 
+import crawler
 import model
 import parser
 import refresh_user_page
@@ -27,7 +28,8 @@ class UserPage(webapp.RequestHandler):
 app = webapp.WSGIApplication(
           [('/', MainPage),
 	   ('/user/([^/]+)', UserPage),
-	   ('/refresh/([^/]+)', refresh_user_page.RefreshUserPage)],
+	   ('/refresh/([^/]+)', refresh_user_page.RefreshUserPage),
+	   ('/crawl', crawler.CrawlCountryPage)],
 	  debug=True)
 
 def main():

@@ -33,9 +33,12 @@ def ParseDetailsPage(usertext):
     problems.setdefault(code, []).append((date, status, language, time))
   return problems
 
+def ParseCountryList(text):
+  return re.findall('(?i)users/(..)/\">(.*?)</a>', text)
+
 def Test():
-  page = open('ricbit.html').read()
-  print ParseStatusPage(page)
+  page = open('country.html').read()
+  print ParseCountryList(page)
 
 if __name__ == '__main__':
   Test()

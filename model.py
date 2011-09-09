@@ -34,7 +34,7 @@ class UserProblemList(object):
     return len(self.problems)
 
   def __str__(self):
-    return ",".join(str(i) for i in self.problems)
+    return ";".join(str(i) for i in self.problems)
 
   def append(self, value):
     self.problems.append(value)
@@ -59,7 +59,6 @@ class SpojUser(db.Model):
   country = db.StringProperty(required=True)
   last_update = db.DateTimeProperty(required=True)
   badges = db.StringListProperty(required=True)
-  # metadata
 
   def __str__(self):
     return ",".join([self.name, self.country, 
@@ -67,6 +66,8 @@ class SpojUser(db.Model):
 
 
 class SpojUserMetadata(db.Model):
-  user = db.ReferenceProperty(SpojUser, collection_name='metadata')
   problems = UserProblemProperty()
+
+  def __str__(self):
+    return str(self.problems)
 

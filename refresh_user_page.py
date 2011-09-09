@@ -88,12 +88,15 @@ class RefreshUserPage(webapp.RequestHandler):
     self.badges = badge.GrantBadges(self.user_problems)
 
   def WriteDatastore(self):
-    entity = model.SpojUser(
+    user = model.SpojUser(
         key_name=self.user, name=self.name, country=self.country,
 	badges=self.badges, last_update=datetime.datetime.now())
-    entity.put()
-    model.SpojUserMetadata(
-        key_name=self.user, user=entity, problems=self.user_problems).put()
+    user_rpc = db.put_async(user)
+    metadata = model.SpojUserMetadata(
+        key_name=self.user, problems=self.user_problems)
+    metadata_rpc = db.put_async(metadata)
+    user_rpc.check_success()
+    metadata_rpc.check_success()
 
   def Page404(self):
     self.error(404)
