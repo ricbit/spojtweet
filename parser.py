@@ -36,6 +36,11 @@ def ParseDetailsPage(usertext):
 def ParseCountryList(text):
   return re.findall('(?i)users/(..)/\">(.*?)</a>', text)
 
+def ParseCountryPage(text):
+  return re.findall(
+      '(?i)<td>(\d+)</td>.*?<td><a href=\".*?/users/(.+?)\"',
+      text.replace('\n', ''))
+
 def Test():
   page = open('country.html').read()
   print ParseCountryList(page)

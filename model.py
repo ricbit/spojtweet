@@ -77,3 +77,18 @@ class SpojUserMetadata(db.Model):
   def __str__(self):
     return str(self.problems)
 
+class UserPosition(object):
+  def __init__(self, name, position):
+    self.name = name
+    self.position = position
+
+  def __str__(self):
+    return "(%s, %s)" % (self.name, self.position)
+
+class CountryInfo(db.Model):
+  users = GenericListProperty(UserPosition)
+
+  def __str__(self):
+    return ";".join(str(i) for i in self.users)
+
+
