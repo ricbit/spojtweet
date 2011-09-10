@@ -28,7 +28,7 @@ class GenericListProperty(db.Property):
 
   def __init__(self, instance_type):
     self.instance_type = instance_type
-    super(GenericListProperty, self).__init__()
+    super(GenericListProperty, self).__init__(indexed=False)
 
   def get_value_for_datastore(self, model_instance):
     problem = super(GenericListProperty,
@@ -56,16 +56,19 @@ class Badge(object):
     self.name = name
     self.description = description
 
+  def __str__(self):
+    return "(%s, %s)" % (self.name, self.description)
 
 class SpojUser(db.Model):
   name = db.StringProperty(required=True)
   country = db.StringProperty(required=True)
-  last_update = db.DateTimeProperty(required=True)
+  last_update = db.DateTimeProperty(required=True, indexed=False)
   badges = GenericListProperty(Badge)
 
   def __str__(self):
     return ",".join([self.name, self.country, 
-                     str(self.last_update), str(self.badges)])
+                     str(self.last_update),
+		     ";".join(str(i) for i in self.badges)])
 
 
 class SpojUserMetadata(db.Model):
