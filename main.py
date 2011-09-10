@@ -21,7 +21,7 @@ class UserPage(webapp.RequestHandler):
       self.response.out.write('User: %s<br>' % spojuser.name)
       self.response.out.write('Country: %s<br>' % spojuser.country)
       for badge in spojuser.badges:
-        self.response.out.write('<br>Badge: %s' % badge)
+        self.response.out.write('<br>Badge: %s' % badge.name)
     else:
       self.response.out.write('not present')
 

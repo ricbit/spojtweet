@@ -23,9 +23,10 @@ class UserProblem(object):
 	 self.first_attempt_date, self.first_ac_date, self.best_time])
 
 
-class UserProblemList(object):
-  def __init__(self):
+class GenericList(object):
+  def __init__(self, instance_type):
     self.problems = []
+    self.instance_type = instance_type
 
   def __iter__(self):
     return self.problems.__iter__()
@@ -37,14 +38,20 @@ class UserProblemList(object):
     return ";".join(str(i) for i in self.problems)
 
   def append(self, value):
+    if not isinstance(value, self.instance_type):
+      raise ValueError()
     self.problems.append(value)
 
 
-class UserProblemProperty(db.Property):
-  data_type = UserProblemList
+class GenericListProperty(db.Property):
+  data_type = GenericList
+
+  def __init__(self, instance_type):
+    self.instance_type = instance_type
+    super(GenericListProperty, self).__init__()
 
   def get_value_for_datastore(self, model_instance):
-    problem = super(UserProblemProperty,
+    problem = super(GenericListProperty,
                     self).get_value_for_datastore(model_instance)
     return db.Blob(pickle.dumps(problem, 2))
 
@@ -53,12 +60,23 @@ class UserProblemProperty(db.Property):
       return None
     return pickle.loads(value)
 
+  def validate(self, value):
+    if value is None:
+      raise ValueError()
+    return value
+
+
+class Badge(object):
+  def __init__(self, name, description):
+    self.name = name
+    self.description = description
+
 
 class SpojUser(db.Model):
   name = db.StringProperty(required=True)
   country = db.StringProperty(required=True)
   last_update = db.DateTimeProperty(required=True)
-  badges = db.StringListProperty(required=True)
+  badges = GenericListProperty(Badge)
 
   def __str__(self):
     return ",".join([self.name, self.country, 
@@ -66,7 +84,7 @@ class SpojUser(db.Model):
 
 
 class SpojUserMetadata(db.Model):
-  problems = UserProblemProperty()
+  problems = GenericListProperty(UserProblem)
 
   def __str__(self):
     return str(self.problems)

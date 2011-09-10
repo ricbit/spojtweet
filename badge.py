@@ -24,12 +24,12 @@ class UserMetadata(object):
     self.problems = problems
     self.language_count = language_count
 
-def ProgressiveBadge(count, titles, requirements):
+def ProgressiveBadge(count, titles, requirements, descriptions):
   badge = None
-  for title, requirement in zip(titles, requirements):
-    if count >= requirement:
-      badge = title
-  return [badge] if badge is not None else []
+  for title, req, desc in zip(titles, requirements, descriptions):
+    if count >= req:
+      badge = (title, desc)
+  return [model.Badge(*badge)] if badge is not None else []
 
 def LanguageBadge(metadata):
   badges = []
@@ -38,25 +38,32 @@ def LanguageBadge(metadata):
     titles = ['Novice', 'User', 'Master', 'Guru']
     badge_titles = ["%s %s" % (language_name, title) for title in titles]
     requirements = [3, 10, 100, 500]
-    badges.extend(ProgressiveBadge(count, badge_titles, requirements))
+    descriptions = ["Solved %d problems in %s" % x
+                    for x in zip(requirements, badge_titles)]
+    badges.extend(ProgressiveBadge(
+        count, badge_titles, requirements, descriptions))
   return badges    
 
 def SolvedProblemsBadge(metadata):
   titles = ['Apprentice', 'Mage', 'Warlock']
   requirements = [10, 100, 1000]
-  return ProgressiveBadge(len(metadata.problems), titles, requirements)
+  descriptions = ["Solved %d problems" % x for x in requirements]
+  return ProgressiveBadge(
+      len(metadata.problems), titles, requirements, descriptions)
 
 def SharpshooterBadge(metadata):
   count = 0
   for problem in metadata.problems:
     if problem.tries_before_ac == 0:
       count += 1
-  return ['Sharpshooter'] if count >= 25 else []
+  badge = model.Badge('Sharpshooter', 'Solved 25 problems on the first try')
+  return [badge] if count >= 25 else []
 
 def StubbornBadge(metadata):
   stubborn = any(problem.tries_before_ac >= 50 and problem.solved
                  for problem in metadata.problems)
-  return ['Stubborn'] if stubborn else []
+  badge = model.Badge('Stubborn', 'Solved a problem after 50 attempts')
+  return [badge] if stubborn else []
 
 BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge]
 
