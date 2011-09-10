@@ -1,7 +1,9 @@
 import datetime
+import os
 import urllib2
 
 from google.appengine.ext import webapp
+from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 
@@ -17,13 +19,13 @@ class MainPage(webapp.RequestHandler):
 class UserPage(webapp.RequestHandler):
   def get(self, user):
     spojuser = model.SpojUser.get_by_key_name(user)
-    if spojuser is not None:
-      self.response.out.write('User: %s<br>' % spojuser.name)
-      self.response.out.write('Country: %s<br>' % spojuser.country)
-      for badge in spojuser.badges:
-        self.response.out.write('<br>Badge: %s' % badge.name)
-    else:
-      self.response.out.write('not present')
+    path = os.path.join(os.path.dirname(__file__), 'user.html')
+    values = {
+      'name': spojuser.name,
+      'country': spojuser.country,
+      'badges': spojuser.badges
+    }
+    self.response.out.write(template.render(path, values))
 
 app = webapp.WSGIApplication(
           [('/', MainPage),
