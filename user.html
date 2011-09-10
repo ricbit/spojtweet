@@ -1,0 +1,21 @@
+<html>
+<head>
+<style type='text/css'>
+.badge {
+  margin: 5px 5px;
+  border: solid 1px orange;
+  background-color: yellow;
+  padding: 5px;
+  cursor: default;
+  float: left;
+}
+</style>
+</head>
+<body>
+User: {{name}} <br>
+Country: {{country}}<br><br>
+{% for badge in badges %}
+<div class="badge" title="{{badge.description}}">{{badge.name}}</div>
+{% endfor %}
+</body>
+</html>
