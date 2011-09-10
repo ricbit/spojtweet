@@ -23,28 +23,8 @@ class UserProblem(object):
 	 self.first_attempt_date, self.first_ac_date, self.best_time])
 
 
-class GenericList(object):
-  def __init__(self, instance_type):
-    self.problems = []
-    self.instance_type = instance_type
-
-  def __iter__(self):
-    return self.problems.__iter__()
-
-  def __len__(self):
-    return len(self.problems)
-
-  def __str__(self):
-    return ";".join(str(i) for i in self.problems)
-
-  def append(self, value):
-    if not isinstance(value, self.instance_type):
-      raise ValueError()
-    self.problems.append(value)
-
-
 class GenericListProperty(db.Property):
-  data_type = GenericList
+  data_type = list
 
   def __init__(self, instance_type):
     self.instance_type = instance_type
@@ -62,7 +42,12 @@ class GenericListProperty(db.Property):
 
   def validate(self, value):
     if value is None:
+      return None
+    if not isinstance(value, list):
       raise ValueError()
+    for item in value:
+      if not isinstance(item, self.instance_type):
+        raise ValueError()
     return value
 
 

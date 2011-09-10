@@ -51,7 +51,7 @@ class RefreshUserPage(webapp.RequestHandler):
       raise RefreshException()
  
   def CreateUserProblems(self):
-    self.user_problems = model.GenericList(model.UserProblem)
+    self.user_problems = []
     for code, properties in self.problems.iteritems():
       properties.sort()
       solved = False
