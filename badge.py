@@ -38,8 +38,8 @@ def LanguageBadge(metadata):
     titles = ['Novice', 'User', 'Master', 'Guru']
     badge_titles = ["%s %s" % (language_name, title) for title in titles]
     requirements = [3, 10, 100, 500]
-    descriptions = ["Solved %d problems in %s" % x
-                    for x in zip(requirements, badge_titles)]
+    descriptions = ["Solved %d problems in %s" % (x, language_name)
+                    for x in requirements]
     badges.extend(ProgressiveBadge(
         count, badge_titles, requirements, descriptions))
   return badges    
