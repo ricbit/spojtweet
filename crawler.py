@@ -12,6 +12,7 @@ def crawl_country(country_list):
     return
   code, name = country_list[0]
   url = 'http://www.spoj.pl/ranks/users/%s' % code
+  logging.info('parsing %s', name)
   text = urlfetch.fetch(url).content
   user_list = parser.ParseCountryPage(text)
   users = []

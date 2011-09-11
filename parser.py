@@ -34,7 +34,8 @@ def ParseDetailsPage(usertext):
   return problems
 
 def ParseCountryList(text):
-  return re.findall('(?i)users/(..)/\">(.*?)</a>', text)
+  country_list = re.findall('(?i)users/(..)/\">(.*?)</a>', text)
+  return [(code, name.decode('iso-8859-1')) for code, name in country_list]
 
 def ParseCountryPage(text):
   return re.findall(
