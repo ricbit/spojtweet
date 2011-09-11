@@ -89,8 +89,12 @@ class RefreshUserPage(webapp.RequestHandler):
         problem.first_ac_date = first_ac_date
       self.user_problems.append(problem)
 
-  def GrantBadges(self):    
-    self.badges = badge.GrantBadges(self.user_problems)
+  def GrantBadges(self):
+    metadata = badge.UserMetadata()
+    metadata.problems = self.user_problems
+    metadata.country = self.country
+    metadata.country_position = self.country_position
+    self.badges = badge.GrantBadges(metadata)
 
   def WriteDatastore(self):
     user = model.SpojUser(

@@ -20,9 +20,11 @@ LANGUAGE_CONVERT = {
 }
 
 class UserMetadata(object):
-  def __init__(self, problems, language_count):
-    self.problems = problems
-    self.language_count = language_count
+  def __init__(self):
+    self.problems = None
+    self.language_count = None
+    self.country_position = None
+    self.country = None
 
 def ProgressiveBadge(count, titles, requirements, descriptions):
   badge = None
@@ -30,6 +32,17 @@ def ProgressiveBadge(count, titles, requirements, descriptions):
     if count >= req:
       badge = (title, desc)
   return [model.Badge(*badge)] if badge is not None else []
+
+def CountryBadge(metadata):
+  country = metadata.country.title()
+  titles = ['Citizen', 'VIP', 'Leader']
+  badge_titles = ['%s %s' % (country, title) for title in titles]
+  requirements = [-100, -10, -1]
+  descriptions = ['Top 100 problem solvers of ' + country,
+                  'Top 10 problem solvers of ' + country,
+		  'Best problem solver of ' + country]
+  return ProgressiveBadge(
+      -metadata.country_position, badge_titles, requirements, descriptions)
 
 def LanguageBadge(metadata):
   badges = []
@@ -65,7 +78,8 @@ def StubbornBadge(metadata):
   badge = model.Badge('Stubborn', 'Solved a problem after 50 attempts')
   return [badge] if stubborn else []
 
-BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge]
+BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge,
+          CountryBadge]
 
 def EvalLanguageCount(problems):
   language_count = {}
@@ -75,8 +89,8 @@ def EvalLanguageCount(problems):
       language_count[language] = 1 + language_count.get(language, 0)
   return language_count
 
-def GrantBadges(problems):
-  metadata = UserMetadata(problems, EvalLanguageCount(problems))
+def GrantBadges(metadata):
+  metadata.language_count = EvalLanguageCount(metadata.problems)
   granted_badges = []
   for badge in BADGES:
     granted_badges.extend(badge(metadata))

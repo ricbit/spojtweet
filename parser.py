@@ -38,9 +38,10 @@ def ParseCountryList(text):
   return [(code, name.decode('iso-8859-1')) for code, name in country_list]
 
 def ParseCountryPage(text):
-  return re.findall(
+  user_list = re.findall(
       '(?i)<td>(\d+)</td>.*?<td><a href=\".*?/users/(.+?)\"',
       text.replace('\n', ''))
+  return [(int(pos), userid) for pos, userid in user_list]
 
 def Test():
   page = open('country.html').read()
