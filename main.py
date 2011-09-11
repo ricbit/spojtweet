@@ -22,7 +22,7 @@ class UserPage(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'user.html')
     values = {
       'name': spojuser.name,
-      'country': spojuser.country,
+      'country': spojuser.country.title(),
       'badges': spojuser.badges
     }
     self.response.out.write(template.render(path, values))
