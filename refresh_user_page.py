@@ -47,6 +47,11 @@ class RefreshUserPage(webapp.RequestHandler):
     try:
       self.name, self.country = parser.ParseStatusPage(self.status_page)
       self.problems = parser.ParseDetailsPage(self.details_page)
+      country_info = model.CountryInfo.get_by_key_name(self.country)
+      self.country_position = None
+      for user in country_info.users:
+        if user.name == self.user:
+	  self.country_position = user.position
     except parser.ParseError:
       raise RefreshException()
  
@@ -93,7 +98,8 @@ class RefreshUserPage(webapp.RequestHandler):
 	badges=self.badges, last_update=datetime.datetime.now())
     user_rpc = db.put_async(user)
     metadata = model.SpojUserMetadata(
-        key_name=self.user, problems=self.user_problems)
+        key_name=self.user, problems=self.user_problems,
+	county_position=self.country_position)
     metadata_rpc = db.put_async(metadata)
     user_rpc.check_success()
     metadata_rpc.check_success()
