@@ -17,7 +17,7 @@ def ParseStatusPage(text):
     raise ParseError()
   country = match.group(1).strip()
 
-  return name, country
+  return name.decode('iso-8859-1'), country.decode('iso-8859-1')
 
 def ParseDetailsPage(usertext):
   problems = {}
