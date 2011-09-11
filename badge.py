@@ -38,9 +38,9 @@ def CountryBadge(metadata):
   titles = ['Citizen', 'VIP', 'Leader']
   badge_titles = ['%s %s' % (country, title) for title in titles]
   requirements = [-100, -10, -1]
-  descriptions = ['Top 100 problem solvers of ' + country,
-                  'Top 10 problem solvers of ' + country,
-		  'Best problem solver of ' + country]
+  descriptions = ['Top 100 problem solvers from ' + country,
+                  'Top 10 problem solvers from ' + country,
+		  'Best problem solver from ' + country]
   return ProgressiveBadge(
       -metadata.country_position, badge_titles, requirements, descriptions)
 

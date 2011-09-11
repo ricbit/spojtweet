@@ -7,7 +7,7 @@ import model
 import parser
 import logging
 
-def crawl_country(country_list):
+def CrawlCountry(country_list):
   if not country_list:
     return
   code, name = country_list[0]
@@ -19,13 +19,15 @@ def crawl_country(country_list):
   for position, username in user_list:
     users.append(model.UserPosition(username, position))
   model.CountryInfo(key_name=name, users=users).put()
-  deferred.defer(crawl_country, country_list[1:])
+  deferred.defer(CrawlCountry, country_list[1:])
 
+def StartCountryCrawl():
+  country_url = 'http://www.spoj.pl/ranks/countries/'
+  country_page = urlfetch.fetch(country_url).content
+  country_list = parser.ParseCountryList(country_page)
+  deferred.defer(CrawlCountry, country_list)
 
 class CrawlCountryPage(webapp.RequestHandler):
   def get(self):
-    country_url = 'http://www.spoj.pl/ranks/countries/'
-    country_page = urlfetch.fetch(country_url).content
-    country_list = parser.ParseCountryList(country_page)
-    deferred.defer(crawl_country, country_list)
+    deferred.defer(StartCountryCrawl)
     self.response.out.write('launched')
