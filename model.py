@@ -91,4 +91,8 @@ class CountryInfo(db.Model):
   def __str__(self):
     return ";".join(str(i) for i in self.users)
 
+class ProblemList(db.Model):
+  problems = GenericListProperty(str)
 
+  def __str__(self):
+    return ';'.join(i for i in self.problems)

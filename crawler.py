@@ -27,10 +27,21 @@ def StartCountryCrawl():
   country_list = parser.ParseCountryList(country_page)
   deferred.defer(CrawlCountry, country_list)
 
-def StartProblemCrawl():
-  pass
+def SaveProblemList(problem_list):
+  problems = model.ProblemList(key_name='classical', problems=problem_list)
+  problems.put()
+
+def ProblemCrawl(url, problem_list):
+  logging.info('crawling %s', url)
+  problem_page = urlfetch.fetch(url).content
+  next_link, problems = parser.ParseProblemList(problem_page)
+  problem_list.extend(problems)
+  if next_link is None:
+    deferred.defer(SaveProblemList, problem_list)
+  else:
+    deferred.defer(ProblemCrawl, next_link, problem_list)
 
 class CrawlCountryPage(webapp.RequestHandler):
   def get(self):
-    deferred.defer(StartProblemCrawl)
+    deferred.defer(ProblemCrawl, 'http://www.spoj.pl/problems/classical/', [])
     self.response.out.write('launched')

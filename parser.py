@@ -50,10 +50,8 @@ def ParseProblemList(text):
   else:
     next_link = None
   problem_list = re.findall(
-      'problemrow.*?/problems/(\w+)/\".*?<b>(.+?)</b>',
-      text.replace('\n', ''))
-  return (next_link, 
-          [(code, name.decode('iso-8859-1')) for code, name in problem_list])
+      'problemrow.*?/problems/(\w+)/\"', text.replace('\n', ''))
+  return next_link, problem_list
 
 def Test():
   page = open('testdata/problems_last.html').read()
