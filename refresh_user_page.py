@@ -20,7 +20,9 @@ class RefreshUserPage(webapp.RequestHandler):
       self.Measure(self.CreateUserProblems, 'Create UserProblems Time')
       self.Measure(self.GrantBadges, 'Grant Badges Time')
       self.Measure(self.WriteDatastore, 'Write Datastore Time')
-      self.response.out.write('Finished updating user %s' % user)
+      user_link = ('Finished updating <a href="/user/%s">user %s</a>' %
+                   (user, user))
+      self.response.out.write(user_link)
     except RefreshException:
       self.Page404()
 
