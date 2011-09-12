@@ -43,9 +43,21 @@ def ParseCountryPage(text):
       text.replace('\n', ''))
   return [(int(pos), userid) for pos, userid in user_list]
 
+def ParseProblemList(text):
+  match = re.search('href=\"(.*?)\".*?>Next</a>', text)
+  if match is not None:
+    next_link = 'http://www.spoj.pl' + match.group(1)
+  else:
+    next_link = None
+  problem_list = re.findall(
+      'problemrow.*?/problems/(\w+)/\".*?<b>(.+?)</b>',
+      text.replace('\n', ''))
+  return (next_link, 
+          [(code, name.decode('iso-8859-1')) for code, name in problem_list])
+
 def Test():
-  page = open('country.html').read()
-  print ParseCountryList(page)
+  page = open('testdata/problems_last.html').read()
+  print ParseProblemList(page)
 
 if __name__ == '__main__':
   Test()

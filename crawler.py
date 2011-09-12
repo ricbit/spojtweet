@@ -27,7 +27,10 @@ def StartCountryCrawl():
   country_list = parser.ParseCountryList(country_page)
   deferred.defer(CrawlCountry, country_list)
 
+def StartProblemCrawl():
+  pass
+
 class CrawlCountryPage(webapp.RequestHandler):
   def get(self):
-    deferred.defer(StartCountryCrawl)
+    deferred.defer(StartProblemCrawl)
     self.response.out.write('launched')

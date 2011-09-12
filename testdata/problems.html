@@ -1,0 +1,819 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+
+<title>Sphere Online Judge (SPOJ)  - Problems</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2" id="metatag">
+<META NAME="Keywords" CONTENT="programming, language, algorithm, spoj, contest, contester, Java, C#, Pascal, C, C++, python, ruby, caml, ocaml, perl, haskell, lisp, prolog, fortran, assembler, asembler, functional, online, judge, problem, problemset, ACM">
+
+<link href="/gfx/favicon.png" rel="shortcut icon" type="image/x-icon">
+<link href="/rss/" rel="alternate" type="application/rss+xml" title="RSS Feed">
+<link href="/themes/common.css" rel="stylesheet" type="text/css" id="theme">
+<link href="/style.css" rel="stylesheet" type="text/css" id="theme">
+<link href="/themes/tooltips.css" rel="stylesheet" type="text/css" id="theme">
+<script type='text/javascript' src='/gfx/jquery.js'></script>
+<script type="text/javascript" src="/gfx/jquery.timers.js"></script>
+<style type="text/css">
+<!--
+.maintable {width: 855px;} 
+-->
+</style>
+<script type="text/javascript" language="javascript">
+<!--
+function UnCryptMailto(s) {
+	var n=0;
+	var r="";
+	for(var i=0;i<s.length;i++) {		
+		n=s.charCodeAt(i); 
+		if (n>=8364) {n = 128;}
+		r += String.fromCharCode(n+(2));	
+	}
+	return r;
+}
+function linkTo_UnCryptMailto(s)	{
+	location.href=UnCryptMailto(s);
+}
+// -->
+</script>
+
+<script type="text/javascript">
+function recordOutboundLink(link, category, action) {
+  try {
+    var pageTracker=_gat._getTracker("UA-XXXXX-X");
+    pageTracker._trackEvent(category, action);
+    setTimeout('document.location = "' + link.href + '"', 100)
+  }catch(err){}
+}
+</script>
+
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushCpp.js"></script>
+	<script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushCSharp.js"></script>
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushJava.js"></script>
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushPhp.js"></script>
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushPython.js"></script>
+	<link type="text/css" rel="stylesheet" href="/gfx/SyntaxHighlighter/styles/shCore.css"/>
+	<link type="text/css" rel="stylesheet" href="/gfx/SyntaxHighlighter/styles/shThemeDefault.css"/>
+	
+	<script type="text/javascript">
+		SyntaxHighlighter.all();
+	</script>
+	
+
+</head>
+<body>
+<center>
+<table cellpadding="10" cellspacing="0" class="maintable" id="maintable">
+<tr>
+    <td colspan="2" class="header">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+		<td class="headerleft"/>
+		<td class="headercenter">
+<h1><IMG alt="Sphere Online Judge" title="Sphere Online Judge" src="/gfx/sphere-spoj-small.png" border=0 style="margin-top:-4px;margin-bottom:-4px"></h1>
+
+		<div style="position: relative; width: 807px;">
+		<div style="position: absolute; left: -192px; top: 8px;"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-4453360425583535";
+/* Spoj - wiezowiec */
+google_ad_slot = "2703472077";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+		</div>
+		</td>
+		<td class="headerright"/>
+	</tr>
+	</table>
+    </td>
+</tr>
+<tr><td class="menu" width="92" valign="top">
+
+	
+	
+<form name="login"  action="http://www.spoj.pl/problems/classical/" method="post" 
+onsubmit="if(document.login.ssl.checked) document.login.action='https://www.spoj.pl/problems/classical/'" style="margin-bottom: 18px"> 
+User: <input name="login_user" type="text" style="width: 85px;" class="form"><BR>
+Password: <input name="password" type="password" style="width: 85px;" class="form"><BR>
+<div style="font-size: 10px;">
+<script language="javascript" type="text/javascript">
+<!--
+    document.write('<input type="checkbox" name="ssl" id="ssl" /><label for="ssl">secure</label><br/>');
+//-->
+</script>
+<div title="Keep me signed in for today">
+<input type="checkbox" name="autologin" value="1" id="autologin" /><label for="autologin">for today</label>
+</div>
+<!--Keep me signed in for today-->
+</div>
+<input name="submit" type="submit" value="Log In" class="button" style="width: 85px;">
+</form>
+<div class="menucmd"><a href="/register">register</a><br><a href="/tutorials">tutorials</a><br><br><a href="/status">status</a><br><a href="/submit">submit</a><br><a href="/problems/classical/">problems</a><br><div class="submenucmd"><a href="/problems/classical">classical</a><br><a href="/problems/challenge">challenge</a><br><a href="/problems/partial">partial</a><br><a href="/problems/tutorial">tutorial</a><br></div><a href="/search">search</a><br><br><a href="/">news</a><br><a href="/contests">contests</a><br><a href="/ranks/">ranks</a><br><br><a href="/forum">forum</a><br><a href="/tools">tools</a><br><a href="/credits">credits</a><br><hr></div><a href="/problems/classical/"></a><br>
+
+	<div class="time">
+Server time:</div>
+<div class="time">
+2011-09-11
+<br>
+<b>04 : 33 : 53</b>
+</div>
+
+</td><td style="width: 100%; padding:0px;" valign="top" class="content0">
+        <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+                <td style="padding:0px;" colspan="2"><center>
+                                
+                </center></td>
+        </tr>
+        <tr>
+                <td class="content" width="99%" style="padding: 10px">
+<!-- google_ad_section_start -->
+<table class="navigation" width="100%">
+<tr><td class="navigationcenter">
+<small>
+All<a href="/problems/classical/all/lang=ADA" title="ADA 95">ADA</a>
+<a href="/problems/classical/all/lang=DOC" title="Any document">DOC</a>
+<a href="/problems/classical/all/lang=ASM" title="Assembler">ASM</a>
+<a href="/problems/classical/all/lang=BASH" title="Bash">BASH</a>
+<a href="/problems/classical/all/lang=BF" title="Brainf**k">BF</a>
+<a href="/problems/classical/all/lang=C" title="C">C</a>
+<a href="/problems/classical/all/lang=CS" title="C#">C#</a>
+<a href="/problems/classical/all/lang=CPP%204.0.0-8" title="C++">C++ 4.0.0-8</a>
+<a href="/problems/classical/all/lang=CPP%204.3.2" title="C++">C++ 4.3.2</a>
+<a href="/problems/classical/all/lang=C99%20strict" title="C99 strict">C99 strict</a>
+<a href="/problems/classical/all/lang=CLPS" title="Clips">CLPS</a>
+<a href="/problems/classical/all/lang=CLOJ" title="Clojure">CLOJ</a>
+<a href="/problems/classical/all/lang=LISP%20clisp" title="Common Lisp">LISP clisp</a>
+<a href="/problems/classical/all/lang=LISP%20sbcl" title="Common Lisp">LISP sbcl</a>
+<a href="/problems/classical/all/lang=D" title="D">D</a>
+<a href="/problems/classical/all/lang=ERL" title="Erlang">ERL</a>
+<a href="/problems/classical/all/lang=FS" title="F#">F#</a>
+<a href="/problems/classical/all/lang=FORT" title="Fortran 95">FORT</a>
+<a href="/problems/classical/all/lang=GO" title="Go">GO</a>
+<a href="/problems/classical/all/lang=HASK" title="Haskell">HASK</a>
+<a href="/problems/classical/all/lang=ICON" title="Icon">ICON</a>
+<a href="/problems/classical/all/lang=ICK" title="Intercal">ICK</a>
+<a href="/problems/classical/all/lang=JAR" title="JAR">JAR</a>
+<a href="/problems/classical/all/lang=JAVA" title="Java">JAVA</a>
+<a href="/problems/classical/all/lang=JS" title="JavaScript">JS</a>
+<a href="/problems/classical/all/lang=LUA" title="Lua">LUA</a>
+<a href="/problems/classical/all/lang=NEM" title="Nemerle">NEM</a>
+<a href="/problems/classical/all/lang=NICE" title="Nice">NICE</a>
+<a href="/problems/classical/all/lang=CAML" title="Ocaml">CAML</a>
+<a href="/problems/classical/all/lang=PAS%20gpc" title="Pascal">PAS gpc</a>
+<a href="/problems/classical/all/lang=PAS%20fpc" title="Pascal">PAS fpc</a>
+<a href="/problems/classical/all/lang=PDF" title="PDF">PDF</a>
+<a href="/problems/classical/all/lang=PERL" title="Perl">PERL</a>
+<a href="/problems/classical/all/lang=PERL%206" title="Perl 6">PERL 6</a>
+<a href="/problems/classical/all/lang=PHP" title="PHP">PHP</a>
+<a href="/problems/classical/all/lang=PIKE" title="Pike">PIKE</a>
+<a href="/problems/classical/all/lang=PS" title="PostScript">PS</a>
+<a href="/problems/classical/all/lang=PRLG" title="Prolog">PRLG</a>
+<a href="/problems/classical/all/lang=PYTH%202.5" title="Python">PYTH 2.5</a>
+<a href="/problems/classical/all/lang=PYTH%203.1.2" title="Python 3">PYTH 3.1.2</a>
+<a href="/problems/classical/all/lang=RUBY" title="Ruby">RUBY</a>
+<a href="/problems/classical/all/lang=SCALA" title="Scala">SCALA</a>
+<a href="/problems/classical/all/lang=SCM%20qobi" title="Scheme">SCM qobi</a>
+<a href="/problems/classical/all/lang=SCM%20guile" title="Scheme">SCM guile</a>
+<a href="/problems/classical/all/lang=ST" title="Smalltalk">ST</a>
+<a href="/problems/classical/all/lang=TCL" title="Tcl">TCL</a>
+<a href="/problems/classical/all/lang=TEXT" title="Text">TEXT</a>
+<a href="/problems/classical/all/lang=WSPC" title="Whitespace">WSPC</a>
+</small>
+</td></tr>
+</table>
+<!-- google_ad_section_end -->
+
+<H3>list of classical problems </H3>
+
+<table class="navigation" width="99%">
+<tr><td align="left" width="27%">
+<i>Previous</i></td><td class="navigationcenter" width="4%">&nbsp;1</td> 
+<td class="navigationcenter" width="4%"><a href="/problems/classical/sort=0,start=50" class="pager_link">&nbsp;2</a></td> 
+<td class="navigationcenter" width="4%"><a href="/problems/classical/sort=0,start=100" class="pager_link">&nbsp;3</a></td> 
+<td class="navigationcenter" width="4%"><a href="/problems/classical/sort=0,start=150" class="pager_link">&nbsp;4</a></td> 
+<td class="navigationcenter" width="4%"><a href="/problems/classical/sort=0,start=200" class="pager_link">&nbsp;5</a></td> 
+<td class="navigationcenter" width="4%"><a href="/problems/classical/sort=0,start=250" class="pager_link">&nbsp;6</a></td> 
+<td class="navigationcenter" width="4%"><a href="/problems/classical/sort=0,start=300" class="pager_link">&nbsp;7</a></td> 
+<td class="navigationcenter" width="4%"><a href="/problems/classical/sort=0,start=350" class="pager_link">&nbsp;8</a></td> 
+<td class="navigationcenter" width="4%"><a href="/problems/classical/sort=0,start=400" class="pager_link">&nbsp;9</a></td> 
+<td class="navigationcenter" width="4%"><a href="/problems/classical/sort=0,start=450" class="pager_link">&nbsp;10</a></td> 
+<td class="navigationcenter" width="4%"><a href="/problems/classical/sort=0,start=500" class="pager_link">&nbsp;11</a></td> 
+<td align="right" width="25%">
+<a href="/problems/classical/sort=0,start=50" class="pager_link">Next</a> <a href="/problems/classical/sort=0,start=1800" class="pager_link">&gt;</a></td></table>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4453360425583535";
+/* Spoj - baner górny */
+google_ad_slot = "5796055248";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<table class="problems" width="100%">
+<tr class="headerrow">
+<th width="6%" class="headerrowleft"><a href="?sort=5" title="Problem ID. Click here to sort.">ID</a></th>
+<th width="60%"><a href="?sort=2" title="Problem name. Click here to sort. Click on the name of a problem to read its description.">NAME</a></th>
+<th width="11%"><a href="?sort=1" title="Problem code. Click here to sort. If a link in this column is inactive for some problem, solutions cannot be submitted.">CODE</a></th>
+<th width="9%"><a href="?sort=6" title="The number of users who have solved a problem. Click here to sort.">USERS</a></th>
+<th width="5%" class="headerrowright"><a href="?sort=7" title="The percentage of all solutions to a problem, which were accepted. This is some indicator of the difficulty of the problem. Click here to sort.">ACC&nbsp;%</a></th>
+</tr>
+
+<tr class="problemrow">
+<td>1</td>
+<td align="left">&nbsp;
+<a href="/problems/TEST/">&nbsp;<b>Life, the Universe, and Everything</b></a></td>
+<td><a href="/submit/TEST" title="Submit a solution to this problem.">
+TEST</a></td>
+<td><a href="/ranks/TEST" title="Value 0 points. See the best solutions.">25601</a></td>
+<td><a href="/status/TEST" title="See all submitted solutions to this problem.">37.86</a></td>
+</tr>
+<tr class="problemrow">
+<td>2</td>
+<td align="left">&nbsp;
+<a href="/problems/PRIME1/">&nbsp;<b>Prime Generator</b></a></td>
+<td><a href="/submit/PRIME1" title="Submit a solution to this problem.">
+PRIME1</a></td>
+<td><a href="/ranks/PRIME1" title="Value 0.01 points. See the best solutions.">6368</a></td>
+<td><a href="/status/PRIME1" title="See all submitted solutions to this problem.">14.01</a></td>
+</tr>
+<tr class="problemrow">
+<td>3</td>
+<td align="left">&nbsp;
+<a href="/problems/SBSTR1/">&nbsp;<b>Substring Check (Bug Funny)</b></a></td>
+<td><a href="/submit/SBSTR1" title="Submit a solution to this problem.">
+SBSTR1</a></td>
+<td><a href="/ranks/SBSTR1" title="Value 0.27 points. See the best solutions.">255</a></td>
+<td><a href="/status/SBSTR1" title="See all submitted solutions to this problem.">11.91</a></td>
+</tr>
+<tr class="problemrow">
+<td>4</td>
+<td align="left">&nbsp;
+<a href="/problems/ONP/">&nbsp;<b>Transform the Expression</b></a></td>
+<td><a href="/submit/ONP" title="Submit a solution to this problem.">
+ONP</a></td>
+<td><a href="/ranks/ONP" title="Value 0.01 points. See the best solutions.">6067</a></td>
+<td><a href="/status/ONP" title="See all submitted solutions to this problem.">51.68</a></td>
+</tr>
+<tr class="problemrow">
+<td>5</td>
+<td align="left">&nbsp;
+<a href="/problems/PALIN/">&nbsp;<b>The Next Palindrome</b></a></td>
+<td><a href="/submit/PALIN" title="Submit a solution to this problem.">
+PALIN</a></td>
+<td><a href="/ranks/PALIN" title="Value 0.02 points. See the best solutions.">3842</a></td>
+<td><a href="/status/PALIN" title="See all submitted solutions to this problem.">16.35</a></td>
+</tr>
+<tr class="problemrow">
+<td>6</td>
+<td align="left">&nbsp;
+<a href="/problems/ARITH/">&nbsp;<b>Simple Arithmetics</b></a></td>
+<td><a href="/submit/ARITH" title="Submit a solution to this problem.">
+ARITH</a></td>
+<td><a href="/ranks/ARITH" title="Value 0.09 points. See the best solutions.">897</a></td>
+<td><a href="/status/ARITH" title="See all submitted solutions to this problem.">14.62</a></td>
+</tr>
+<tr class="problemrow">
+<td>7</td>
+<td align="left">&nbsp;
+<a href="/problems/BULK/">&nbsp;<b>The Bulk!</b></a></td>
+<td><a href="/submit/BULK" title="Submit a solution to this problem.">
+BULK</a></td>
+<td><a href="/ranks/BULK" title="Value 0.34 points. See the best solutions.">193</a></td>
+<td><a href="/status/BULK" title="See all submitted solutions to this problem.">30.35</a></td>
+</tr>
+<tr class="problemrow">
+<td>8</td>
+<td align="left">&nbsp;
+<a href="/problems/CMPLS/">&nbsp;<b>Complete the Sequence!</b></a></td>
+<td><a href="/submit/CMPLS" title="Submit a solution to this problem.">
+CMPLS</a></td>
+<td><a href="/ranks/CMPLS" title="Value 0.09 points. See the best solutions.">892</a></td>
+<td><a href="/status/CMPLS" title="See all submitted solutions to this problem.">36.12</a></td>
+</tr>
+<tr class="problemrow">
+<td>9</td>
+<td align="left">&nbsp;
+<a href="/problems/DIRVS/">&nbsp;<b>Direct Visibility</b></a></td>
+<td><a href="/submit/DIRVS" title="Submit a solution to this problem.">
+DIRVS</a></td>
+<td><a href="/ranks/DIRVS" title="Value 0.45 points. See the best solutions.">138</a></td>
+<td><a href="/status/DIRVS" title="See all submitted solutions to this problem.">17.82</a></td>
+</tr>
+<tr class="problemrow">
+<td>10</td>
+<td align="left">&nbsp;
+<a href="/problems/CMEXPR/">&nbsp;<b>Complicated Expressions</b></a></td>
+<td><a href="/submit/CMEXPR" title="Submit a solution to this problem.">
+CMEXPR</a></td>
+<td><a href="/ranks/CMEXPR" title="Value 0.18 points. See the best solutions.">397</a></td>
+<td><a href="/status/CMEXPR" title="See all submitted solutions to this problem.">29.33</a></td>
+</tr>
+<tr class="problemrow">
+<td>11</td>
+<td align="left">&nbsp;
+<a href="/problems/FCTRL/">&nbsp;<b>Factorial</b></a></td>
+<td><a href="/submit/FCTRL" title="Submit a solution to this problem.">
+FCTRL</a></td>
+<td><a href="/ranks/FCTRL" title="Value 0.01 points. See the best solutions.">8261</a></td>
+<td><a href="/status/FCTRL" title="See all submitted solutions to this problem.">46.77</a></td>
+</tr>
+<tr class="problemrow">
+<td>12</td>
+<td align="left">&nbsp;
+<a href="/problems/MMIND/">&nbsp;<b>The Game of Master-Mind</b></a></td>
+<td><a href="/submit/MMIND" title="Submit a solution to this problem.">
+MMIND</a></td>
+<td><a href="/ranks/MMIND" title="Value 0.47 points. See the best solutions.">129</a></td>
+<td><a href="/status/MMIND" title="See all submitted solutions to this problem.">47.09</a></td>
+</tr>
+<tr class="problemrow">
+<td>13</td>
+<td align="left">&nbsp;
+<a href="/problems/HOTLINE/">&nbsp;<b>Hotline</b></a></td>
+<td><a href="/submit/HOTLINE" title="Submit a solution to this problem.">
+HOTLINE</a></td>
+<td><a href="/ranks/HOTLINE" title="Value 0.53 points. See the best solutions.">111</a></td>
+<td><a href="/status/HOTLINE" title="See all submitted solutions to this problem.">40.00</a></td>
+</tr>
+<tr class="problemrow">
+<td>14</td>
+<td align="left">&nbsp;
+<a href="/problems/IKEYB/">&nbsp;<b>I-Keyboard</b></a></td>
+<td><a href="/submit/IKEYB" title="Submit a solution to this problem.">
+IKEYB</a></td>
+<td><a href="/ranks/IKEYB" title="Value 0.18 points. See the best solutions.">408</a></td>
+<td><a href="/status/IKEYB" title="See all submitted solutions to this problem.">37.89</a></td>
+</tr>
+<tr class="problemrow">
+<td>15</td>
+<td align="left">&nbsp;
+<a href="/problems/SHPATH/">&nbsp;<b>The Shortest Path</b></a></td>
+<td><a href="/submit/SHPATH" title="Submit a solution to this problem.">
+SHPATH</a></td>
+<td><a href="/ranks/SHPATH" title="Value 0.09 points. See the best solutions.">869</a></td>
+<td><a href="/status/SHPATH" title="See all submitted solutions to this problem.">16.29</a></td>
+</tr>
+<tr class="problemrow">
+<td>16</td>
+<td align="left">&nbsp;
+<a href="/problems/TETRA/">&nbsp;<b>Sphere in a tetrahedron</b></a></td>
+<td><a href="/submit/TETRA" title="Submit a solution to this problem.">
+TETRA</a></td>
+<td><a href="/ranks/TETRA" title="Value 0.13 points. See the best solutions.">594</a></td>
+<td><a href="/status/TETRA" title="See all submitted solutions to this problem.">49.54</a></td>
+</tr>
+<tr class="problemrow">
+<td>17</td>
+<td align="left">&nbsp;
+<a href="/problems/CRYPTO1/">&nbsp;<b>The Bytelandian Cryptographer (Act I)</b></a></td>
+<td><a href="/submit/CRYPTO1" title="Submit a solution to this problem.">
+CRYPTO1</a></td>
+<td><a href="/ranks/CRYPTO1" title="Value 0.2 points. See the best solutions.">364</a></td>
+<td><a href="/status/CRYPTO1" title="See all submitted solutions to this problem.">32.24</a></td>
+</tr>
+<tr class="problemrow">
+<td>18</td>
+<td align="left">&nbsp;
+<a href="/problems/CRYPTO2/">&nbsp;<b>The Bytelandian Cryptographer (Act II)</b></a></td>
+<td><a href="/submit/CRYPTO2" title="Submit a solution to this problem.">
+CRYPTO2</a></td>
+<td><a href="/ranks/CRYPTO2" title="Value 0.17 points. See the best solutions.">432</a></td>
+<td><a href="/status/CRYPTO2" title="See all submitted solutions to this problem.">37.95</a></td>
+</tr>
+<tr class="problemrow">
+<td>19</td>
+<td align="left">&nbsp;
+<a href="/problems/CRYPTO3/">&nbsp;<b>The Bytelandian Cryptographer (Act III)</b></a></td>
+<td><a href="/submit/CRYPTO3" title="Submit a solution to this problem.">
+CRYPTO3</a></td>
+<td><a href="/ranks/CRYPTO3" title="Value 0.65 points. See the best solutions.">82</a></td>
+<td><a href="/status/CRYPTO3" title="See all submitted solutions to this problem.">40.71</a></td>
+</tr>
+<tr class="problemrow">
+<td>20</td>
+<td align="left">&nbsp;
+<a href="/problems/CRYPTO4/">&nbsp;<b>The Bytelandian Cryptographer (Act IV)</b></a></td>
+<td><a href="/submit/CRYPTO4" title="Submit a solution to this problem.">
+CRYPTO4</a></td>
+<td><a href="/ranks/CRYPTO4" title="Value 1.16 points. See the best solutions.">28</a></td>
+<td><a href="/status/CRYPTO4" title="See all submitted solutions to this problem.">8.45</a></td>
+</tr>
+<tr class="problemrow">
+<td>22</td>
+<td align="left">&nbsp;
+<a href="/problems/TRICENTR/">&nbsp;<b>Triangle From Centroid</b></a></td>
+<td><a href="/submit/TRICENTR" title="Submit a solution to this problem.">
+TRICENTR</a></td>
+<td><a href="/ranks/TRICENTR" title="Value 0.14 points. See the best solutions.">533</a></td>
+<td><a href="/status/TRICENTR" title="See all submitted solutions to this problem.">38.27</a></td>
+</tr>
+<tr class="problemrow">
+<td>23</td>
+<td align="left">&nbsp;
+<a href="/problems/PIR/">&nbsp;<b>Pyramids</b></a></td>
+<td><a href="/submit/PIR" title="Submit a solution to this problem.">
+PIR</a></td>
+<td><a href="/ranks/PIR" title="Value 0.06 points. See the best solutions.">1294</a></td>
+<td><a href="/status/PIR" title="See all submitted solutions to this problem.">36.30</a></td>
+</tr>
+<tr class="problemrow">
+<td>24</td>
+<td align="left">&nbsp;
+<a href="/problems/FCTRL2/">&nbsp;<b>Small factorials</b></a></td>
+<td><a href="/submit/FCTRL2" title="Submit a solution to this problem.">
+FCTRL2</a></td>
+<td><a href="/ranks/FCTRL2" title="Value 0.01 points. See the best solutions.">7075</a></td>
+<td><a href="/status/FCTRL2" title="See all submitted solutions to this problem.">35.74</a></td>
+</tr>
+<tr class="problemrow">
+<td>25</td>
+<td align="left">&nbsp;
+<a href="/problems/POUR1/">&nbsp;<b>Pouring water</b></a></td>
+<td><a href="/submit/POUR1" title="Submit a solution to this problem.">
+POUR1</a></td>
+<td><a href="/ranks/POUR1" title="Value 0.09 points. See the best solutions.">842</a></td>
+<td><a href="/status/POUR1" title="See all submitted solutions to this problem.">18.14</a></td>
+</tr>
+<tr class="problemrow">
+<td>26</td>
+<td align="left">&nbsp;
+<a href="/problems/BSHEEP/">&nbsp;<b>Build the Fence</b></a></td>
+<td><a href="/submit/BSHEEP" title="Submit a solution to this problem.">
+BSHEEP</a></td>
+<td><a href="/ranks/BSHEEP" title="Value 0.14 points. See the best solutions.">547</a></td>
+<td><a href="/status/BSHEEP" title="See all submitted solutions to this problem.">28.23</a></td>
+</tr>
+<tr class="problemrow">
+<td>27</td>
+<td align="left">&nbsp;
+<a href="/problems/SBANK/">&nbsp;<b>Sorting Bank Accounts</b></a></td>
+<td><a href="/submit/SBANK" title="Submit a solution to this problem.">
+SBANK</a></td>
+<td><a href="/ranks/SBANK" title="Value 0.05 points. See the best solutions.">1548</a></td>
+<td><a href="/status/SBANK" title="See all submitted solutions to this problem.">27.39</a></td>
+</tr>
+<tr class="problemrow">
+<td>28</td>
+<td align="left">&nbsp;
+<a href="/problems/HMRO/">&nbsp;<b>Help the Military Recruitment Office!</b></a></td>
+<td><a href="/submit/HMRO" title="Submit a solution to this problem.">
+HMRO</a></td>
+<td><a href="/ranks/HMRO" title="Value 0.25 points. See the best solutions.">278</a></td>
+<td><a href="/status/HMRO" title="See all submitted solutions to this problem.">12.82</a></td>
+</tr>
+<tr class="problemrow">
+<td>29</td>
+<td align="left">&nbsp;
+<a href="/problems/HASHIT/">&nbsp;<b>Hash it!</b></a></td>
+<td><a href="/submit/HASHIT" title="Submit a solution to this problem.">
+HASHIT</a></td>
+<td><a href="/ranks/HASHIT" title="Value 0.08 points. See the best solutions.">935</a></td>
+<td><a href="/status/HASHIT" title="See all submitted solutions to this problem.">24.25</a></td>
+</tr>
+<tr class="problemrow">
+<td>30</td>
+<td align="left">&nbsp;
+<a href="/problems/BLINNET/">&nbsp;<b>Bytelandian Blingors Network</b></a></td>
+<td><a href="/submit/BLINNET" title="Submit a solution to this problem.">
+BLINNET</a></td>
+<td><a href="/ranks/BLINNET" title="Value 0.1 points. See the best solutions.">764</a></td>
+<td><a href="/status/BLINNET" title="See all submitted solutions to this problem.">30.11</a></td>
+</tr>
+<tr class="problemrow">
+<td>31</td>
+<td align="left">&nbsp;
+<a href="/problems/MUL/">&nbsp;<b>Fast Multiplication</b></a></td>
+<td><a href="/submit/MUL" title="Submit a solution to this problem.">
+MUL</a></td>
+<td><a href="/ranks/MUL" title="Value 0.16 points. See the best solutions.">462</a></td>
+<td><a href="/status/MUL" title="See all submitted solutions to this problem.">12.77</a></td>
+</tr>
+<tr class="problemrow">
+<td>32</td>
+<td align="left">&nbsp;
+<a href="/problems/NHAY/">&nbsp;<b>A Needle in the Haystack</b></a></td>
+<td><a href="/submit/NHAY" title="Submit a solution to this problem.">
+NHAY</a></td>
+<td><a href="/ranks/NHAY" title="Value 0.06 points. See the best solutions.">1200</a></td>
+<td><a href="/status/NHAY" title="See all submitted solutions to this problem.">34.87</a></td>
+</tr>
+<tr class="problemrow">
+<td>33</td>
+<td align="left">&nbsp;
+<a href="/problems/TRIP/">&nbsp;<b>Trip</b></a></td>
+<td><a href="/submit/TRIP" title="Submit a solution to this problem.">
+TRIP</a></td>
+<td><a href="/ranks/TRIP" title="Value 0.16 points. See the best solutions.">453</a></td>
+<td><a href="/status/TRIP" title="See all submitted solutions to this problem.">19.80</a></td>
+</tr>
+<tr class="problemrow">
+<td>34</td>
+<td align="left">&nbsp;
+<a href="/problems/RUNAWAY/">&nbsp;<b>Run Away</b></a></td>
+<td><a href="/submit/RUNAWAY" title="Submit a solution to this problem.">
+RUNAWAY</a></td>
+<td><a href="/ranks/RUNAWAY" title="Value 0.44 points. See the best solutions.">139</a></td>
+<td><a href="/status/RUNAWAY" title="See all submitted solutions to this problem.">32.09</a></td>
+</tr>
+<tr class="problemrow">
+<td>35</td>
+<td align="left">&nbsp;
+<a href="/problems/EQBOX/">&nbsp;<b>Equipment Box</b></a></td>
+<td><a href="/submit/EQBOX" title="Submit a solution to this problem.">
+EQBOX</a></td>
+<td><a href="/ranks/EQBOX" title="Value 0.16 points. See the best solutions.">450</a></td>
+<td><a href="/status/EQBOX" title="See all submitted solutions to this problem.">15.02</a></td>
+</tr>
+<tr class="problemrow">
+<td>36</td>
+<td align="left">&nbsp;
+<a href="/problems/CODE1/">&nbsp;<b>Secret Code</b></a></td>
+<td><a href="/submit/CODE1" title="Submit a solution to this problem.">
+CODE1</a></td>
+<td><a href="/ranks/CODE1" title="Value 0.46 points. See the best solutions.">133</a></td>
+<td><a href="/status/CODE1" title="See all submitted solutions to this problem.">30.03</a></td>
+</tr>
+<tr class="problemrow">
+<td>37</td>
+<td align="left">&nbsp;
+<a href="/problems/PROPKEY/">&nbsp;<b>The Proper Key</b></a></td>
+<td><a href="/submit/PROPKEY" title="Submit a solution to this problem.">
+PROPKEY</a></td>
+<td><a href="/ranks/PROPKEY" title="Value 0.53 points. See the best solutions.">109</a></td>
+<td><a href="/status/PROPKEY" title="See all submitted solutions to this problem.">23.57</a></td>
+</tr>
+<tr class="problemrow">
+<td>38</td>
+<td align="left">&nbsp;
+<a href="/problems/LABYR1/">&nbsp;<b>Labyrinth</b></a></td>
+<td><a href="/submit/LABYR1" title="Submit a solution to this problem.">
+LABYR1</a></td>
+<td><a href="/ranks/LABYR1" title="Value 0.07 points. See the best solutions.">1066</a></td>
+<td><a href="/status/LABYR1" title="See all submitted solutions to this problem.">24.97</a></td>
+</tr>
+<tr class="problemrow">
+<td>39</td>
+<td align="left">&nbsp;
+<a href="/problems/PIGBANK/">&nbsp;<b>Piggy-Bank</b></a></td>
+<td><a href="/submit/PIGBANK" title="Submit a solution to this problem.">
+PIGBANK</a></td>
+<td><a href="/ranks/PIGBANK" title="Value 0.05 points. See the best solutions.">1578</a></td>
+<td><a href="/status/PIGBANK" title="See all submitted solutions to this problem.">34.67</a></td>
+</tr>
+<tr class="problemrow">
+<td>40</td>
+<td align="left">&nbsp;
+<a href="/problems/STONE/">&nbsp;<b>Lifting the Stone</b></a></td>
+<td><a href="/submit/STONE" title="Submit a solution to this problem.">
+STONE</a></td>
+<td><a href="/ranks/STONE" title="Value 0.12 points. See the best solutions.">600</a></td>
+<td><a href="/status/STONE" title="See all submitted solutions to this problem.">21.59</a></td>
+</tr>
+<tr class="problemrow">
+<td>41</td>
+<td align="left">&nbsp;
+<a href="/problems/WORDS1/">&nbsp;<b>Play on Words</b></a></td>
+<td><a href="/submit/WORDS1" title="Submit a solution to this problem.">
+WORDS1</a></td>
+<td><a href="/ranks/WORDS1" title="Value 0.07 points. See the best solutions.">1085</a></td>
+<td><a href="/status/WORDS1" title="See all submitted solutions to this problem.">20.12</a></td>
+</tr>
+<tr class="problemrow">
+<td>42</td>
+<td align="left">&nbsp;
+<a href="/problems/ADDREV/">&nbsp;<b>Adding Reversed Numbers</b></a></td>
+<td><a href="/submit/ADDREV" title="Submit a solution to this problem.">
+ADDREV</a></td>
+<td><a href="/ranks/ADDREV" title="Value 0.01 points. See the best solutions.">9352</a></td>
+<td><a href="/status/ADDREV" title="See all submitted solutions to this problem.">50.04</a></td>
+</tr>
+<tr class="problemrow">
+<td>43</td>
+<td align="left">&nbsp;
+<a href="/problems/BOOKS1/">&nbsp;<b>Copying Books</b></a></td>
+<td><a href="/submit/BOOKS1" title="Submit a solution to this problem.">
+BOOKS1</a></td>
+<td><a href="/ranks/BOOKS1" title="Value 0.12 points. See the best solutions.">643</a></td>
+<td><a href="/status/BOOKS1" title="See all submitted solutions to this problem.">25.77</a></td>
+</tr>
+<tr class="problemrow">
+<td>44</td>
+<td align="left">&nbsp;
+<a href="/problems/SCYPHER/">&nbsp;<b>Substitution Cipher</b></a></td>
+<td><a href="/submit/SCYPHER" title="Submit a solution to this problem.">
+SCYPHER</a></td>
+<td><a href="/ranks/SCYPHER" title="Value 0.34 points. See the best solutions.">197</a></td>
+<td><a href="/status/SCYPHER" title="See all submitted solutions to this problem.">15.99</a></td>
+</tr>
+<tr class="problemrow">
+<td>45</td>
+<td align="left">&nbsp;
+<a href="/problems/COMMEDIA/">&nbsp;<b>Commedia dell Arte</b></a></td>
+<td><a href="/submit/COMMEDIA" title="Submit a solution to this problem.">
+COMMEDIA</a></td>
+<td><a href="/ranks/COMMEDIA" title="Value 0.48 points. See the best solutions.">126</a></td>
+<td><a href="/status/COMMEDIA" title="See all submitted solutions to this problem.">47.60</a></td>
+</tr>
+<tr class="problemrow">
+<td>47</td>
+<td align="left">&nbsp;
+<a href="/problems/SCRAPER/">&nbsp;<b>Skyscraper Floors</b></a></td>
+<td><a href="/submit/SCRAPER" title="Submit a solution to this problem.">
+SCRAPER</a></td>
+<td><a href="/ranks/SCRAPER" title="Value 0.36 points. See the best solutions.">183</a></td>
+<td><a href="/status/SCRAPER" title="See all submitted solutions to this problem.">17.81</a></td>
+</tr>
+<tr class="problemrow">
+<td>48</td>
+<td align="left">&nbsp;
+<a href="/problems/BEADS/">&nbsp;<b>Glass Beads</b></a></td>
+<td><a href="/submit/BEADS" title="Submit a solution to this problem.">
+BEADS</a></td>
+<td><a href="/ranks/BEADS" title="Value 0.07 points. See the best solutions.">1051</a></td>
+<td><a href="/status/BEADS" title="See all submitted solutions to this problem.">41.95</a></td>
+</tr>
+<tr class="problemrow">
+<td>49</td>
+<td align="left">&nbsp;
+<a href="/problems/HAREFOX/">&nbsp;<b>Hares and Foxes</b></a></td>
+<td><a href="/submit/HAREFOX" title="Submit a solution to this problem.">
+HAREFOX</a></td>
+<td><a href="/ranks/HAREFOX" title="Value 0.68 points. See the best solutions.">77</a></td>
+<td><a href="/status/HAREFOX" title="See all submitted solutions to this problem.">16.98</a></td>
+</tr>
+<tr class="problemrow">
+<td>50</td>
+<td align="left">&nbsp;
+<a href="/problems/INCARDS/">&nbsp;<b>Invitation Cards</b></a></td>
+<td><a href="/submit/INCARDS" title="Submit a solution to this problem.">
+INCARDS</a></td>
+<td><a href="/ranks/INCARDS" title="Value 0.19 points. See the best solutions.">376</a></td>
+<td><a href="/status/INCARDS" title="See all submitted solutions to this problem.">40.81</a></td>
+</tr>
+<tr class="problemrow">
+<td>51</td>
+<td align="left">&nbsp;
+<a href="/problems/TOUR/">&nbsp;<b>Fake tournament</b></a></td>
+<td><a href="/submit/TOUR" title="Submit a solution to this problem.">
+TOUR</a></td>
+<td><a href="/ranks/TOUR" title="Value 0.2 points. See the best solutions.">368</a></td>
+<td><a href="/status/TOUR" title="See all submitted solutions to this problem.">19.31</a></td>
+</tr>
+<tr class="problemrow">
+<td>54</td>
+<td align="left">&nbsp;
+<a href="/problems/JULKA/">&nbsp;<b>Julka</b></a></td>
+<td><a href="/submit/JULKA" title="Submit a solution to this problem.">
+JULKA</a></td>
+<td><a href="/ranks/JULKA" title="Value 0.02 points. See the best solutions.">4261</a></td>
+<td><a href="/status/JULKA" title="See all submitted solutions to this problem.">32.62</a></td>
+</tr>
+</table>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4453360425583535";
+/* Spoj - baner górny */
+google_ad_slot = "5796055248";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<form name="fch" class="form" style="margin-top:12px; margin-bottom:8px" action="" method="post">
+<table width="100%">
+<tr>
+    <td align=left>
+	<b>Document type:</b>
+	<input type="radio" name="pspdf" value="/" onClick="appendLink(this.value)"  checked >html
+	<input type="radio" name="pspdf" value=".ps" onClick="appendLink(this.value)"  >ps
+	<input type="radio" name="pspdf" value=".pdf" onClick="appendLink(this.value)"  >pdf
+	<noscript><input class="button" value="change" type="submit"></noscript>
+    </td>
+    <td align="right">
+	<b><a href="/problems/classical" id="booklet">booklet</a></b>
+    </td>
+</tr>
+</table>
+</form>
+
+
+
+ <script language="javascript" type="text/javascript">
+<!--  
+function appendLink(target)
+{
+    for(a = 0; a < document.links.length; a++)
+	if (document.links[a].href.match(/^.*\/problems(\/[A-Z0-9_]+\/?)(\.[a-z]+)?$/) || document.links[a].id=='booklet')
+	{
+	    document.links[a].href = document.links[a].href.replace(/\.[a-z]+$/, "").replace(/\/$/, "")+target;
+	    if (target.match(/^\/$/) && document.links[a].id=='booklet')
+		document.links[a].style.visibility = 'hidden';
+	    else document.links[a].style.visibility = 'visible';
+	}
+    document.cookie='pspdf='+target+'; path=/;';
+}
+
+appendLink('/');
+
+//--></script> 
+        </td>
+<tr>
+        <td style="padding:0px" colspan="2"><center>
+                
+</center></td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" class="footer">
+
+<script language="javascript" type="text/javascript">
+<!--
+function swapSheet(sheet, caller) {
+    document.getElementById('theme').href=sheet;
+    document.cookie="css_0="+sheet+"; path=/;";
+    caller.href="#bottom";
+}
+
+function setWidth(w, caller) {
+    document.getElementById('maintable').style.width=w;
+    document.cookie="res="+w+"; path=/;";
+    caller.href="#bottom";
+}
+
+
+
+//-->
+
+</script>
+        <table width="100%">
+    <tr>
+	<td align="left" width=10% class="cfooter">
+	<a href="/info/">About SPOJ</a>
+	</td>
+	<td align="center" class="cfooter">
+	    width:
+	    <a href="/?rsl=855px"  onClick="setWidth('855px', this)">900</a>
+	    <a href="/?rsl=980px"  onClick="setWidth('980px', this)">1024</a>
+	    <a href="/?rsl=100%" onClick="setWidth('100%', this)">Full</a>
+	    &nbsp;&nbsp;
+	    theme:
+	    <a href="/?css=/themes/skin1.css" onClick="swapSheet('/themes/skin1.css', this)">olive</a>
+	    <a href="/?css=/themes/skin2.css" onClick="swapSheet('/themes/skin2.css', this)">banana</a>
+	    <a href="/?css=/themes/skin3.css" onClick="swapSheet('/themes/skin3.css', this)">plum</a>
+	</td>
+		<td align="center" class="cfooter">
+		 <span title="The discussion channel of the Sphere Online Judge community.">
+		 <a href="irc://irc.freenode.net/spoj"><b>#spoj</b> at freenode</a>
+		 </span>
+	</td>
+		<td width=10% class="cfooter" style="text-align:right">
+		<a href="/rss/" ><img src="/gfx/rss10x10.gif" border=0>&nbsp;RSS</a>&nbsp;
+	</div>
+	</td>
+    </tr>
+    </table>
+    </tr></table>
+</center>
+<div style="font-size:10px; margin-top:4px; color: rgb(85,80,95);"><center>
+<a href="http://www.spoj.pl" style="color:black">SPOJ</a>
+System &copy; 2011
+<a href="http://sphere-research.com" style="color:black">Sphere Research Labs | Projekty informatyczne i aplikacje na zam�wienie</a>. 
+All Rights Reserved.</center></div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-10507872-1']);
+      _gaq.push(['_trackPageview']);
+        (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		      })();
+		      </script>
+		      
+
+<script type="text/javascript">
+function _enabled() {
+	$.ajax({url: "/ad.php?adb=1"});
+}
+function _disabled() {}
+var _abdDetectedFnc = '_enabled';
+</script>
+<script type="text/javascript" src="/gfx/adblockdetector.js"></script>
+
+</body>
+</html>
