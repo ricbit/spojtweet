@@ -40,6 +40,9 @@ class RefreshUserPage(webapp.RequestHandler):
       details_url = 'http://www.spoj.pl/status/%s/signedlist/' % self.user
       details_rpc = urlfetch.create_rpc()
       urlfetch.make_fetch_call(details_rpc, details_url)
+      classical_key = db.Key.from_path('ProblemList', 'classical')      
+      classical_rpc = db.get_async(classical_key)
+      self.classical = set(classical_rpc.get_result().problems)
       self.status_page = status_rpc.get_result().content
       self.details_page = details_rpc.get_result().content
     except urlfetch.DownloadError:
@@ -60,6 +63,9 @@ class RefreshUserPage(webapp.RequestHandler):
   def CreateUserProblems(self):
     self.user_problems = []
     for code, properties in self.problems.iteritems():
+      # Skip problems not in classical set.
+      if code not in self.classical:
+	continue
       properties.sort()
       solved = False
       languages = set()
