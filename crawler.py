@@ -27,10 +27,23 @@ def StartCountryCrawl():
   country_list = parser.ParseCountryList(country_page)
   deferred.defer(CrawlCountry, country_list)
 
+def CrawlProblems(problem_list):
+  if not problem_list:
+    return
+  code = problem_list[0]
+  logging.info('crawling problem %s', code)
+  problem_url = 'http://www.spoj.pl/ranks/' + code
+  problem_page = urlfetch.fetch(problem_url).content
+  details = parser.ParseProblemDetails(problem_page)
+  problem = model.ProblemDetails(key_name=code, **details)
+  problem.put()
+  deferred.defer(CrawlProblems, problem_list[1:])
+
+
 def SaveProblemList(problem_list):
   problems = model.ProblemList(key_name='classical', problems=problem_list)
   problems.put()
-  deferred.defer(CrawlProblems, problem_list[:10])
+  deferred.defer(CrawlProblems, problem_list)
 
 def ProblemCrawl(url, problem_list):
   logging.info('crawling %s', url)
