@@ -34,6 +34,8 @@ def ProgressiveBadge(count, titles, requirements, descriptions):
   return [model.Badge(*badge)] if badge is not None else []
 
 def CountryBadge(metadata):
+  if metadata.country_position is None:
+    return []
   country = metadata.country.title()
   titles = ['Citizen', 'VIP', 'Leader']
   badge_titles = ['%s %s' % (country, title) for title in titles]
