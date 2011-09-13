@@ -33,7 +33,7 @@ def CrawlProblems(problem_list):
   code = problem_list[0]
   logging.info('crawling problem %s', code)
   problem_url = 'http://www.spoj.pl/ranks/' + code
-  problem_page = urlfetch.fetch(problem_url).content
+  problem_page = urlfetch.fetch(problem_url, deadline=60).content
   details = parser.ParseProblemDetails(problem_page)
   problem = model.ProblemDetails(key_name=code, **details)
   problem.put()
