@@ -31,6 +31,24 @@ class ParserTest(unittest.TestCase):
     self.assertEquals(25, details['compile_error'])
     self.assertEquals(22, details['runtime_error'])
     self.assertEquals(3, details['time_limit_exceeded'])
+    self.assertEquals('adrian', details['first_place'])
+    self.assertEquals(0, details['first_place_time'])
+
+  def testParseProblemDetailsUnsolved(self):
+    text = open('testdata/problems_best_unsolved.html').read()
+    details = parser.ParseProblemDetails(text)
+    self.assertEquals('Department', details['name'])
+    self.assertTrue('first_place' not in details)
+    self.assertTrue('first_place_time' not in details)
+
+  def testParseProblemDetailsFailsToParse(self):
+    text = 'nothing to see here, move along'
+    try:
+      details = parser.ParseProblemDetails(text)
+      self.fail()
+    except parser.ParseError:
+      pass
+
 
 if __name__ == '__main__':
   unittest.main()

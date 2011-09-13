@@ -30,6 +30,7 @@ def StartCountryCrawl():
 def SaveProblemList(problem_list):
   problems = model.ProblemList(key_name='classical', problems=problem_list)
   problems.put()
+  deferred.defer(CrawlProblems, problem_list[:10])
 
 def ProblemCrawl(url, problem_list):
   logging.info('crawling %s', url)

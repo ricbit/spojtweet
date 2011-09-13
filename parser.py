@@ -54,15 +54,23 @@ def ParseProblemList(text):
   return next_link, problem_list
 
 def ParseProblemDetails(text):
-  details = {}
   match = re.search('/problems/.*?\">(.*?)</a> statistics', text)
-  details['name'] = match.group(1).decode('iso-8859-1')
+  if match is None:
+    raise ParseError()
+  details = {'name': match.group(1).decode('iso-8859-1')}
   stats = ['users_accepted', 'submissions', 'accepted', 'wrong_answer',
            'compile_error', 'runtime_error', 'time_limit_exceeded']
   regexp = '(?s)lightrow\">' + ''.join('.*?(?P<%s>\d+)' % s for s in stats)
   match = re.search(regexp, text)
+  if match is None:
+    raise ParseError()
   for key, value in match.groupdict().iteritems():
     details[key] = int(value)
+  regexp = '(?s)status_sm.*?/users/(.*?)/\".*?statustime_.*?\".*?([0-9.]+)'
+  match = re.search(regexp, text)
+  if match is not None:
+    details['first_place'] = match.group(1)
+    details['first_place_time'] = int(match.group(2).replace('.', ''))
   return details
 
 def Test():

@@ -1,0 +1,624 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+
+<title>Sphere Online Judge (SPOJ)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2" id="metatag">
+<META NAME="Keywords" CONTENT="programming, language, algorithm, spoj, contest, contester, Java, C#, Pascal, C, C++, python, ruby, caml, ocaml, perl, haskell, lisp, prolog, fortran, assembler, asembler, functional, online, judge, problem, problemset, ACM">
+
+<link href="/gfx/favicon.png" rel="shortcut icon" type="image/x-icon">
+<link href="/rss/" rel="alternate" type="application/rss+xml" title="RSS Feed">
+<link href="/themes/common.css" rel="stylesheet" type="text/css" id="theme">
+<link href="/style.css" rel="stylesheet" type="text/css" id="theme">
+<link href="/themes/tooltips.css" rel="stylesheet" type="text/css" id="theme">
+<script type='text/javascript' src='/gfx/jquery.js'></script>
+<script type="text/javascript" src="/gfx/jquery.timers.js"></script>
+<style type="text/css">
+<!--
+.maintable {width: 855px;} 
+-->
+</style>
+<script type="text/javascript" language="javascript">
+<!--
+function UnCryptMailto(s) {
+	var n=0;
+	var r="";
+	for(var i=0;i<s.length;i++) {		
+		n=s.charCodeAt(i); 
+		if (n>=8364) {n = 128;}
+		r += String.fromCharCode(n+(2));	
+	}
+	return r;
+}
+function linkTo_UnCryptMailto(s)	{
+	location.href=UnCryptMailto(s);
+}
+// -->
+</script>
+
+<script type="text/javascript">
+function recordOutboundLink(link, category, action) {
+  try {
+    var pageTracker=_gat._getTracker("UA-XXXXX-X");
+    pageTracker._trackEvent(category, action);
+    setTimeout('document.location = "' + link.href + '"', 100)
+  }catch(err){}
+}
+</script>
+
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushCpp.js"></script>
+	<script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushCSharp.js"></script>
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushJava.js"></script>
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushPhp.js"></script>
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushPython.js"></script>
+	<link type="text/css" rel="stylesheet" href="/gfx/SyntaxHighlighter/styles/shCore.css"/>
+	<link type="text/css" rel="stylesheet" href="/gfx/SyntaxHighlighter/styles/shThemeDefault.css"/>
+	
+	<script type="text/javascript">
+		SyntaxHighlighter.all();
+	</script>
+	
+
+</head>
+<body>
+<center>
+<table cellpadding="10" cellspacing="0" class="maintable" id="maintable">
+<tr>
+    <td colspan="2" class="header">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+		<td class="headerleft"/>
+		<td class="headercenter">
+<h1><IMG alt="Sphere Online Judge" title="Sphere Online Judge" src="/gfx/sphere-spoj-small.png" border=0 style="margin-top:-4px;margin-bottom:-4px"></h1>
+
+		<div style="position: relative; width: 807px;">
+		<div style="position: absolute; left: -192px; top: 8px;"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-4453360425583535";
+/* Spoj - wiezowiec */
+google_ad_slot = "2703472077";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+		</div>
+		</td>
+		<td class="headerright"/>
+	</tr>
+	</table>
+    </td>
+</tr>
+<tr><td class="menu" width="92" valign="top">
+
+	
+	
+<form name="login"  action="http://www.spoj.pl/ranks/DEPARTJ/" method="post" 
+onsubmit="if(document.login.ssl.checked) document.login.action='https://www.spoj.pl/ranks/DEPARTJ/'" style="margin-bottom: 18px"> 
+User: <input name="login_user" type="text" style="width: 85px;" class="form"><BR>
+Password: <input name="password" type="password" style="width: 85px;" class="form"><BR>
+<div style="font-size: 10px;">
+<script language="javascript" type="text/javascript">
+<!--
+    document.write('<input type="checkbox" name="ssl" id="ssl" /><label for="ssl">secure</label><br/>');
+//-->
+</script>
+<div title="Keep me signed in for today">
+<input type="checkbox" name="autologin" value="1" id="autologin" /><label for="autologin">for today</label>
+</div>
+<!--Keep me signed in for today-->
+</div>
+<input name="submit" type="submit" value="Log In" class="button" style="width: 85px;">
+</form>
+<div class="menucmd"><a href="/register">register</a><br><a href="/tutorials">tutorials</a><br><br><a href="/status">status</a><br><a href="/submit">submit</a><br><a href="/problems/classical/sort=0,start=1800">problems</a><br><a href="/search">search</a><br><br><a href="/">news</a><br><a href="/contests">contests</a><br><a href="/ranks/">ranks</a><br><br><a href="/forum">forum</a><br><a href="/tools">tools</a><br><a href="/credits">credits</a><br><hr></div><a href="/problems/classical/sort=0,start=1800"></a><br>
+
+	<div class="time">
+Server time:</div>
+<div class="time">
+2011-09-13
+<br>
+<b>16 : 47 : 07</b>
+</div>
+
+</td><td style="width: 100%; padding:0px;" valign="top" class="content0">
+        <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+                <td style="padding:0px;" colspan="2"><center>
+                                
+                </center></td>
+        </tr>
+        <tr>
+                <td class="content" width="99%" style="padding: 10px">
+<script type="text/javascript" src="/gfx/jquery-ui-1.7.1.custom.min.js"></script>
+<script type="text/javascript" src="//ideone.com/api/1.1/service.js"></script>
+
+<script type='text/javascript' src='/gfx/jquery.bgiframe.js'></script>
+<script type='text/javascript' src='/gfx/jquery.tooltip.js'></script>
+<script type='text/javascript' src='/gfx/jquery.cxhelp.js'></script>
+
+
+<div class="cxitem" id="h_private">
+<div class="cxtitle">Private submission</div>
+<div>Private submission won't be visible to other users and <br/>won't be taken into consideration in ranks.</div>
+</div>
+
+<div class="cxitem" id="h_disqualified">
+<div class="cxtitle">Disqualify submission</div>
+<div>Your submission will be disqualified. Operation <br/>is not reversible.</div>
+</div>
+
+<div class="cxitem" id="h_hidden">
+<div class="cxtitle">Hidden submission</div>
+<div> </div>
+</div>
+
+<div class="cxitem" id="h_public">
+<div class="cxtitle">Public submission</div>
+<div>
+<i>Click here to view source code.</i><br/></br>
+Source code of every submission to this problem <br/> in this contest is public.</div>
+</div>
+
+<div class="cxitem" id="h_execute">
+<div class="cxtitle">Help</div>
+<div>
+</div>
+</div>
+
+<h3><a href="/problems/DEPARTJ">Department</a> statistics &amp; best solutions</h3>
+<!-- google_ad_section_start(weight=ignore) -->
+<table class="problems" width="100%" border="1">
+<tr class="headerrow">
+<td class="headerrowleft">Users accepted</td>
+<td>Submissions</td>
+<td>Accepted</td>
+<td>Wrong Answer</td>
+<td>Compile Error</td>
+<td>Runtime Error</td>
+<td class="headerrowright">Time Limit Exceeded</td>
+</tr>
+<tr class="lightrow">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</table>
+<!-- google_ad_section_end -->
+
+<br>
+
+<!-- google_ad_section_start -->
+<table class="navigation" width="99%">
+<tr><td class="navigationcenter">
+<small>
+All 
+<a href="/ranks/DEPARTJ/lang=ADA" title="ADA 95">ADA</a>
+<a href="/ranks/DEPARTJ/lang=ASM" title="Assembler">ASM</a>
+<a href="/ranks/DEPARTJ/lang=BASH" title="Bash">BASH</a>
+<a href="/ranks/DEPARTJ/lang=BF" title="Brainf**k">BF</a>
+<a href="/ranks/DEPARTJ/lang=C" title="C">C</a>
+<a href="/ranks/DEPARTJ/lang=CS" title="C#">C#</a>
+<a href="/ranks/DEPARTJ/lang=CPP%204.0.0-8" title="C++">C++ 4.0.0-8</a>
+<a href="/ranks/DEPARTJ/lang=CPP%204.3.2" title="C++">C++ 4.3.2</a>
+<a href="/ranks/DEPARTJ/lang=C99%20strict" title="C99 strict">C99 strict</a>
+<a href="/ranks/DEPARTJ/lang=CLPS" title="Clips">CLPS</a>
+<a href="/ranks/DEPARTJ/lang=CLOJ" title="Clojure">CLOJ</a>
+<a href="/ranks/DEPARTJ/lang=LISP%20clisp" title="Common Lisp">LISP clisp</a>
+<a href="/ranks/DEPARTJ/lang=LISP%20sbcl" title="Common Lisp">LISP sbcl</a>
+<a href="/ranks/DEPARTJ/lang=D" title="D">D</a>
+<a href="/ranks/DEPARTJ/lang=ERL" title="Erlang">ERL</a>
+<a href="/ranks/DEPARTJ/lang=FS" title="F#">F#</a>
+<a href="/ranks/DEPARTJ/lang=FORT" title="Fortran 95">FORT</a>
+<a href="/ranks/DEPARTJ/lang=GO" title="Go">GO</a>
+<a href="/ranks/DEPARTJ/lang=HASK" title="Haskell">HASK</a>
+<a href="/ranks/DEPARTJ/lang=ICON" title="Icon">ICON</a>
+<a href="/ranks/DEPARTJ/lang=ICK" title="Intercal">ICK</a>
+<a href="/ranks/DEPARTJ/lang=JAR" title="JAR">JAR</a>
+<a href="/ranks/DEPARTJ/lang=JAVA" title="Java">JAVA</a>
+<a href="/ranks/DEPARTJ/lang=JS" title="JavaScript">JS</a>
+<a href="/ranks/DEPARTJ/lang=LUA" title="Lua">LUA</a>
+<a href="/ranks/DEPARTJ/lang=NEM" title="Nemerle">NEM</a>
+<a href="/ranks/DEPARTJ/lang=NICE" title="Nice">NICE</a>
+<a href="/ranks/DEPARTJ/lang=CAML" title="Ocaml">CAML</a>
+<a href="/ranks/DEPARTJ/lang=PAS%20gpc" title="Pascal">PAS gpc</a>
+<a href="/ranks/DEPARTJ/lang=PAS%20fpc" title="Pascal">PAS fpc</a>
+<a href="/ranks/DEPARTJ/lang=PERL" title="Perl">PERL</a>
+<a href="/ranks/DEPARTJ/lang=PERL%206" title="Perl 6">PERL 6</a>
+<a href="/ranks/DEPARTJ/lang=PHP" title="PHP">PHP</a>
+<a href="/ranks/DEPARTJ/lang=PIKE" title="Pike">PIKE</a>
+<a href="/ranks/DEPARTJ/lang=PRLG" title="Prolog">PRLG</a>
+<a href="/ranks/DEPARTJ/lang=PYTH%202.5" title="Python">PYTH 2.5</a>
+<a href="/ranks/DEPARTJ/lang=PYTH%203.1.2" title="Python 3">PYTH 3.1.2</a>
+<a href="/ranks/DEPARTJ/lang=RUBY" title="Ruby">RUBY</a>
+<a href="/ranks/DEPARTJ/lang=SCALA" title="Scala">SCALA</a>
+<a href="/ranks/DEPARTJ/lang=SCM%20qobi" title="Scheme">SCM qobi</a>
+<a href="/ranks/DEPARTJ/lang=SCM%20guile" title="Scheme">SCM guile</a>
+<a href="/ranks/DEPARTJ/lang=ST" title="Smalltalk">ST</a>
+<a href="/ranks/DEPARTJ/lang=TCL" title="Tcl">TCL</a>
+<a href="/ranks/DEPARTJ/lang=WSPC" title="Whitespace">WSPC</a>
+</small>
+</td></tr>
+</table>
+<!-- google_ad_section_end -->
+
+
+
+<script language="JavaScript">
+<!--
+$(document).ready(function(){
+        $('.pager_link__fake').bind('click', function(me){
+		var href=$(this).attr('href');
+                $('.content').animate({opacity: 0.5},1);
+                $.ajax({
+                        type: "GET",
+                        url: href+",ajax=1",
+                        //cache: false,
+                        //dataType: 'json',
+                        contentType: "application/x-www-form-urlencoded;charset=ISO-8859-2",
+                        success: function(data){
+                                $('.content').html(data);
+                                $('.content').animate({opacity: 1.0},1);
+                        },
+                        error: function(err){
+                                $('.content').animate({opacity: 0.75},1);
+                        }
+                });
+                return false;
+        });
+});
+-->
+</script>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4453360425583535";
+/* Spoj - baner górny */
+google_ad_slot = "5796055248";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<form method="post">
+<table class="problems" width="100%">
+<tr class="headerrow">
+<th width="7%" class="headerrowleft">RANK</th>
+<th width="12%">
+DATE</th>
+<th width="20%">USER</th><th width="16%">RESULT</th>
+<th width="6%">TIME</th>
+<th width="6%">MEM</th>
+<th width="8%" class="headerrowright">LANG</th>
+</tr>
+<input type="hidden" id="max_id" value="" />
+</table>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4453360425583535";
+/* Spoj - baner górny */
+google_ad_slot = "5796055248";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</form>
+
+<input type="hidden" id="debug" value="0"/>
+
+<script language="JavaScript">
+<!--
+		var loader = "<img src='/gfx/loader.gif'/>";
+        var screen_width = 1;
+        var screen_height = 1;
+        var win_width = 1;
+        var win_height = 1;
+        var win_left = 1;
+        var win_top = 1;
+        var tmp = "";
+		function load(){
+                a = new Array();
+                for(var i = 0; i<9; i++){
+                        var results = $('.statusres[status='+i+'][manual=0]').each(function(i, el){
+                                var zz = $(el).attr('id').substring(10);
+                                a.push( zz );
+                                $('#statustime_'+zz).html(loader);
+                        });
+                };
+                if( a.length > 0 ){
+                $.ajax({
+                        type: "POST",
+                        url: "/status/ajax=1,ajaxdiff=1",
+                        data: "ids="+a.join(','),
+                        dataType: 'json',
+                        success: function(data){
+                                for(var i = 0; i<data.length; i++){
+                                        $("#statusres_" + data[i].id).attr('status', data[i].status);
+                                        $("#statusres_" + data[i].id).html(data[i].status_description);
+                                        $("#statustime_" + data[i].id).html(data[i].time);
+                                        $("#statusch_" + data[i].id).html(data[i].chk_id);
+                                        if( data[i].status >= 9 ){
+                                                $("#statusres_" + data[i].id).parent('tr').attr('class', 'kol');
+                                                $("#statusmem_" + data[i].id).html(data[i].mem);
+                                        }
+                                        if( data[i].status == 15 ){
+                                                $("#statusres_" + data[i].id).parent('tr').attr('class', 'kol3');
+                                        }
+                                        if( data[i].status < 9 ){
+                                                $("#statusres_" + data[i].id).html( $("#statusres_" + data[i].id).html());
+                                                $("#statustime_" + data[i].id).html( loader );
+                                        }
+                                        $("#statusres_" + data[i].id).parent().attr('class', data[i].color);
+                                }
+								setTimeout(load, 4000);
+                        },
+                        error: function(err,a,b){
+							if( $("#debug").attr("value") == 1 ){
+								alert(err);
+								alert(a);
+								alert(b);
+								tmp = err;
+							};
+                        }
+                });
+                }
+        }
+
+$(document).ready(function(){
+        function reload_window_dim(){
+			screen_width = $(window).width() - 10;
+			screen_height = $(window).height() - 10;
+			win_width = screen_width * 4 / 5;
+			win_height = screen_height * 4 / 5;
+			win_left = screen_width / 10;
+			win_top = screen_height / 10;
+		}
+		reload_window_dim();
+
+        load();
+    
+        $.ui.dialog.defaults.bgiframe = true;
+	
+		function source_code_execute(){
+			$("#op_window_sourcecode_link").unbind("click");
+			$("#op_window_sourcecode_link").bind("click", function(){
+				$('#op_window_mjudge').hide();
+				$('#op_window_sourcecode').show();
+				var url = $('#url').attr('value');
+				loadCode(url, "op_window_sourcecode", false);
+				return false;
+			});
+		}
+		function plain_text_execute(){
+			$("#op_window_plaintext_link").unbind("click");
+			$("#op_window_plaintext_link").bind("click", function(){
+				$('#op_window_mjudge').hide();
+				$('#op_window_sourcecode').show();
+				var url = $('#url').attr('value');
+				url = url.replace('src', 'src\/plain');
+				loadCode(url, "op_window_sourcecode", true);
+				return false;
+			});
+		}
+		function copy_to_submit_execute(){
+			$("#op_window_copy_to_submit_link").unbind("click");
+			$("#op_window_copy_to_submit_link").bind("click", function(){
+				var id = $('#solutionid').attr('value');
+				var pcode = $('#pcode').attr('value');
+				window.location.href = "/submit/"+pcode+"/?id="+id;
+			});
+		}
+		function manual_rejudge_execute(){
+			$("#op_window_mjudge_link").unbind("click");
+			$("#op_window_mjudge_link").bind("click", function(){
+				$('#op_window_mjudge').show();
+				$('#op_window_sourcecode').hide();
+				return false;
+			});
+		}
+		
+		function createWindow(){
+			reload_window_dim();
+			$("#op_window").dialog({
+				//bgiframe: true,
+				autoOpen: false,
+				height: win_height,
+				width: win_width,
+				modal: true,
+				buttons: {
+					Close: function() {
+						$(this).dialog('close');
+						//$(this).dialog('destroy');
+					}
+				}
+			});
+			$(".ui-dialog .ui-dialog-titlebar").append("<a class=\"ui-dialog-titlebar-resize ui-corner-all\" href=\"\"><span class=\"ui-icon ui-icon-newwin\" unselectable=\"on\" style=\"-moz-user-select: none;\">resize</span></a>");
+			$(".ui-dialog .ui-dialog-titlebar .ui-icon-newwin").bind("click", function(){
+				reload_window_dim();
+				if( ! $(".ui-dialog").attr("max") ){
+					$('#op_window').parents('.ui-dialog:first').animate({ width: screen_width, height: screen_height, left: 0, top: 0 });
+					$('#op_window').animate({ width: screen_width, height: screen_height-100 });
+					$(".ui-dialog").attr("max", "1");
+				} else {
+					$('#op_window').parents('.ui-dialog:first').animate({ width: win_width, height: win_height, left: win_left, top: win_top });
+					$("#op_window").animate({ width: win_width, height: (win_height - 100) });
+					$(".ui-dialog").attr("max", "");
+				}
+				return false;
+			});
+			source_code_execute();
+			plain_text_execute();
+			manual_rejudge_execute();
+			copy_to_submit_execute();
+		};
+		
+		createWindow(); 
+		
+		
+		function loadCode(url,objectid,pre){
+			$("#"+objectid).html(loader);
+			if( ! url ) return;
+			$.ajax({
+				type: "POST",
+				url: url,
+				cache: false,
+				data: "post=1",
+				success: function(data){
+					if( ! pre ){
+						$("#"+objectid).html(data);
+					} else {
+						$("#"+objectid).html("<pre>" + data + "</pre>");
+					}
+				},
+				error: function(){
+					$("#"+objectid).html("error ;(");	
+				}
+			});
+		}
+		
+		
+					
+			$(".op_window").bind("click", function(){
+				reload_window_dim();
+				$('#solutionid').attr('value', ( $(this).attr('sid') ) );
+				$('#pcode').attr('value', ( $(this).attr('pcode') ) );
+				$('#op_window').dialog('open');
+				$('#op_window').dialog('enable');
+				//$('.ui-dialog').css('display', 'block');
+				$(".ui-dialog").attr("max", "");
+				var url = "/files/src/" + $(this).attr('sid') + "/";
+				$('#url').attr('value', url);
+				loadCode(url, "op_window_sourcecode", false);
+				$("#op_window_sourcecode_link").click();
+				return false;
+			});
+			
+				
+		
+		
+		$(".ideone-run").click(function(){
+			var $this = $(this);
+			$.ajax({
+                	type: "post",
+                	url: "/files/src/plain/"+$(this).attr('sid')+"/",
+                	cache: false,
+                	dataType: 'html',
+                	success: function(data){
+                		ideone_submit(data, $this.attr('lang'), '', $this.attr('note'), true, true);
+                	}
+                });
+            return false;
+		});
+		
+	});
+-->
+</script>
+
+
+	<div id="op_window" title="<a href='#' id='op_window_sourcecode_link'>Source code</a> | <a href='#' id='op_window_plaintext_link'>Plain text</a> | <a href='#' id='op_window_copy_to_submit_link'><b>Copy to submit</b></a>">
+		<input type="hidden" class="url" value="" id="url"/>
+		<div id="op_window_sourcecode">
+		code...
+		</div>
+		<input type="hidden" class="solutionid" id="solutionid"/>
+		<input type="hidden" class="pcode" id="pcode"/>
+	</div>
+        </td>
+<tr>
+        <td style="padding:0px" colspan="2"><center>
+                
+</center></td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" class="footer">
+
+<script language="javascript" type="text/javascript">
+<!--
+function swapSheet(sheet, caller) {
+    document.getElementById('theme').href=sheet;
+    document.cookie="css_0="+sheet+"; path=/;";
+    caller.href="#bottom";
+}
+
+function setWidth(w, caller) {
+    document.getElementById('maintable').style.width=w;
+    document.cookie="res="+w+"; path=/;";
+    caller.href="#bottom";
+}
+
+
+
+//-->
+
+</script>
+        <table width="100%">
+    <tr>
+	<td align="left" width=10% class="cfooter">
+	<a href="/info/">About SPOJ</a>
+	</td>
+	<td align="center" class="cfooter">
+	    width:
+	    <a href="/?rsl=855px"  onClick="setWidth('855px', this)">900</a>
+	    <a href="/?rsl=980px"  onClick="setWidth('980px', this)">1024</a>
+	    <a href="/?rsl=100%" onClick="setWidth('100%', this)">Full</a>
+	    &nbsp;&nbsp;
+	    theme:
+	    <a href="/?css=/themes/skin1.css" onClick="swapSheet('/themes/skin1.css', this)">olive</a>
+	    <a href="/?css=/themes/skin2.css" onClick="swapSheet('/themes/skin2.css', this)">banana</a>
+	    <a href="/?css=/themes/skin3.css" onClick="swapSheet('/themes/skin3.css', this)">plum</a>
+	</td>
+		<td align="center" class="cfooter">
+		 <span title="The discussion channel of the Sphere Online Judge community.">
+		 <a href="irc://irc.freenode.net/spoj"><b>#spoj</b> at freenode</a>
+		 </span>
+	</td>
+		<td width=10% class="cfooter" style="text-align:right">
+		<a href="/rss/" ><img src="/gfx/rss10x10.gif" border=0>&nbsp;RSS</a>&nbsp;
+	</div>
+	</td>
+    </tr>
+    </table>
+    </tr></table>
+</center>
+<div style="font-size:10px; margin-top:4px; color: rgb(85,80,95);"><center>
+<a href="http://www.spoj.pl" style="color:black">SPOJ</a>
+System &copy; 2011
+<a href="http://sphere-research.com" style="color:black">Sphere Research Labs | Projekty informatyczne i aplikacje na zam�wienie</a>. 
+All Rights Reserved.</center></div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-10507872-1']);
+      _gaq.push(['_trackPageview']);
+        (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		      })();
+		      </script>
+		      
+
+<script type="text/javascript">
+function _enabled() {
+	$.ajax({url: "/ad.php?adb=1"});
+}
+function _disabled() {}
+var _abdDetectedFnc = '_enabled';
+</script>
+<script type="text/javascript" src="/gfx/adblockdetector.js"></script>
+
+</body>
+</html>
