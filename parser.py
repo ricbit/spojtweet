@@ -11,8 +11,8 @@ def ParseStatusPage(text):
     raise ParseError()
   name = match.group(1).strip()
 
-  country_re = '(?i)Country:.*?<td>([^>]+?)</td>'
-  match = re.search(country_re, text.replace('\n',''))
+  country_re = '(?is)Country:.*?<td>([^>]+?)</td>'
+  match = re.search(country_re, text)
   if match == None:
     raise ParseError()
   country = match.group(1).strip()
@@ -52,6 +52,18 @@ def ParseProblemList(text):
   problem_list = re.findall(
       'problemrow.*?/problems/(\w+)/\"', text.replace('\n', ''))
   return next_link, problem_list
+
+def ParseProblemDetails(text):
+  details = {}
+  match = re.search('/problems/.*?\">(.*?)</a> statistics', text)
+  details['name'] = match.group(1).decode('iso-8859-1')
+  stats = ['users_accepted', 'submissions', 'accepted', 'wrong_answer',
+           'compile_error', 'runtime_error', 'time_limit_exceeded']
+  regexp = '(?s)lightrow\">' + ''.join('.*?(?P<%s>\d+)' % s for s in stats)
+  match = re.search(regexp, text)
+  for key, value in match.groupdict().iteritems():
+    details[key] = int(value)
+  return details
 
 def Test():
   page = open('testdata/problems_last.html').read()

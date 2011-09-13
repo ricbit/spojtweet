@@ -60,9 +60,9 @@ class Badge(object):
     return "(%s, %s)" % (self.name, self.description)
 
 class SpojUser(db.Model):
-  name = db.StringProperty(required=True)
-  country = db.StringProperty(required=True)
-  last_update = db.DateTimeProperty(required=True, indexed=False)
+  name = db.StringProperty()
+  country = db.StringProperty()
+  last_update = db.DateTimeProperty(indexed=False)
   badges = GenericListProperty(Badge)
 
   def __str__(self):
@@ -96,3 +96,15 @@ class ProblemList(db.Model):
 
   def __str__(self):
     return ';'.join(i for i in self.problems)
+
+class ProblemDetails(db.Model):
+  name = db.StringProperty()
+  users_accepted = db.IntegerProperty()
+  submissions = db.IntegerProperty()
+  accepted = db.IntegerProperty()
+  wrong_answer = db.IntegerProperty()
+  compile_error = db.IntegerProperty()
+  runtime_error = db.IntegerProperty()
+  time_limit_exceeded = db.IntegerProperty()
+  first_place = db.StringProperty()
+  first_place_time = db.IntegerProperty()
