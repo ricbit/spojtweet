@@ -67,6 +67,14 @@ def SolvedProblemsBadge(metadata):
   return ProgressiveBadge(
       len(metadata.problems), titles, requirements, descriptions)
 
+def FirstPlaceBadge(metadata):
+  titles = ['Roadrunner', 'The Flash']
+  requirements = [1, 10]
+  description = ['Wrote the fastest solution for a problem',
+                 'Wrote the fastest solution for 10 problems']
+  return ProgressiveBadge(
+      metadata.first_place, titles, requirements, description)
+
 def SharpshooterBadge(metadata):
   count = 0
   for problem in metadata.problems:
@@ -82,7 +90,7 @@ def StubbornBadge(metadata):
   return [badge] if stubborn else []
 
 BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge,
-          CountryBadge]
+          CountryBadge, FirstPlaceBadge]
 
 def EvalLanguageCount(problems):
   language_count = {}
