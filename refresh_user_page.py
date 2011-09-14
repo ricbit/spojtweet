@@ -64,6 +64,7 @@ class RefreshUserPage(webapp.RequestHandler):
  
   def CreateUserProblems(self):
     self.user_problems = []
+    date_map = {}
     for code, properties in self.problems.iteritems():
       # Skip problems not in classical set.
       if code not in self.classical:
@@ -76,6 +77,7 @@ class RefreshUserPage(webapp.RequestHandler):
       first_ac_date = None
       best_time = None
       for date, status, language, time in properties:
+        date_map[date.date()] = 1 + date_map.get(date.date(), 0)
         if solved:
 	  if status == 'AC':
 	    languages.add(language)
@@ -98,6 +100,7 @@ class RefreshUserPage(webapp.RequestHandler):
         problem.best_time = best_time
         problem.first_ac_date = first_ac_date
       self.user_problems.append(problem)
+    self.max_attempts_day = max(date_map.values())
 
   def GrantBadges(self):
     metadata = badge.UserMetadata()
@@ -105,6 +108,7 @@ class RefreshUserPage(webapp.RequestHandler):
     metadata.country = self.country
     metadata.country_position = self.country_position
     metadata.first_place = self.first_place
+    metadata.max_attempts_day = self.max_attempts_day
     self.badges = badge.GrantBadges(metadata)
 
   def WriteDatastore(self):

@@ -99,8 +99,12 @@ def Overthinker(metadata):
       'Overthinker', 'More than a year to solve a problem')
   return [badge] if overthinker else []
 
+def Addicted(metadata):
+  badge = model.Badge('Addicted', 'Submitted 50 solutions on the same day')
+  return [badge] if metadata.max_attempts_day >= 50 else []
+
 BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge,
-          CountryBadge, FirstPlaceBadge, Overthinker]
+          CountryBadge, FirstPlaceBadge, Overthinker, Addicted]
 
 def EvalLanguageCount(problems):
   language_count = {}
