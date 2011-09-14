@@ -1,3 +1,5 @@
+import datetime
+
 import model
 
 LANGUAGE_CODES = {
@@ -89,8 +91,16 @@ def StubbornBadge(metadata):
   badge = model.Badge('Stubborn', 'Solved a problem after 50 attempts')
   return [badge] if stubborn else []
 
+def Overthinker(metadata):
+  year = datetime.timedelta(365)
+  overthinker = any(problem.first_ac_date - problem.first_attempt_date >= year
+                    for problem in metadata.problems if problem.solved)
+  badge = model.Badge(
+      'Overthinker', 'More than a year to solve a problem')
+  return [badge] if overthinker else []
+
 BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge,
-          CountryBadge, FirstPlaceBadge]
+          CountryBadge, FirstPlaceBadge, Overthinker]
 
 def EvalLanguageCount(problems):
   language_count = {}
