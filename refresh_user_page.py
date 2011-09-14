@@ -42,6 +42,8 @@ class RefreshUserPage(webapp.RequestHandler):
       urlfetch.make_fetch_call(details_rpc, details_url)
       classical_key = db.Key.from_path('ProblemList', 'classical')      
       classical_rpc = db.get_async(classical_key)
+      gql = 'SELECT __key__ FROM ProblemDetails WHERE first_place=\'%s\''
+      self.first_place = db.GqlQuery(gql % self.user).count()
       self.classical = set(classical_rpc.get_result().problems)
       self.status_page = status_rpc.get_result().content
       self.details_page = details_rpc.get_result().content
@@ -102,6 +104,7 @@ class RefreshUserPage(webapp.RequestHandler):
     metadata.problems = self.user_problems
     metadata.country = self.country
     metadata.country_position = self.country_position
+    metadata.first_place = self.first_place
     self.badges = badge.GrantBadges(metadata)
 
   def WriteDatastore(self):
@@ -111,7 +114,7 @@ class RefreshUserPage(webapp.RequestHandler):
     user_rpc = db.put_async(user)
     metadata = model.SpojUserMetadata(
         key_name=self.user, problems=self.user_problems,
-	county_position=self.country_position)
+	county_position=self.country_position, first_place=self.first_place)
     metadata_rpc = db.put_async(metadata)
     user_rpc.check_success()
     metadata_rpc.check_success()

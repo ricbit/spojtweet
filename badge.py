@@ -25,6 +25,7 @@ class UserMetadata(object):
     self.language_count = None
     self.country_position = None
     self.country = None
+    self.first_place = None
 
 def ProgressiveBadge(count, titles, requirements, descriptions):
   badge = None

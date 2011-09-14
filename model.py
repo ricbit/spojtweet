@@ -73,6 +73,8 @@ class SpojUser(db.Model):
 
 class SpojUserMetadata(db.Model):
   problems = GenericListProperty(UserProblem)
+  country_position = db.IntegerProperty()
+  first_place = db.IntegerProperty()
 
   def __str__(self):
     return str(self.problems)
