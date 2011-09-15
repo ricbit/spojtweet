@@ -124,9 +124,15 @@ def Inactive(metadata):
   inactive = datetime.datetime.now() - max_date > datetime.timedelta(365)
   return [badge] if inactive else []
 
+def Blink(metadata):
+  badge = model.Badge('Blink', 'Solved a problem with a time of 0.00s')
+  blink = any(problem.best_time == 0
+              for problem in metadata.problems if problem.solved)
+  return [badge] if blink else []
+
 BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge,
           CountryBadge, FirstPlaceBadge, VeteranBadge, Overthinker, Addicted,
-	  Inactive]
+	  Inactive, Blink]
 
 def EvalLanguageCount(problems):
   language_count = {}

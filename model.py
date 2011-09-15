@@ -1,7 +1,7 @@
 import pickle
 from google.appengine.ext import db
 
-VERSION = 1
+VERSION = 2
 
 class UserProblem(object):
   def __init__(self, code,
