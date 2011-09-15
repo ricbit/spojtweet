@@ -19,6 +19,10 @@ class MainPage(webapp.RequestHandler):
 class UserPage(webapp.RequestHandler):
   def get(self, user):
     spojuser = model.SpojUser.get_by_key_name(user)
+    if spojuser is None:
+      self.response.out.write(
+          'Please <a href="/refresh/%s">refresh user %s</a>' % (user, user))
+      return
     path = os.path.join(os.path.dirname(__file__), 'user.html')
     values = {
       'name': spojuser.name,
