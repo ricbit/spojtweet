@@ -116,8 +116,17 @@ def Addicted(metadata):
   badge = model.Badge('Addicted', 'Submitted 50 solutions on the same day')
   return [badge] if metadata.max_attempts_day >= 50 else []
 
+def Inactive(metadata):
+  badge = model.Badge('Inactive', 'More than a year without solving a problem')
+  problem_dates = [problem.first_ac_date
+                   for problem in metadata.problems if problem.solved]
+  max_date = max(problem_dates)
+  inactive = datetime.datetime.now() - max_date > datetime.timedelta(365)
+  return [badge] if inactive else []
+
 BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge,
-          CountryBadge, FirstPlaceBadge, VeteranBadge, Overthinker, Addicted]
+          CountryBadge, FirstPlaceBadge, VeteranBadge, Overthinker, Addicted,
+	  Inactive]
 
 def EvalLanguageCount(problems):
   language_count = {}
