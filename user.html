@@ -16,6 +16,8 @@ User: {{name|striptags}} <br>
 Country: {{country|striptags}}<br><br>
 {% for badge in badges %}
 <div class="badge" title="{{badge.description}}">{{badge.name}}</div>
+{% empty %}
+<p>No bagdes</p>
 {% endfor %}
 </body>
 </html>
