@@ -22,7 +22,9 @@ class MainPage(webapp.RequestHandler):
 class UserPage(webapp.RequestHandler):
   def get(self, user):
     spojuser = model.SpojUser.get_by_key_name(user)
-    if spojuser is None:
+    if (spojuser is None or
+        spojuser.version is None or
+	spojuser.version < model.VERSION):
       self.response.out.write(
           'Please <a href="/refresh/%s">refresh user %s</a>' % (user, user))
       return

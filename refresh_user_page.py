@@ -114,7 +114,8 @@ class RefreshUserPage(webapp.RequestHandler):
   def WriteDatastore(self):
     user = model.SpojUser(
         key_name=self.user, name=self.name, country=self.country,
-	badges=self.badges, last_update=datetime.datetime.now())
+	badges=self.badges, last_update=datetime.datetime.now(),
+	version=model.VERSION)
     user_rpc = db.put_async(user)
     metadata = model.SpojUserMetadata(
         key_name=self.user, problems=self.user_problems,

@@ -1,6 +1,8 @@
 import pickle
 from google.appengine.ext import db
 
+VERSION = 1
+
 class UserProblem(object):
   def __init__(self, code,
 	       solved=False,
@@ -64,6 +66,7 @@ class SpojUser(db.Model):
   country = db.StringProperty()
   last_update = db.DateTimeProperty(indexed=False)
   badges = GenericListProperty(Badge)
+  version = db.IntegerProperty()
 
   def __str__(self):
     return ",".join([self.name, self.country, 
