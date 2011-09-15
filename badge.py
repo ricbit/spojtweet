@@ -28,6 +28,7 @@ class UserMetadata(object):
     self.country_position = None
     self.country = None
     self.first_place = None
+    self.max_attempts_day = None
 
 def ProgressiveBadge(count, titles, requirements, descriptions):
   badge = None
@@ -77,11 +78,23 @@ def FirstPlaceBadge(metadata):
   return ProgressiveBadge(
       metadata.first_place, titles, requirements, description)
 
+def VeteranBadge(metadata):
+  titles = ['Recruit', 'Soldier', 'Veteran']
+  requirements = [datetime.timedelta(30),
+                  datetime.timedelta(365),
+                  datetime.timedelta(5*365)]
+  description = ['Solving problems on SPOJ for %s' % time
+                 for time in ['one month', 'one year', 'five years']]
+  problem_dates = [problem.first_ac_date
+                   for problem in metadata.problems if problem.solved]
+  min_date = min(problem_dates)
+  max_date = max(problem_dates)
+  return ProgressiveBadge(
+      max_date - min_date, titles, requirements, description)
+
 def SharpshooterBadge(metadata):
-  count = 0
-  for problem in metadata.problems:
-    if problem.tries_before_ac == 0:
-      count += 1
+  count = sum(1 for problem in metadata.problems
+              if problem.solved and problem.tries_before_ac == 0)
   badge = model.Badge('Sharpshooter', 'Solved 25 problems on the first try')
   return [badge] if count >= 25 else []
 
@@ -104,7 +117,7 @@ def Addicted(metadata):
   return [badge] if metadata.max_attempts_day >= 50 else []
 
 BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge,
-          CountryBadge, FirstPlaceBadge, Overthinker, Addicted]
+          CountryBadge, FirstPlaceBadge, VeteranBadge, Overthinker, Addicted]
 
 def EvalLanguageCount(problems):
   language_count = {}
