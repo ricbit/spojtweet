@@ -1,6 +1,8 @@
 import pickle
 from google.appengine.ext import db
 
+import badge
+
 VERSION = 2
 
 class UserProblem(object):
@@ -52,20 +54,11 @@ class GenericListProperty(db.Property):
         raise ValueError()
     return value
 
-
-class Badge(object):
-  def __init__(self, name, description):
-    self.name = name
-    self.description = description
-
-  def __str__(self):
-    return "(%s, %s)" % (self.name, self.description)
-
 class SpojUser(db.Model):
   name = db.StringProperty()
   country = db.StringProperty()
   last_update = db.DateTimeProperty(indexed=False)
-  badges = GenericListProperty(Badge)
+  badges = GenericListProperty(badge.Badge)
   version = db.IntegerProperty()
 
   def __str__(self):

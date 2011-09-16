@@ -1,7 +1,5 @@
 import datetime
 
-import model
-
 LANGUAGE_CODES = {
   'HAS' : 'Haskell',
   'TEX' : 'Text',
@@ -21,6 +19,14 @@ LANGUAGE_CONVERT = {
   'C99' : 'C'
 }
 
+class Badge(object):
+  def __init__(self, name, description):
+    self.name = name
+    self.description = description
+
+  def __str__(self):
+    return "(%s, %s)" % (self.name, self.description)
+
 class UserMetadata(object):
   def __init__(self):
     self.problems = None
@@ -35,7 +41,7 @@ def ProgressiveBadge(count, titles, requirements, descriptions):
   for title, req, desc in zip(titles, requirements, descriptions):
     if count >= req:
       badge = (title, desc)
-  return [model.Badge(*badge)] if badge is not None else []
+  return [Badge(*badge)] if badge is not None else []
 
 def CountryBadge(metadata):
   if metadata.country_position is None:
@@ -64,6 +70,8 @@ def LanguageBadge(metadata):
   return badges    
 
 def SolvedProblemsBadge(metadata):
+  if metadata.problems is None:
+    return []
   titles = ['Apprentice', 'Mage', 'Warlock']
   requirements = [10, 100, 1000]
   descriptions = ["Solved %d problems" % x for x in requirements]
@@ -79,6 +87,8 @@ def FirstPlaceBadge(metadata):
       metadata.first_place, titles, requirements, description)
 
 def VeteranBadge(metadata):
+  if metadata.problems is None:
+    return []
   titles = ['Recruit', 'Soldier', 'Veteran']
   requirements = [datetime.timedelta(30),
                   datetime.timedelta(365),
@@ -87,45 +97,61 @@ def VeteranBadge(metadata):
                  for time in ['one month', 'one year', 'five years']]
   problem_dates = [problem.first_ac_date
                    for problem in metadata.problems if problem.solved]
+  if not problem_dates:
+    return []
   min_date = min(problem_dates)
   max_date = max(problem_dates)
   return ProgressiveBadge(
       max_date - min_date, titles, requirements, description)
 
 def SharpshooterBadge(metadata):
+  if metadata.problems is None:
+    return []
   count = sum(1 for problem in metadata.problems
               if problem.solved and problem.tries_before_ac == 0)
-  badge = model.Badge('Sharpshooter', 'Solved 25 problems on the first try')
+  badge = Badge('Sharpshooter', 'Solved 25 problems on the first try')
   return [badge] if count >= 25 else []
 
 def StubbornBadge(metadata):
+  if metadata.problems is None:
+    return []
   stubborn = any(problem.tries_before_ac >= 50 and problem.solved
                  for problem in metadata.problems)
-  badge = model.Badge('Stubborn', 'Solved a problem after 50 attempts')
+  badge = Badge('Stubborn', 'Solved a problem after 50 attempts')
   return [badge] if stubborn else []
 
 def Overthinker(metadata):
+  if metadata.problems is None:
+    return []
   year = datetime.timedelta(365)
   overthinker = any(problem.first_ac_date - problem.first_attempt_date >= year
                     for problem in metadata.problems if problem.solved)
-  badge = model.Badge(
+  badge = Badge(
       'Overthinker', 'More than a year to solve a problem')
   return [badge] if overthinker else []
 
 def Addicted(metadata):
-  badge = model.Badge('Addicted', 'Submitted 50 solutions on the same day')
+  if metadata.max_attempts_day is None:
+    return []
+  badge = Badge('Addicted', 'Submitted 50 solutions on the same day')
   return [badge] if metadata.max_attempts_day >= 50 else []
 
 def Inactive(metadata):
-  badge = model.Badge('Inactive', 'More than a year without solving a problem')
+  if metadata.problems is None:
+    return []
+  badge = Badge('Inactive', 'More than a year without solving a problem')
   problem_dates = [problem.first_ac_date
                    for problem in metadata.problems if problem.solved]
+  if not problem_dates:
+    return []
   max_date = max(problem_dates)
   inactive = datetime.datetime.now() - max_date > datetime.timedelta(365)
   return [badge] if inactive else []
 
 def Blink(metadata):
-  badge = model.Badge('Blink', 'Solved a problem with a time of 0.00s')
+  if metadata.problems is None:
+    return []
+  badge = Badge('Blink', 'Solved a problem with a time of 0.00s')
   blink = any(problem.best_time == 0
               for problem in metadata.problems if problem.solved)
   return [badge] if blink else []
@@ -135,6 +161,8 @@ BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge,
 	  Inactive, Blink]
 
 def EvalLanguageCount(problems):
+  if problems is None:
+    return {}
   language_count = {}
   for problem in problems:
     for language in problem.languages:

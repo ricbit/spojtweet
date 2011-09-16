@@ -100,7 +100,7 @@ class RefreshUserPage(webapp.RequestHandler):
         problem.best_time = best_time
         problem.first_ac_date = first_ac_date
       self.user_problems.append(problem)
-    self.max_attempts_day = max(date_map.values())
+    self.max_attempts_day = max(date_map.values()) if date_map else None
 
   def GrantBadges(self):
     metadata = badge.UserMetadata()
