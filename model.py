@@ -105,4 +105,4 @@ class ProblemDetails(db.Model):
   runtime_error = db.IntegerProperty(indexed=False)
   time_limit_exceeded = db.IntegerProperty(indexed=False)
   first_place = db.StringProperty()
-  first_place_time = db.IntegerProperty()
+  first_place_permanent = db.StringProperty()

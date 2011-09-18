@@ -70,7 +70,8 @@ def ParseProblemDetails(text):
   match = re.search(regexp, text)
   if match is not None:
     details['first_place'] = match.group(1)
-    details['first_place_time'] = int(match.group(2).replace('.', ''))
+    if match.group(2) == '0.00':
+      details['first_place_permanent'] = match.group(1)
   return details
 
 def Test():
