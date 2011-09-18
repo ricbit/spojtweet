@@ -55,11 +55,11 @@ class GenericListProperty(db.Property):
     return value
 
 class SpojUser(db.Model):
-  name = db.StringProperty()
-  country = db.StringProperty()
+  name = db.StringProperty(indexed=False)
+  country = db.StringProperty(indexed=False)
   last_update = db.DateTimeProperty(indexed=False)
   badges = GenericListProperty(badge.Badge)
-  version = db.IntegerProperty()
+  version = db.IntegerProperty(indexed=False)
 
   def __str__(self):
     return ",".join([self.name, self.country, 
@@ -69,8 +69,8 @@ class SpojUser(db.Model):
 
 class SpojUserMetadata(db.Model):
   problems = GenericListProperty(UserProblem)
-  country_position = db.IntegerProperty()
-  first_place = db.IntegerProperty()
+  country_position = db.IntegerProperty(indexed=False)
+  first_place = db.IntegerProperty(indexed=False)
 
   def __str__(self):
     return str(self.problems)
@@ -96,13 +96,13 @@ class ProblemList(db.Model):
     return ';'.join(i for i in self.problems)
 
 class ProblemDetails(db.Model):
-  name = db.StringProperty()
-  users_accepted = db.IntegerProperty()
-  submissions = db.IntegerProperty()
-  accepted = db.IntegerProperty()
-  wrong_answer = db.IntegerProperty()
-  compile_error = db.IntegerProperty()
-  runtime_error = db.IntegerProperty()
-  time_limit_exceeded = db.IntegerProperty()
+  name = db.StringProperty(indexed=False)
+  users_accepted = db.IntegerProperty(indexed=False)
+  submissions = db.IntegerProperty(indexed=False)
+  accepted = db.IntegerProperty(indexed=False)
+  wrong_answer = db.IntegerProperty(indexed=False)
+  compile_error = db.IntegerProperty(indexed=False)
+  runtime_error = db.IntegerProperty(indexed=False)
+  time_limit_exceeded = db.IntegerProperty(indexed=False)
   first_place = db.StringProperty()
   first_place_time = db.IntegerProperty()
