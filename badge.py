@@ -86,6 +86,12 @@ def FirstPlaceBadge(metadata):
   return ProgressiveBadge(
       metadata.first_place, titles, requirements, description)
 
+def Forever(metadata):
+  if metadata.first_place_permanent is None:
+    return []
+  badge = Badge('Forever', 'First place on a problem with a time of 0.00s')
+  return [badge] if metadata.first_place_permanent else []
+
 def VeteranBadge(metadata):
   if metadata.problems is None:
     return []
@@ -157,8 +163,8 @@ def Blink(metadata):
   return [badge] if blink else []
 
 BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge,
-          CountryBadge, FirstPlaceBadge, VeteranBadge, Overthinker, Addicted,
-	  Inactive, Blink]
+          CountryBadge, FirstPlaceBadge, VeteranBadge, Overthinker, Addicted,  
+	  Inactive, Blink, Forever]
 
 def EvalLanguageCount(problems):
   if problems is None:

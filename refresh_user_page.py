@@ -42,8 +42,11 @@ class RefreshUserPage(webapp.RequestHandler):
       urlfetch.make_fetch_call(details_rpc, details_url)
       classical_key = db.Key.from_path('ProblemList', 'classical')      
       classical_rpc = db.get_async(classical_key)
-      gql = 'SELECT __key__ FROM ProblemDetails WHERE first_place=\'%s\''
-      self.first_place = db.GqlQuery(gql % self.user).count()
+      fastest_query = model.ProblemDetails.all(keys_only=True) 
+      self.first_place = fastest_query.filter("first_place", self.user).count()
+      forever_query = model.ProblemDetails.all(keys_only=True)
+      self.forever = forever_query.filter(
+          "first_place_permanent", self.user).count()
       self.classical = set(classical_rpc.get_result().problems)
       self.status_page = status_rpc.get_result().content
       self.details_page = details_rpc.get_result().content
@@ -108,6 +111,7 @@ class RefreshUserPage(webapp.RequestHandler):
     metadata.country = self.country
     metadata.country_position = self.country_position
     metadata.first_place = self.first_place
+    metadata.first_place_permanent = self.forever
     metadata.max_attempts_day = self.max_attempts_day
     self.badges = badge.GrantBadges(metadata)
 
