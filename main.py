@@ -48,10 +48,20 @@ class UserPage(webapp.RequestHandler):
           'Please <a href="/refresh/%s">refresh user %s</a>' % (user, user))
       return
     path = os.path.join(os.path.dirname(__file__), 'user.html')
+    badge_value_names = {
+      3: 'platinum',
+      2: 'gold',
+      1: 'silver',
+      0: 'bronze'
+    }
+    badges = spojuser.badges[:]
+    badges.sort(key=lambda x: x.value, reverse=True)
+    for badge in badges:
+      badge.value = badge_value_names[badge.value]
     values = {
       'name': spojuser.name,
       'country': spojuser.country.title(),
-      'badges': spojuser.badges,
+      'badges': badges
     }
     self.response.out.write(template.render(path, values))
 
