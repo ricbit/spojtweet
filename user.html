@@ -1,23 +1,39 @@
 <html>
 <head>
 <style type='text/css'>
-.badge {
+.badge div {
   margin: 5px 5px;
-  border: solid 1px orange;
-  background-color: yellow;
   padding: 5px;
   cursor: default;
   float: left;
+}
+.gold {
+  border: solid 1px orange;
+  background-color: yellow;
+}
+.bronze {
+  border: solid 1px #d26631;
+  background-color: #e6b43c;
+}
+.silver {
+  border: solid 1px #808080;
+  background-color: #c0c0c0;
+}
+.platinum {
+  border: solid 1px gray;
+  background-color: white;
 }
 </style>
 </head>
 <body>
 User: {{name|striptags}} <br>
 Country: {{country|striptags}}<br><br>
+<div class="badge">
 {% for badge in badges %}
-<div class="badge" title="{{badge.description}}">{{badge.name}}</div>
+<div class="{{badge.value}}" title="{{badge.description}}">{{badge.name}}</div>
 {% empty %}
 <p>No bagdes</p>
 {% endfor %}
+</div>
 </body>
 </html>

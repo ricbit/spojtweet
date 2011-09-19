@@ -51,7 +51,7 @@ class UserPage(webapp.RequestHandler):
     values = {
       'name': spojuser.name,
       'country': spojuser.country.title(),
-      'badges': spojuser.badges
+      'badges': spojuser.badges,
     }
     self.response.out.write(template.render(path, values))
 

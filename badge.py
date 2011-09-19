@@ -41,10 +41,10 @@ LANGUAGE_CONVERT = {
 }
 
 class Badge(object):
-  BRONZE = 0
-  SILVER = 1
-  GOLD = 2
-  PLATINUM = 3
+  BRONZE = 'bronze'
+  SILVER = 'silver'
+  GOLD = 'gold'
+  PLATINUM = 'platinum'
 
   def __init__(self, name, description, value):
     self.name = name

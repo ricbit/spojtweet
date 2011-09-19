@@ -22,7 +22,7 @@ from google.appengine.ext import db
 
 import badge
 
-VERSION = 2
+VERSION = 3
 
 class UserProblem(object):
   def __init__(self, code,
