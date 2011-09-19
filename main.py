@@ -55,7 +55,7 @@ class UserPage(webapp.RequestHandler):
       0: 'bronze'
     }
     badges = spojuser.badges[:]
-    badges.sort(key=lambda x: x.value, reverse=True)
+    badges.sort(key=lambda x: (-x.value, x.name))
     for badge in badges:
       badge.value = badge_value_names[badge.value]
     values = {
