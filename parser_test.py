@@ -50,7 +50,7 @@ class ParserTest(unittest.TestCase):
     self.assertEquals(22, details['runtime_error'])
     self.assertEquals(3, details['time_limit_exceeded'])
     self.assertEquals('adrian', details['first_place'])
-    self.assertEquals(0, details['first_place_time'])
+    self.assertEquals('adrian', details['first_place_permanent'])
 
   def testParseProblemDetailsUnsolved(self):
     text = open('testdata/problems_best_unsolved.html').read()
