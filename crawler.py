@@ -28,7 +28,7 @@ import logging
 
 def CrawlCountry(country_list):
   if not country_list:
-    return
+    deferred.defer(ProblemCrawl, 'http://www.spoj.pl/problems/classical/', [])
   code, name = country_list[0]
   url = 'http://www.spoj.pl/ranks/users/%s' % code
   logging.info('parsing %s', name)
@@ -58,7 +58,6 @@ def CrawlProblems(problem_list):
   problem.put()
   deferred.defer(CrawlProblems, problem_list[1:])
 
-
 def SaveProblemList(problem_list):
   problems = model.ProblemList(key_name='classical', problems=problem_list)
   problems.put()
@@ -77,7 +76,7 @@ def ProblemCrawl(url, problem_list):
 class CrawlCountryPage(webapp.RequestHandler):
   def get(self):
     if users.is_current_user_admin():
-      deferred.defer(ProblemCrawl, 'http://www.spoj.pl/problems/classical/', [])
+      deferred.defer(StartCountryCrawl)
       self.response.out.write('launched')
     else:
       self.response.out.write(
