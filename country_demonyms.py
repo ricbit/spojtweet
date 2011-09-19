@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # This list is based on [1], so it should be used and distributed under the
 # terms of the Creative Commons Attribution-ShareAlike License.
