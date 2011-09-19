@@ -28,6 +28,7 @@ from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 
+import admin
 import crawler
 import model
 import parser
@@ -58,7 +59,8 @@ app = webapp.WSGIApplication(
           [('/', MainPage),
 	   ('/user/([^/]+)', UserPage),
 	   ('/refresh/([^/]+)', refresh_user_page.RefreshUserPage),
-	   ('/crawl', crawler.CrawlCountryPage)],
+	   ('/crawl', crawler.CrawlCountryPage),
+	   ('/admin', admin.AdminPage)],
 	  debug=True)
 
 def main():

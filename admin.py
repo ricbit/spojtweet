@@ -31,6 +31,7 @@ class AdminPage(webapp.RequestHandler):
     else:
       self.response.out.write('Welcome %s<br>' % user.nickname()) 
       logout_url = users.create_logout_url('/admin')
+      self.response.out.write('<a href="/crawl">Launch crawler</a> | ')
       self.response.out.write('<a href="%s">Logout</a>' % logout_url)
 
 if __name__ == '__main__':

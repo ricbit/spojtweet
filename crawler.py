@@ -20,6 +20,7 @@ from google.appengine.ext import db
 from google.appengine.ext import deferred
 from google.appengine.ext import webapp
 from google.appengine.api import urlfetch
+from google.appengine.api import users
 
 import model
 import parser
@@ -75,5 +76,9 @@ def ProblemCrawl(url, problem_list):
 
 class CrawlCountryPage(webapp.RequestHandler):
   def get(self):
-    deferred.defer(ProblemCrawl, 'http://www.spoj.pl/problems/classical/', [])
-    self.response.out.write('launched')
+    if users.is_current_user_admin():
+      deferred.defer(ProblemCrawl, 'http://www.spoj.pl/problems/classical/', [])
+      self.response.out.write('launched')
+    else:
+      self.response.out.write(
+          'Only <a href="/admin">admin</a> can launch a crawl.')
