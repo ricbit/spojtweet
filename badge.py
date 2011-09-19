@@ -61,6 +61,7 @@ class UserMetadata(object):
     self.country_position = None
     self.country = None
     self.first_place = None
+    self.first_place_permanent = None
     self.max_attempts_day = None
 
 def ProgressiveBadge(count, titles, requirements, descriptions, values):
