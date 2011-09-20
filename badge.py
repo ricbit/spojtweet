@@ -20,6 +20,7 @@ __author__ = [
 ]
 
 import datetime
+from country_demonyms import COUNTRY_DEMONYMS
 
 LANGUAGE_CODES = {
   'HAS' : 'Haskell',
@@ -75,7 +76,8 @@ def CountryBadge(metadata):
     return []
   country = metadata.country.title()
   titles = ['Citizen', 'VIP', 'Leader']
-  badge_titles = ['%s %s' % (country, title) for title in titles]
+  demonym = COUNTRY_DEMONYMS.get(country.upper(), country)
+  badge_titles = ['%s %s' % (demonym, title) for title in titles]
   requirements = [-100, -10, -1]
   descriptions = ['Top 100 problem solvers from ' + country,
                   'Top 10 problem solvers from ' + country,
