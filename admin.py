@@ -22,6 +22,8 @@ import re
 from google.appengine.api import users
 from google.appengine.ext import webapp
 
+import model
+
 class AdminPage(webapp.RequestHandler):
   def get(self):
     user = users.get_current_user()
@@ -33,6 +35,16 @@ class AdminPage(webapp.RequestHandler):
       logout_url = users.create_logout_url('/admin')
       self.response.out.write('<a href="/crawl">Launch crawler</a> | ')
       self.response.out.write('<a href="%s">Logout</a>' % logout_url)
+
+class SetKeyPage(webapp.RequestHandler):
+  def get(self, consumer_key, consumer_secret):
+    if not users.is_current_user_admin():
+      return
+    data = model.OAuthData(
+        key_name='oauth',
+	consumer_key=consumer_key,
+	consumer_secret=consumer_secret).put()
+    self.response.out.write('Updated keys.')
 
 if __name__ == '__main__':
   Test()

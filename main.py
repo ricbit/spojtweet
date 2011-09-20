@@ -72,6 +72,7 @@ app = webapp.WSGIApplication(
 	   ('/refresh/([^/]+)', refresh_user_page.RefreshUserPage),
 	   ('/crawl', crawler.CrawlCountryPage),
 	   ('/admin', admin.AdminPage),
+	   ('/admin/keys/(.*?)/(.*?)/', admin.SetKeyPage),
 	   ('/twitter', twitter.TwitterPage)],
 	  debug=True)
 
