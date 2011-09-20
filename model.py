@@ -125,3 +125,7 @@ class ProblemDetails(db.Model):
   time_limit_exceeded = db.IntegerProperty(indexed=False)
   first_place = db.StringProperty()
   first_place_permanent = db.StringProperty()
+
+class OAuthData(db.Model):
+  consumer_key = db.StringProperty(indexed=False)
+  consumer_secret = db.StringProperty(indexed=False)

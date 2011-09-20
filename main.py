@@ -33,6 +33,7 @@ import crawler
 import model
 import parser
 import refresh_user_page
+import twitter
 
 class MainPage(webapp.RequestHandler):
   def get(self):
@@ -70,7 +71,8 @@ app = webapp.WSGIApplication(
 	   ('/user/([^/]+)', UserPage),
 	   ('/refresh/([^/]+)', refresh_user_page.RefreshUserPage),
 	   ('/crawl', crawler.CrawlCountryPage),
-	   ('/admin', admin.AdminPage)],
+	   ('/admin', admin.AdminPage),
+	   ('/twitter', twitter.TwitterPage)],
 	  debug=True)
 
 def main():
