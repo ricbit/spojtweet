@@ -14,23 +14,33 @@
 
 """Parse html from the spoj website."""
 
-__author__ = 'ricbit@google.com (Ricardo Bittencourt)'
+__author__ = [
+  'ricbit@google.com (Ricardo Bittencourt)',
+  'leandro@tia.mat.br (Leandro Pereira)'
+]
 
 import datetime
 import re
+
+NAME_RE = re.compile(r'(?i)<h3>(.+?)\'s user data </h3>')
+COUNTRY_RE = re.compile(r'(?is)Country:.*?<td>([^>]+?)</td>')
+COUNTRY_LIST_RE = re.compile(r'(?i)users/(..)/\">(.*?)</a>')
+USER_LIST_RE = re.compile(r'(?i)<td>(\d+)</td>.*?<td><a href=\".*?/users/(.+?)\"')
+PROBLEM_LIST_NEXT_RE = re.compile(r'href=\"(.*?)\".*?>Next</a>')
+PROBLEM_LIST_RE = re.compile(r'problemrow.*?/problems/(\w+)/\"')
+PROBLEM_STATS_RE = re.compile(r'/problems/.*?\">(.*?)</a> statistics')
+PROBLEM_STATS_TIME_RE = re.compile(r'(?s)status_sm.*?/users/(.*?)/\".*?statustime_.*?\".*?([0-9.]+)')
 
 class ParseError(Exception):
   pass
 
 def ParseStatusPage(text):
-  name_re = '(?i)<h3>(.+?)\'s user data </h3>'
-  match = re.search(name_re, text)
+  match = NAME_RE.search(text)
   if match == None:
     raise ParseError()
   name = match.group(1).strip()
 
-  country_re = '(?is)Country:.*?<td>([^>]+?)</td>'
-  match = re.search(country_re, text)
+  match = COUNTRY_RE.search(text)
   if match == None:
     raise ParseError()
   country = match.group(1).strip()
@@ -52,27 +62,24 @@ def ParseDetailsPage(usertext):
   return problems
 
 def ParseCountryList(text):
-  country_list = re.findall('(?i)users/(..)/\">(.*?)</a>', text)
+  country_list = COUNTRY_LIST_RE.findall(text)
   return [(code, name.decode('iso-8859-1')) for code, name in country_list]
 
 def ParseCountryPage(text):
-  user_list = re.findall(
-      '(?i)<td>(\d+)</td>.*?<td><a href=\".*?/users/(.+?)\"',
-      text.replace('\n', ''))
+  user_list = USER_LIST_RE.findall(text.replace('\n', ''))
   return [(int(pos), userid) for pos, userid in user_list]
 
 def ParseProblemList(text):
-  match = re.search('href=\"(.*?)\".*?>Next</a>', text)
+  match = PROBLEM_LIST_NEXT_RE.search(text)
   if match is not None:
     next_link = 'http://www.spoj.pl' + match.group(1)
   else:
     next_link = None
-  problem_list = re.findall(
-      'problemrow.*?/problems/(\w+)/\"', text.replace('\n', ''))
+  problem_list = PROBLEM_LIST_RE.findall(text.replace('\n', ''))
   return next_link, problem_list
 
 def ParseProblemDetails(text):
-  match = re.search('/problems/.*?\">(.*?)</a> statistics', text)
+  match = PROBLEM_STATS_RE.search(text)
   if match is None:
     raise ParseError()
   details = {'name': match.group(1).decode('iso-8859-1')}
@@ -84,8 +91,7 @@ def ParseProblemDetails(text):
     raise ParseError()
   for key, value in match.groupdict().iteritems():
     details[key] = int(value)
-  regexp = '(?s)status_sm.*?/users/(.*?)/\".*?statustime_.*?\".*?([0-9.]+)'
-  match = re.search(regexp, text)
+  match = PROBLEM_STATS_TIME_RE.search(text)
   if match is not None:
     details['first_place'] = match.group(1)
     if match.group(2) == '0.00':
