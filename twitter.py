@@ -17,6 +17,7 @@
 __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 
 import datetime
+import logging
 import re
 
 from google.appengine.api import users
