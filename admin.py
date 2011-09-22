@@ -26,11 +26,11 @@ import model
 
 class AdminPage(webapp.RequestHandler):
   def get(self):
-    user = users.get_current_user()
-    if user is None:
+    if not users.is_current_user_admin():
       login_url = users.create_login_url('/admin')
       self.response.out.write('<a href="%s">Login</a>' % login_url)
     else:
+      user = users.get_current_user()
       self.response.out.write('Welcome %s<br>' % user.nickname()) 
       logout_url = users.create_logout_url('/admin')
       self.response.out.write('<a href="/crawl">Launch crawler</a> | ')
@@ -39,11 +39,13 @@ class AdminPage(webapp.RequestHandler):
 class SetKeyPage(webapp.RequestHandler):
   def get(self, consumer_key, consumer_secret):
     if not users.is_current_user_admin():
+      self.response.out.write('Not authorized.')
+      self.error(401)
       return
     data = model.OAuthData(
-        key_name='oauth',
-	consumer_key=consumer_key,
-	consumer_secret=consumer_secret).put()
+        key_name='#app',
+	oauth_key=consumer_key,
+	oauth_secret=consumer_secret).put()
     self.response.out.write('Updated keys.')
 
 if __name__ == '__main__':

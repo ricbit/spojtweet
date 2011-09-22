@@ -1,3 +1,5 @@
+# coding: utf-8
+#
 # Copyright (C) 2011 Google Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,11 +32,18 @@ import oauth2 as oauth
 
 import model
 
+APP_KEYS = None    
+def GetAppKeys():
+  global APP_KEYS
+  if APP_KEYS is None:
+    APP_KEYS = model.OAuthData.get_by_key_name('#app')
+  return APP_KEYS
+
 class TwitterPage(webapp.RequestHandler):
   def get(self):
-    app_keys = model.OAuthData.get_by_key_name('oauth')
+    app_keys = GetAppKeys()
     consumer = oauth.Consumer(
-        key=app_keys.consumer_key, secret=app_keys.consumer_secret)
+        key=app_keys.oauth_key, secret=app_keys.oauth_secret)
     client = oauth.Client(consumer)
     temp_data = model.OAuthData()
     temp_key = temp_data.put()
@@ -45,41 +54,47 @@ class TwitterPage(webapp.RequestHandler):
         pythontwitter.REQUEST_TOKEN_URL, 'POST', body=body)
     request_token = dict(cgi.parse_qsl(content))
     temp_data.key = temp_key
-    temp_data.consumer_key = request_token['oauth_token']
-    temp_data.consumer_secret = request_token['oauth_token_secret']
+    temp_data.oauth_key = request_token['oauth_token']
+    temp_data.oauth_secret = request_token['oauth_token_secret']
     temp_data.put()
     self.redirect('%s?oauth_token=%s' % 
-        (pythontwitter.AUTHORIZATION_URL, request_token['oauth_token']))
+        (pythontwitter.AUTHORIZATION_URL, temp_data.oauth_key))
 
 class TwitterAuthPage(webapp.RequestHandler):
   def get(self, temp_id):
     temp_data = model.OAuthData.get_by_id(int(temp_id))
-    assert temp_data.consumer_key == self.request.get('oauth_token')
-    token = oauth.Token(temp_data.consumer_key, temp_data.consumer_secret)
+    if temp_data.oauth_key != self.request.get('oauth_token'):
+      self.response.out.write('Not authorized.')
+      self.error(401)
+      return
+    token = oauth.Token(temp_data.oauth_key, temp_data.oauth_secret)
     token.set_verifier(self.request.get('oauth_verifier'))
-    app_keys = model.OAuthData.get_by_key_name('oauth')
+    app_keys = GetAppKeys()
     consumer = oauth.Consumer(
-        key=app_keys.consumer_key, secret=app_keys.consumer_secret)
+        key=app_keys.oauth_key, secret=app_keys.oauth_secret)
     client = oauth.Client(consumer, token)
     response, content = client.request(pythontwitter.ACCESS_TOKEN_URL, 'POST')
     access_token = dict(cgi.parse_qsl(content))
     final = model.OAuthData(key_name='ricbit',
-        consumer_key=access_token['oauth_token'],
-	consumer_secret=access_token['oauth_token_secret']).put()
+        oauth_key=access_token['oauth_token'],
+	oauth_secret=access_token['oauth_token_secret']).put()
     temp_data.delete()
     self.response.out.write('done')
 
 class SendTweetPage(webapp.RequestHandler):
   def get(self, username):
     if not users.is_current_user_admin():
+      self.response.out.write('Not authorized.')
+      self.error(401)
       return
-    app_keys = model.OAuthData.get_by_key_name('oauth')
+    app_keys = GetAppKeys()
+    self.response.out.write(str(app_keys) + '<p>')
     user_keys = model.OAuthData.get_by_key_name(username)
     api = pythontwitter.Api(
-        consumer_key=app_keys.consumer_key,
-	consumer_secret=app_keys.consumer_secret,
-	access_token_key=user_keys.consumer_key,
-	access_token_secret=user_keys.consumer_secret,
+        consumer_key=app_keys.oauth_key,
+	consumer_secret=app_keys.oauth_secret,
+	access_token_key=user_keys.oauth_key,
+	access_token_secret=user_keys.oauth_secret,
 	cache=None)
     api.PostUpdate(
         'Se você consegue ler isso, minha implementação de oauth funciona.')

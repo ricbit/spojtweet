@@ -127,5 +127,5 @@ class ProblemDetails(db.Model):
   first_place_permanent = db.StringProperty()
 
 class OAuthData(db.Model):
-  consumer_key = db.StringProperty(indexed=False)
-  consumer_secret = db.StringProperty(indexed=False)
+  oauth_key = db.StringProperty(indexed=False)
+  oauth_secret = db.StringProperty(indexed=False)
