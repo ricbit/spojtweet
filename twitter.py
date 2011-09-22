@@ -32,7 +32,7 @@ import oauth2 as oauth
 
 import model
 
-APP_KEYS = None    
+APP_KEYS = None
 def GetAppKeys():
   global APP_KEYS
   if APP_KEYS is None:
@@ -62,9 +62,10 @@ class TwitterPage(webapp.RequestHandler):
     temp_data = model.OAuthData(
         key=temp_key,
         oauth_key=request_token['oauth_token'],
-        oauth_secret=request_token['oauth_token_secret']).put()
-    self.redirect('%s?oauth_token=%s' % 
-        (pythontwitter.AUTHORIZATION_URL, temp_data.oauth_key))
+        oauth_secret=request_token['oauth_token_secret'])
+    temp_data.put()
+    self.redirect('%s?oauth_token=%s' %
+        (pythontwitter.SIGNIN_URL, temp_data.oauth_key))
 
 class TwitterAuthPage(webapp.RequestHandler):
   def get(self, temp_id):
