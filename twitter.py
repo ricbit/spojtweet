@@ -69,6 +69,21 @@ class TwitterAuthPage(webapp.RequestHandler):
     temp_data.delete()
     self.response.out.write('done')
 
+class SendTweetPage(webapp.RequestHandler):
+  def get(self, username):
+    if not users.is_current_user_admin():
+      return
+    app_keys = model.OAuthData.get_by_key_name('oauth')
+    user_keys = model.OAuthData.get_by_key_name(username)
+    api = pythontwitter.Api(
+        consumer_key=app_keys.consumer_key,
+	consumer_secret=app_keys.consumer_secret,
+	access_token_key=user_keys.consumer_key,
+	access_token_secret=user_keys.consumer_secret,
+	cache=None)
+    api.PostUpdate(
+        'Se você consegue ler isso, minha implementação de oauth funciona.')
+    self.response.out.write('posted')
 
 if __name__ == '__main__':
   Test()

@@ -74,7 +74,8 @@ app = webapp.WSGIApplication(
 	   ('/admin', admin.AdminPage),
 	   ('/admin/keys/(.*?)/(.*?)/', admin.SetKeyPage),
 	   ('/twitter', twitter.TwitterPage),
-	   ('/twitter/auth/(.*?)/', twitter.TwitterAuthPage)],
+	   ('/twitter/auth/(.*?)/', twitter.TwitterAuthPage),
+	   ('/twitter/send/(.*?)/', twitter.SendTweetPage)],
 	  debug=True)
 
 def main():
