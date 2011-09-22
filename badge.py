@@ -42,10 +42,9 @@ LANGUAGE_CONVERT = {
 }
 
 class Badge(object):
-  BRONZE = 0
-  SILVER = 1
-  GOLD = 2
-  PLATINUM = 3
+  BRONZE = 3
+  SILVER = 2
+  GOLD = 1
 
   def __init__(self, name, description, value):
     self.name = name
@@ -98,7 +97,7 @@ def LanguageBadge(metadata):
     requirements = [3, 10, 100, 500]
     descriptions = ["Solved %d problems in %s" % (x, language_name)
                     for x in requirements]
-    values = [Badge.BRONZE, Badge.SILVER, Badge.GOLD, Badge.PLATINUM]
+    values = [Badge.BRONZE, Badge.BRONZE, Badge.SILVER, Badge.GOLD]
     badges.extend(ProgressiveBadge(
         count, badge_titles, requirements, descriptions, values))
   return badges    

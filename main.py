@@ -50,13 +50,12 @@ class UserPage(webapp.RequestHandler):
       return
     path = os.path.join(os.path.dirname(__file__), 'user.html')
     badge_value_names = {
-      3: 'platinum',
-      2: 'gold',
-      1: 'silver',
-      0: 'bronze'
+      1: 'gold',
+      2: 'silver',
+      3: 'bronze'
     }
     badges = spojuser.badges[:]
-    badges.sort(key=lambda x: (-x.value, x.name))
+    badges.sort(key=lambda x: (x.value, x.name))
     for badge in badges:
       badge.value = badge_value_names[badge.value]
     values = {
