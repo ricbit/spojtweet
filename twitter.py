@@ -39,11 +39,18 @@ def GetAppKeys():
     APP_KEYS = model.OAuthData.get_by_key_name('#app')
   return APP_KEYS
 
+APP_CONSUMER = None
+def GetAppConsumer():
+  global APP_CONSUMER
+  if APP_CONSUMER is None:
+    app_keys = GetAppKeys()
+    APP_CONSUMER = oauth.Consumer(
+        key=app_keys.oauth_key, secret=app_keys.oauth_secret)
+  return APP_CONSUMER
+
 class TwitterPage(webapp.RequestHandler):
   def get(self):
-    app_keys = GetAppKeys()
-    consumer = oauth.Consumer(
-        key=app_keys.oauth_key, secret=app_keys.oauth_secret)
+    consumer = GetAppConsumer()
     client = oauth.Client(consumer)
     temp_data = model.OAuthData()
     temp_key = temp_data.put()
@@ -69,9 +76,7 @@ class TwitterAuthPage(webapp.RequestHandler):
       return
     token = oauth.Token(temp_data.oauth_key, temp_data.oauth_secret)
     token.set_verifier(self.request.get('oauth_verifier'))
-    app_keys = GetAppKeys()
-    consumer = oauth.Consumer(
-        key=app_keys.oauth_key, secret=app_keys.oauth_secret)
+    consumer = GetAppConsumer()
     client = oauth.Client(consumer, token)
     response, content = client.request(pythontwitter.ACCESS_TOKEN_URL, 'POST')
     access_token = dict(cgi.parse_qsl(content))
