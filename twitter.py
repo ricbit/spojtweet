@@ -80,11 +80,20 @@ class TwitterAuthPage(webapp.RequestHandler):
     client = oauth.Client(consumer, token)
     response, content = client.request(pythontwitter.ACCESS_TOKEN_URL, 'POST')
     access_token = dict(cgi.parse_qsl(content))
-    final = model.OAuthData(key_name='ricbit',
+    user_keys = model.OAuthData(key_name='ricbit',
         oauth_key=access_token['oauth_token'],
-	oauth_secret=access_token['oauth_token_secret']).put()
+	oauth_secret=access_token['oauth_token_secret'])
+    user_keys.put()
     temp_data.delete()
-    self.response.out.write('done')
+    app_keys = GetAppKeys()
+    api = pythontwitter.Api(
+        consumer_key=app_keys.oauth_key,
+	consumer_secret=app_keys.oauth_secret,
+	access_token_key=user_keys.oauth_key,
+	access_token_secret=user_keys.oauth_secret,
+	cache=None)
+    twitter_user = api.VerifyCredentials()
+    self.response.out.write('Welcome ' + str(twitter_user))
 
 class SendTweetPage(webapp.RequestHandler):
   def get(self, username):
