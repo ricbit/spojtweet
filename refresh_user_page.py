@@ -83,55 +83,58 @@ class RefreshUserPage(webapp.RequestHandler):
     except parser.ParseError:
       raise RefreshException()
 
+  def _EvalSingleProblem(self, code, properties, date_map):
+    solved = False
+    languages = set()
+    tries_before_ac = 0
+    first_attempt_date = properties[0][0]
+    first_ac_date = None
+    best_time = None
+    for date, status, language, time in properties:
+      date_map[date.date()] = 1 + date_map.get(date.date(), 0)
+      if solved:
+	if status == 'AC':
+	  languages.add(language)
+	  if time < best_time:
+	    best_time = time
+      else:
+	if status == 'AC':
+	  solved = True
+	  languages.add(language)
+	  first_ac_date = date
+	  best_time = time
+	else:
+	  tries_before_ac += 1
+    problem = model.UserProblem(code=code)
+    problem.languages = list(languages)
+    problem.tries_before_ac = tries_before_ac
+    problem.solved = solved
+    problem.first_attempt_date = first_attempt_date
+    if solved:
+      problem.best_time = best_time
+      problem.first_ac_date = first_ac_date
+    return problem
+  
   def CreateUserProblems(self):
-    self.user_problems = []
+    self.metadata = badge.UserMetadata()
+    self.metadata.problems = []
     date_map = {}
     for code, properties in self.problems.iteritems():
       # Skip problems not in classical set.
       if code not in self.classical:
 	continue
       properties.sort()
-      solved = False
-      languages = set()
-      tries_before_ac = 0
-      first_attempt_date = properties[0][0]
-      first_ac_date = None
-      best_time = None
-      for date, status, language, time in properties:
-        date_map[date.date()] = 1 + date_map.get(date.date(), 0)
-        if solved:
-	  if status == 'AC':
-	    languages.add(language)
-	    if time < best_time:
-	      best_time = time
-	else:
-	  if status == 'AC':
-	    solved = True
-	    languages.add(language)
-	    first_ac_date = date
-	    best_time = time
-	  else:
-	    tries_before_ac += 1
-      problem = model.UserProblem(code=code)
-      problem.languages = list(languages)
-      problem.tries_before_ac = tries_before_ac
-      problem.solved = solved
-      problem.first_attempt_date = first_attempt_date
-      if solved:
-        problem.best_time = best_time
-        problem.first_ac_date = first_ac_date
-      self.user_problems.append(problem)
-    self.max_attempts_day = max(date_map.values()) if date_map else None
+      problem = self._EvalSingleProblem(code, properties, date_map)
+      self.metadata.problems.append(problem)
+    self.metadata.max_attempts_day = (
+        max(date_map.values()) if date_map else None)
 
   def GrantBadges(self):
-    metadata = badge.UserMetadata()
-    metadata.problems = self.user_problems
-    metadata.country = self.country
-    metadata.country_position = self.country_position
-    metadata.first_place = self.first_place
-    metadata.first_place_permanent = self.forever
-    metadata.max_attempts_day = self.max_attempts_day
-    self.badges = badge.GrantBadges(metadata)
+    self.metadata.country = self.country
+    self.metadata.country_position = self.country_position
+    self.metadata.first_place = self.first_place
+    self.metadata.first_place_permanent = self.forever
+    self.badges = badge.GrantBadges(self.metadata)
 
   def WriteDatastore(self):
     user = model.SpojUser(
@@ -140,7 +143,7 @@ class RefreshUserPage(webapp.RequestHandler):
 	version=model.VERSION)
     user_rpc = db.put_async(user)
     metadata = model.SpojUserMetadata(
-        key_name=self.user, problems=self.user_problems,
+        key_name=self.user, problems=self.metadata.problems,
 	county_position=self.country_position, first_place=self.first_place)
     metadata_rpc = db.put_async(metadata)
     user_rpc.check_success()
