@@ -58,9 +58,9 @@ class RefreshUserPage(webapp.RequestHandler):
       details_url = 'http://www.spoj.pl/status/%s/signedlist/' % self.user
       details_rpc = urlfetch.create_rpc()
       urlfetch.make_fetch_call(details_rpc, details_url)
-      classical_key = db.Key.from_path('ProblemList', 'classical')      
+      classical_key = db.Key.from_path('ProblemList', 'classical')
       classical_rpc = db.get_async(classical_key)
-      fastest_query = model.ProblemDetails.all(keys_only=True) 
+      fastest_query = model.ProblemDetails.all(keys_only=True)
       self.first_place = fastest_query.filter("first_place", self.user).count()
       forever_query = model.ProblemDetails.all(keys_only=True)
       self.forever = forever_query.filter(
@@ -82,7 +82,7 @@ class RefreshUserPage(webapp.RequestHandler):
 	  self.country_position = user.position
     except parser.ParseError:
       raise RefreshException()
- 
+
   def CreateUserProblems(self):
     self.user_problems = []
     date_map = {}
@@ -148,4 +148,3 @@ class RefreshUserPage(webapp.RequestHandler):
 
   def Page404(self):
     self.error(404)
-
