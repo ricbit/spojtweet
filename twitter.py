@@ -52,18 +52,17 @@ class TwitterPage(webapp.RequestHandler):
   def get(self):
     consumer = GetAppConsumer()
     client = oauth.Client(consumer)
-    temp_data = model.OAuthData()
-    temp_key = temp_data.put()
+    temp_key = model.OAuthData().put()
     body = urllib.urlencode(
         {'oauth_callback': 'http://spojtweet.appspot.com/twitter/auth/%s/' %
 	                   str(temp_key.id())})
     response, content = client.request(
         pythontwitter.REQUEST_TOKEN_URL, 'POST', body=body)
     request_token = dict(cgi.parse_qsl(content))
-    temp_data.key = temp_key
-    temp_data.oauth_key = request_token['oauth_token']
-    temp_data.oauth_secret = request_token['oauth_token_secret']
-    temp_data.put()
+    temp_data = model.OAuthData(
+        key=temp_key,
+        oauth_key=request_token['oauth_token'],
+        oauth_secret=request_token['oauth_token_secret']).put()
     self.redirect('%s?oauth_token=%s' % 
         (pythontwitter.AUTHORIZATION_URL, temp_data.oauth_key))
 
