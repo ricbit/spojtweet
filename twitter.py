@@ -19,20 +19,26 @@ __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 import datetime
 import logging
 import re
+import cgi
 
 from google.appengine.api import users
 from google.appengine.ext import webapp
-import oauthtwitter
+from pythontwitter import twitter as pythontwitter
+import oauth2 as oauth
 
 import model
 
 class TwitterPage(webapp.RequestHandler):
   def get(self):
     keys = model.OAuthData.get_by_key_name('oauth')
-    twitter = oauthtwitter.OAuthApi(keys.consumer_key, keys.consumer_secret)
-    temp_credentials = twitter.getRequestToken()
-    logging.info(str(temp_credentials))
-    self.response.out.write('see logs')
+    oauth.SignatureMethod_HMAC_SHA1()
+    consumer = oauth.Consumer(
+        key=keys.consumer_key, secret=keys.consumer_secret)
+    client = oauth.Client(consumer)
+    response, content = client.request(pythontwitter.REQUEST_TOKEN_URL)
+    request_token = dict(cgi.parse_qsl(content))
+    self.redirect('%s?oauth_token=%s' % 
+        (pythontwitter.AUTHORIZATION_URL, request_token['oauth_token']))
 
 
 if __name__ == '__main__':

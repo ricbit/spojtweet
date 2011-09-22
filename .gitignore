@@ -3,6 +3,6 @@
 # Ignore vi temp files
 *.swp
 # Ignore third-party libraries
-oauthtwitter/*
+pythontwitter/*
 oauth2/*
 httplib2/*
