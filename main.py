@@ -73,7 +73,8 @@ app = webapp.WSGIApplication(
 	   ('/crawl', crawler.CrawlCountryPage),
 	   ('/admin', admin.AdminPage),
 	   ('/admin/keys/(.*?)/(.*?)/', admin.SetKeyPage),
-	   ('/twitter', twitter.TwitterPage)],
+	   ('/twitter', twitter.TwitterPage),
+	   ('/twitter/auth/(.*?)/', twitter.TwitterAuthPage)],
 	  debug=True)
 
 def main():
