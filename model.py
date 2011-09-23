@@ -81,9 +81,9 @@ class SpojUser(db.Model):
   version = db.IntegerProperty(indexed=False)
 
   def __str__(self):
-    return ",".join([self.name, self.country, 
+    return ",".join([self.name, self.country,
                      str(self.last_update),
-		     ";".join(str(i) for i in self.badges)])
+                     ";".join(str(i) for i in self.badges)])
 
 
 class SpojUserMetadata(db.Model):
@@ -129,3 +129,10 @@ class ProblemDetails(db.Model):
 class OAuthData(db.Model):
   oauth_key = db.StringProperty(indexed=False)
   oauth_secret = db.StringProperty(indexed=False)
+
+class UserPreferences(db.Model):
+  twitter_screen_name = db.StringProperty(indexed=False)
+  session_id = db.StringProperty(indexed=False)
+  session_start = db.DateTimeProperty(indexed=False)
+  spoj_user = db.StringProperty()
+  post_on_problem_solved = db.BooleanProperty(indexed=False)

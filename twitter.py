@@ -23,6 +23,8 @@ import logging
 import re
 import cgi
 import urllib
+import random
+import hashlib
 
 from google.appengine.ext import db
 from google.appengine.api import users
@@ -55,7 +57,7 @@ class TwitterPage(webapp.RequestHandler):
     temp_key = model.OAuthData().put()
     body = urllib.urlencode(
         {'oauth_callback': 'http://spojtweet.appspot.com/twitter/auth/%s/' %
-	                   str(temp_key.id())})
+                           str(temp_key.id())})
     response, content = client.request(
         pythontwitter.REQUEST_TOKEN_URL, 'POST', body=body)
     request_token = dict(cgi.parse_qsl(content))
@@ -82,9 +84,14 @@ class TwitterAuthPage(webapp.RequestHandler):
     access_token = dict(cgi.parse_qsl(content))
     user_keys = model.OAuthData(key_name=access_token['user_id'],
         oauth_key=access_token['oauth_token'],
-	oauth_secret=access_token['oauth_token_secret'])
+        oauth_secret=access_token['oauth_token_secret'])
     user_keys.put()
     temp_data.delete()
+    preferences = model.UserPreferences(
+        key_name=access_token['user_id'],
+        twitter_screen_name=access_token['screen_name'],
+        session_id=hashlib.sha1(str(random.getrandbits(256))).hexdigest(),
+        session_start=datetime.datetime.now()).put()
     self.response.out.write('Welcome ' + access_token['screen_name'])
 
 class SendTweetPage(webapp.RequestHandler):
@@ -98,10 +105,10 @@ class SendTweetPage(webapp.RequestHandler):
     user_keys = model.OAuthData.get_by_key_name(username)
     api = pythontwitter.Api(
         consumer_key=app_keys.oauth_key,
-	consumer_secret=app_keys.oauth_secret,
-	access_token_key=user_keys.oauth_key,
-	access_token_secret=user_keys.oauth_secret,
-	cache=None)
+        consumer_secret=app_keys.oauth_secret,
+        access_token_key=user_keys.oauth_key,
+        access_token_secret=user_keys.oauth_secret,
+        cache=None)
     api.PostUpdate(
         'Se você consegue ler isso, minha implementação de oauth funciona.')
     self.response.out.write('posted')
