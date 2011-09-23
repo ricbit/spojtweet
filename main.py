@@ -65,6 +65,11 @@ class UserPage(webapp.RequestHandler):
     }
     self.response.out.write(template.render(path, values))
 
+class NotFoundPage(webapp.RequestHandler):
+  def get(self):
+    self.error(404)
+    self.response.out.write('404 Not Found')
+
 app = webapp.WSGIApplication(
           [('/', MainPage),
 	   ('/user/([^/]+)', UserPage),
@@ -74,7 +79,8 @@ app = webapp.WSGIApplication(
 	   ('/admin/keys/(.*?)/(.*?)/', admin.SetKeyPage),
 	   ('/twitter', twitter.TwitterPage),
 	   ('/twitter/auth/(.*?)/', twitter.TwitterAuthPage),
-	   ('/twitter/send/(.*?)/', twitter.SendTweetPage)],
+	   ('/twitter/send/(.*?)/', twitter.SendTweetPage),
+	   ('/.*', NotFoundPage)],
 	  debug=True)
 
 def main():
