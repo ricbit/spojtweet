@@ -6,5 +6,8 @@ builtins:
 - deferred: on
 
 handlers:
+- url: /(login.html)
+  static_files: \1
+  upload: login.html
 - url: /.*
   script: main.py
