@@ -26,15 +26,9 @@ import model
 
 class AdminPage(webapp.RequestHandler):
   def get(self):
-    if not users.is_current_user_admin():
-      login_url = users.create_login_url('/admin')
-      self.response.out.write('<a href="%s">Login</a>' % login_url)
-    else:
-      user = users.get_current_user()
-      self.response.out.write('Welcome %s<br>' % user.nickname()) 
-      logout_url = users.create_logout_url('/admin')
-      self.response.out.write('<a href="/crawl">Launch crawler</a> | ')
-      self.response.out.write('<a href="%s">Logout</a>' % logout_url)
+    user = users.get_current_user()
+    self.response.out.write('Welcome %s<br>' % user.nickname()) 
+    self.response.out.write('<a href="/crawl">Launch crawler</a> | ')
 
 class SetKeyPage(webapp.RequestHandler):
   def get(self, consumer_key, consumer_secret):

@@ -9,5 +9,13 @@ handlers:
 - url: /(login.html)
   static_files: \1
   upload: login.html
+- url: /admin.*
+  script: main.py
+  login: admin
 - url: /.*
   script: main.py
+
+admin_console:
+  pages:
+  - name: SpojTweet Admin
+    url: /admin
