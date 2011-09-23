@@ -144,7 +144,7 @@ class RefreshUserPage(webapp.RequestHandler):
     user_rpc = db.put_async(user)
     metadata = model.SpojUserMetadata(
         key_name=self.user, problems=self.metadata.problems,
-	county_position=self.country_position, first_place=self.first_place)
+	country_position=self.country_position, first_place=self.first_place)
     metadata_rpc = db.put_async(metadata)
     user_rpc.check_success()
     metadata_rpc.check_success()
