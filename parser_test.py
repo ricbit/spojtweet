@@ -67,6 +67,14 @@ class ParserTest(unittest.TestCase):
     except parser.ParseError:
       pass
 
+  def testParseCountryList(self):
+    text = open('testdata/country.html').read()
+    countries = parser.ParseCountryList(text)
+    for country in countries:
+      self.assertEquals(2, len(country))
+      self.assertEquals(2, len(country[0]))
+      self.assertTrue(isinstance(country[1], unicode))
+    
 
 if __name__ == '__main__':
   unittest.main()

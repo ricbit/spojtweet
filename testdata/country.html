@@ -1,0 +1,2081 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+
+<title>Sphere Online Judge (SPOJ)  - Country Statistics</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2" id="metatag">
+<META NAME="Keywords" CONTENT="programming, language, algorithm, spoj, contest, contester, Java, C#, Pascal, C, C++, python, ruby, caml, ocaml, perl, haskell, lisp, prolog, fortran, assembler, asembler, functional, online, judge, problem, problemset, ACM">
+
+<link href="/gfx/favicon.png" rel="shortcut icon" type="image/x-icon">
+<link href="/rss/" rel="alternate" type="application/rss+xml" title="RSS Feed">
+<link href="/themes/common.css" rel="stylesheet" type="text/css" id="theme">
+<link href="/style.css" rel="stylesheet" type="text/css" id="theme">
+<link href="/themes/tooltips.css" rel="stylesheet" type="text/css" id="theme">
+<script type='text/javascript' src='/gfx/jquery.js'></script>
+<script type="text/javascript" src="/gfx/jquery.timers.js"></script>
+<style type="text/css">
+<!--
+.maintable {width: 855px;} 
+-->
+</style>
+<script type="text/javascript" language="javascript">
+<!--
+function UnCryptMailto(s) {
+	var n=0;
+	var r="";
+	for(var i=0;i<s.length;i++) {		
+		n=s.charCodeAt(i); 
+		if (n>=8364) {n = 128;}
+		r += String.fromCharCode(n+(2));	
+	}
+	return r;
+}
+function linkTo_UnCryptMailto(s)	{
+	location.href=UnCryptMailto(s);
+}
+// -->
+</script>
+
+<script type="text/javascript">
+function recordOutboundLink(link, category, action) {
+  try {
+    var pageTracker=_gat._getTracker("UA-XXXXX-X");
+    pageTracker._trackEvent(category, action);
+    setTimeout('document.location = "' + link.href + '"', 100)
+  }catch(err){}
+}
+</script>
+
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushCpp.js"></script>
+	<script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushCSharp.js"></script>
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushJava.js"></script>
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushPhp.js"></script>
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushPython.js"></script>
+	<link type="text/css" rel="stylesheet" href="/gfx/SyntaxHighlighter/styles/shCore.css"/>
+	<link type="text/css" rel="stylesheet" href="/gfx/SyntaxHighlighter/styles/shThemeDefault.css"/>
+	
+	<script type="text/javascript">
+		SyntaxHighlighter.all();
+	</script>
+	
+
+</head>
+<body>
+<center>
+<table cellpadding="10" cellspacing="0" class="maintable" id="maintable">
+<tr>
+    <td colspan="2" class="header">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+		<td class="headerleft"/>
+		<td class="headercenter">
+<h1><IMG alt="Sphere Online Judge" title="Sphere Online Judge" src="/gfx/sphere-spoj-small.png" border=0 style="margin-top:-4px;margin-bottom:-4px"></h1>
+
+		<div style="position: relative; width: 807px;">
+		<div style="position: absolute; left: -192px; top: 8px;"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-4453360425583535";
+/* Spoj - wiezowiec */
+google_ad_slot = "2703472077";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+		</div>
+		</td>
+		<td class="headerright"/>
+	</tr>
+	</table>
+    </td>
+</tr>
+<tr><td class="menu" width="92" valign="top">
+
+	
+	
+<form name="login"  action="http://www.spoj.pl/ranks/countries/" method="post" 
+onsubmit="if(document.login.ssl.checked) document.login.action='https://www.spoj.pl/ranks/countries/'" style="margin-bottom: 18px"> 
+User: <input name="login_user" type="text" style="width: 85px;" class="form"><BR>
+Password: <input name="password" type="password" style="width: 85px;" class="form"><BR>
+<div style="font-size: 10px;">
+<script language="javascript" type="text/javascript">
+<!--
+    document.write('<input type="checkbox" name="ssl" id="ssl" /><label for="ssl">secure</label><br/>');
+//-->
+</script>
+<div title="Keep me signed in for today">
+<input type="checkbox" name="autologin" value="1" id="autologin" /><label for="autologin">for today</label>
+</div>
+<!--Keep me signed in for today-->
+</div>
+<input name="submit" type="submit" value="Log In" class="button" style="width: 85px;">
+</form>
+<div class="menucmd"><a href="/register">register</a><br><a href="/tutorials">tutorials</a><br><br><a href="/status">status</a><br><a href="/submit">submit</a><br><a href="/problems/classical/">problems</a><br><a href="/search">search</a><br><br><a href="/">news</a><br><a href="/contests">contests</a><br><a href="/ranks/">ranks</a><br><div class="submenucmd"><a href="/ranks/users">users</a><br><a href="/ranks/countries">countries</a><br><a href="/ranks/psetters">psetters</a><br><a href="/ranks/languages">languages</a><br><a href="/ranks/institutions">institutions</a><br></div><br><a href="/forum">forum</a><br><a href="/tools">tools</a><br><a href="/credits">credits</a><br><hr></div><a href="/problems/classical/"></a><br>
+
+	<div class="time">
+Server time:</div>
+<div class="time">
+2011-09-24
+<br>
+<b>22 : 49 : 11</b>
+</div>
+
+</td><td style="width: 100%; padding:0px;" valign="top" class="content0">
+        <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+                <td style="padding:0px;" colspan="2"><center>
+                                
+                </center></td>
+        </tr>
+        <tr>
+                <td class="content" width="99%" style="padding: 10px"><H3>Country Ranks</H3>
+<table class="problems" width="100%">
+<tr class="headerrow">
+<th width="10%" class="headerrowleft">RANK</th>
+<th width="10%">CC</th>
+<th width="50%">COUNTRY</th>
+<th width="10%">USERS</th>
+<th width="10%">CLASSICAL</th>
+<th width="10%" class="headerrowright">SCORE</th>
+</tr>
+<tr class="row">
+<td>1</td>
+<td>IN</td>
+<td><a href="/ranks/users/IN/">INDIA</a></td>
+<td>27395</td>
+<td>139875</td>
+<td>22358.1</td>
+</tr>
+<tr class="row">
+<td>2</td>
+<td>CN</td>
+<td><a href="/ranks/users/CN/">CHINA</a></td>
+<td>5018</td>
+<td>38197</td>
+<td>14581.4</td>
+</tr>
+<tr class="row">
+<td>3</td>
+<td>PL</td>
+<td><a href="/ranks/users/PL/">POLAND</a></td>
+<td>21928</td>
+<td>33982</td>
+<td>6675.1</td>
+</tr>
+<tr class="row">
+<td>4</td>
+<td>VN</td>
+<td><a href="/ranks/users/VN/">VIET NAM</a></td>
+<td>7396</td>
+<td>16170</td>
+<td>3802.2</td>
+</tr>
+<tr class="row">
+<td>5</td>
+<td>ID</td>
+<td><a href="/ranks/users/ID/">INDONESIA</a></td>
+<td>1839</td>
+<td>20328</td>
+<td>3537.3</td>
+</tr>
+<tr class="row">
+<td>6</td>
+<td>RU</td>
+<td><a href="/ranks/users/RU/">RUSSIAN FEDERATION</a></td>
+<td>2902</td>
+<td>14342</td>
+<td>3360.4</td>
+</tr>
+<tr class="row">
+<td>7</td>
+<td>HR</td>
+<td><a href="/ranks/users/HR/">CROATIA</a></td>
+<td>352</td>
+<td>8326</td>
+<td>3171.7</td>
+</tr>
+<tr class="row">
+<td>8</td>
+<td>XX</td>
+<td><a href="/ranks/users/XX/">[CITIZEN OF THE WORLD]</a></td>
+<td>7132</td>
+<td>12042</td>
+<td>3091.9</td>
+</tr>
+<tr class="row">
+<td>9</td>
+<td>US</td>
+<td><a href="/ranks/users/US/">UNITED STATES</a></td>
+<td>4744</td>
+<td>16521</td>
+<td>2802.8</td>
+</tr>
+<tr class="row">
+<td>10</td>
+<td>EG</td>
+<td><a href="/ranks/users/EG/">EGYPT</a></td>
+<td>1657</td>
+<td>13701</td>
+<td>2613.3</td>
+</tr>
+<tr class="row">
+<td>11</td>
+<td>CU</td>
+<td><a href="/ranks/users/CU/">CUBA</a></td>
+<td>1372</td>
+<td>9484</td>
+<td>2079.6</td>
+</tr>
+<tr class="row">
+<td>12</td>
+<td>BY</td>
+<td><a href="/ranks/users/BY/">BELARUS</a></td>
+<td>345</td>
+<td>6381</td>
+<td>1960.6</td>
+</tr>
+<tr class="row">
+<td>13</td>
+<td>DE</td>
+<td><a href="/ranks/users/DE/">GERMANY</a></td>
+<td>1280</td>
+<td>7452</td>
+<td>1900.6</td>
+</tr>
+<tr class="row">
+<td>14</td>
+<td>BR</td>
+<td><a href="/ranks/users/BR/">BRAZIL</a></td>
+<td>11782</td>
+<td>8115</td>
+<td>1579.4</td>
+</tr>
+<tr class="row">
+<td>15</td>
+<td>UA</td>
+<td><a href="/ranks/users/UA/">UKRAINE</a></td>
+<td>580</td>
+<td>5056</td>
+<td>1427.5</td>
+</tr>
+<tr class="row">
+<td>16</td>
+<td>BD</td>
+<td><a href="/ranks/users/BD/">BANGLADESH</a></td>
+<td>868</td>
+<td>4854</td>
+<td>1224.3</td>
+</tr>
+<tr class="row">
+<td>17</td>
+<td>JP</td>
+<td><a href="/ranks/users/JP/">JAPAN</a></td>
+<td>570</td>
+<td>5850</td>
+<td>1222.2</td>
+</tr>
+<tr class="row">
+<td>18</td>
+<td>CA</td>
+<td><a href="/ranks/users/CA/">CANADA</a></td>
+<td>822</td>
+<td>4993</td>
+<td>1059.3</td>
+</tr>
+<tr class="row">
+<td>19</td>
+<td>VE</td>
+<td><a href="/ranks/users/VE/">VENEZUELA</a></td>
+<td>523</td>
+<td>4522</td>
+<td>785.6</td>
+</tr>
+<tr class="row">
+<td>20</td>
+<td>GE</td>
+<td><a href="/ranks/users/GE/">GEORGIA</a></td>
+<td>337</td>
+<td>4536</td>
+<td>779.2</td>
+</tr>
+<tr class="row">
+<td>21</td>
+<td>SK</td>
+<td><a href="/ranks/users/SK/">SLOVAKIA</a></td>
+<td>272</td>
+<td>2873</td>
+<td>710.0</td>
+</tr>
+<tr class="row">
+<td>22</td>
+<td>GB</td>
+<td><a href="/ranks/users/GB/">UNITED KINGDOM</a></td>
+<td>632</td>
+<td>2463</td>
+<td>689.3</td>
+</tr>
+<tr class="row">
+<td>23</td>
+<td>HU</td>
+<td><a href="/ranks/users/HU/">HUNGARY</a></td>
+<td>248</td>
+<td>2110</td>
+<td>581.1</td>
+</tr>
+<tr class="row">
+<td>24</td>
+<td>CH</td>
+<td><a href="/ranks/users/CH/">SWITZERLAND</a></td>
+<td>215</td>
+<td>1868</td>
+<td>512.9</td>
+</tr>
+<tr class="row">
+<td>25</td>
+<td>NL</td>
+<td><a href="/ranks/users/NL/">NETHERLANDS</a></td>
+<td>258</td>
+<td>2187</td>
+<td>495.3</td>
+</tr>
+<tr class="row">
+<td>26</td>
+<td>AR</td>
+<td><a href="/ranks/users/AR/">ARGENTINA</a></td>
+<td>469</td>
+<td>1899</td>
+<td>432.1</td>
+</tr>
+<tr class="row">
+<td>27</td>
+<td>AU</td>
+<td><a href="/ranks/users/AU/">AUSTRALIA</a></td>
+<td>368</td>
+<td>1818</td>
+<td>390.3</td>
+</tr>
+<tr class="row">
+<td>28</td>
+<td>BA</td>
+<td><a href="/ranks/users/BA/">BOSNIA AND HERZEGOVINA</a></td>
+<td>79</td>
+<td>1042</td>
+<td>363.6</td>
+</tr>
+<tr class="row">
+<td>29</td>
+<td>AM</td>
+<td><a href="/ranks/users/AM/">ARMENIA</a></td>
+<td>161</td>
+<td>1396</td>
+<td>342.2</td>
+</tr>
+<tr class="row">
+<td>30</td>
+<td>IR</td>
+<td><a href="/ranks/users/IR/">IRAN, ISLAMIC REPUBLIC OF</a></td>
+<td>657</td>
+<td>1741</td>
+<td>317.7</td>
+</tr>
+<tr class="row">
+<td>31</td>
+<td>RO</td>
+<td><a href="/ranks/users/RO/">ROMANIA</a></td>
+<td>554</td>
+<td>1973</td>
+<td>288.3</td>
+</tr>
+<tr class="row">
+<td>32</td>
+<td>CO</td>
+<td><a href="/ranks/users/CO/">COLOMBIA</a></td>
+<td>818</td>
+<td>2149</td>
+<td>266.9</td>
+</tr>
+<tr class="row">
+<td>33</td>
+<td>FI</td>
+<td><a href="/ranks/users/FI/">FINLAND</a></td>
+<td>152</td>
+<td>956</td>
+<td>257.1</td>
+</tr>
+<tr class="row">
+<td>34</td>
+<td>KR</td>
+<td><a href="/ranks/users/KR/">KOREA, REPUBLIC OF</a></td>
+<td>184</td>
+<td>1192</td>
+<td>250.8</td>
+</tr>
+<tr class="row">
+<td>35</td>
+<td>BG</td>
+<td><a href="/ranks/users/BG/">BULGARIA</a></td>
+<td>234</td>
+<td>1273</td>
+<td>242.2</td>
+</tr>
+<tr class="row">
+<td>36</td>
+<td>NZ</td>
+<td><a href="/ranks/users/NZ/">NEW ZEALAND</a></td>
+<td>158</td>
+<td>1048</td>
+<td>240.5</td>
+</tr>
+<tr class="row">
+<td>37</td>
+<td>RS</td>
+<td><a href="/ranks/users/RS/">SERBIA</a></td>
+<td>137</td>
+<td>1252</td>
+<td>239.2</td>
+</tr>
+<tr class="row">
+<td>38</td>
+<td>AQ</td>
+<td><a href="/ranks/users/AQ/">ANTARCTICA</a></td>
+<td>47</td>
+<td>883</td>
+<td>235.1</td>
+</tr>
+<tr class="row">
+<td>39</td>
+<td>DO</td>
+<td><a href="/ranks/users/DO/">DOMINICAN REPUBLIC</a></td>
+<td>805</td>
+<td>1836</td>
+<td>225.8</td>
+</tr>
+<tr class="row">
+<td>40</td>
+<td>TR</td>
+<td><a href="/ranks/users/TR/">TURKEY</a></td>
+<td>271</td>
+<td>1585</td>
+<td>210.5</td>
+</tr>
+<tr class="row">
+<td>41</td>
+<td>SG</td>
+<td><a href="/ranks/users/SG/">SINGAPORE</a></td>
+<td>358</td>
+<td>889</td>
+<td>201.0</td>
+</tr>
+<tr class="row">
+<td>42</td>
+<td>SY</td>
+<td><a href="/ranks/users/SY/">SYRIAN ARAB REPUBLIC</a></td>
+<td>112</td>
+<td>921</td>
+<td>197.9</td>
+</tr>
+<tr class="row">
+<td>43</td>
+<td>AF</td>
+<td><a href="/ranks/users/AF/">AFGHANISTAN</a></td>
+<td>237</td>
+<td>577</td>
+<td>187.0</td>
+</tr>
+<tr class="row">
+<td>44</td>
+<td>PE</td>
+<td><a href="/ranks/users/PE/">PERU</a></td>
+<td>141</td>
+<td>958</td>
+<td>180.8</td>
+</tr>
+<tr class="row">
+<td>45</td>
+<td>EE</td>
+<td><a href="/ranks/users/EE/">ESTONIA</a></td>
+<td>74</td>
+<td>878</td>
+<td>174.8</td>
+</tr>
+<tr class="row">
+<td>46</td>
+<td>SE</td>
+<td><a href="/ranks/users/SE/">SWEDEN</a></td>
+<td>363</td>
+<td>1163</td>
+<td>169.8</td>
+</tr>
+<tr class="row">
+<td>47</td>
+<td>GR</td>
+<td><a href="/ranks/users/GR/">GREECE</a></td>
+<td>95</td>
+<td>950</td>
+<td>169.6</td>
+</tr>
+<tr class="row">
+<td>48</td>
+<td>ES</td>
+<td><a href="/ranks/users/ES/">SPAIN</a></td>
+<td>214</td>
+<td>766</td>
+<td>154.5</td>
+</tr>
+<tr class="row">
+<td>49</td>
+<td>NP</td>
+<td><a href="/ranks/users/NP/">NEPAL</a></td>
+<td>83</td>
+<td>597</td>
+<td>148.5</td>
+</tr>
+<tr class="row">
+<td>50</td>
+<td>HK</td>
+<td><a href="/ranks/users/HK/">HONG KONG</a></td>
+<td>196</td>
+<td>571</td>
+<td>135.8</td>
+</tr>
+<tr class="row">
+<td>51</td>
+<td>CZ</td>
+<td><a href="/ranks/users/CZ/">CZECH REPUBLIC</a></td>
+<td>130</td>
+<td>965</td>
+<td>130.8</td>
+</tr>
+<tr class="row">
+<td>52</td>
+<td>FR</td>
+<td><a href="/ranks/users/FR/">FRANCE</a></td>
+<td>254</td>
+<td>902</td>
+<td>123.7</td>
+</tr>
+<tr class="row">
+<td>53</td>
+<td>PT</td>
+<td><a href="/ranks/users/PT/">PORTUGAL</a></td>
+<td>254</td>
+<td>938</td>
+<td>102.3</td>
+</tr>
+<tr class="row">
+<td>54</td>
+<td>TW</td>
+<td><a href="/ranks/users/TW/">TAIWAN, PROVINCE OF CHINA</a></td>
+<td>227</td>
+<td>746</td>
+<td>94.4</td>
+</tr>
+<tr class="row">
+<td>55</td>
+<td>LV</td>
+<td><a href="/ranks/users/LV/">LATVIA</a></td>
+<td>74</td>
+<td>670</td>
+<td>94.0</td>
+</tr>
+<tr class="row">
+<td>56</td>
+<td>BO</td>
+<td><a href="/ranks/users/BO/">BOLIVIA</a></td>
+<td>441</td>
+<td>950</td>
+<td>89.2</td>
+</tr>
+<tr class="row">
+<td>57</td>
+<td>IT</td>
+<td><a href="/ranks/users/IT/">ITALY</a></td>
+<td>152</td>
+<td>486</td>
+<td>74.4</td>
+</tr>
+<tr class="row">
+<td>58</td>
+<td>AT</td>
+<td><a href="/ranks/users/AT/">AUSTRIA</a></td>
+<td>114</td>
+<td>375</td>
+<td>57.9</td>
+</tr>
+<tr class="row">
+<td>59</td>
+<td>NO</td>
+<td><a href="/ranks/users/NO/">NORWAY</a></td>
+<td>155</td>
+<td>432</td>
+<td>56.9</td>
+</tr>
+<tr class="row">
+<td>60</td>
+<td>MX</td>
+<td><a href="/ranks/users/MX/">MEXICO</a></td>
+<td>473</td>
+<td>909</td>
+<td>56.7</td>
+</tr>
+<tr class="row">
+<td>61</td>
+<td>MN</td>
+<td><a href="/ranks/users/MN/">MONGOLIA</a></td>
+<td>4082</td>
+<td>436</td>
+<td>55.7</td>
+</tr>
+<tr class="row">
+<td>62</td>
+<td>KZ</td>
+<td><a href="/ranks/users/KZ/">KAZAKHSTAN</a></td>
+<td>222</td>
+<td>565</td>
+<td>54.1</td>
+</tr>
+<tr class="row">
+<td>63</td>
+<td>MK</td>
+<td><a href="/ranks/users/MK/">MACEDONIA</a></td>
+<td>86</td>
+<td>402</td>
+<td>53.2</td>
+</tr>
+<tr class="row">
+<td>64</td>
+<td>ZA</td>
+<td><a href="/ranks/users/ZA/">SOUTH AFRICA</a></td>
+<td>243</td>
+<td>496</td>
+<td>49.0</td>
+</tr>
+<tr class="row">
+<td>65</td>
+<td>TH</td>
+<td><a href="/ranks/users/TH/">THAILAND</a></td>
+<td>123</td>
+<td>430</td>
+<td>48.2</td>
+</tr>
+<tr class="row">
+<td>66</td>
+<td>LT</td>
+<td><a href="/ranks/users/LT/">LITHUANIA</a></td>
+<td>120</td>
+<td>406</td>
+<td>44.3</td>
+</tr>
+<tr class="row">
+<td>67</td>
+<td>DK</td>
+<td><a href="/ranks/users/DK/">DENMARK</a></td>
+<td>71</td>
+<td>237</td>
+<td>35.2</td>
+</tr>
+<tr class="row">
+<td>68</td>
+<td>ZZ</td>
+<td><a href="/ranks/users/ZZ/">[UNLISTED COUNTRY]</a></td>
+<td>81</td>
+<td>205</td>
+<td>34.0</td>
+</tr>
+<tr class="row">
+<td>69</td>
+<td>KG</td>
+<td><a href="/ranks/users/KG/">KYRGYZSTAN</a></td>
+<td>350</td>
+<td>459</td>
+<td>33.0</td>
+</tr>
+<tr class="row">
+<td>70</td>
+<td>AS</td>
+<td><a href="/ranks/users/AS/">AMERICAN SAMOA</a></td>
+<td>45</td>
+<td>98</td>
+<td>29.4</td>
+</tr>
+<tr class="row">
+<td>71</td>
+<td>GL</td>
+<td><a href="/ranks/users/GL/">GREENLAND</a></td>
+<td>3</td>
+<td>145</td>
+<td>25.3</td>
+</tr>
+<tr class="row">
+<td>72</td>
+<td>BE</td>
+<td><a href="/ranks/users/BE/">BELGIUM</a></td>
+<td>107</td>
+<td>256</td>
+<td>23.4</td>
+</tr>
+<tr class="row">
+<td>73</td>
+<td>SI</td>
+<td><a href="/ranks/users/SI/">SLOVENIA</a></td>
+<td>59</td>
+<td>163</td>
+<td>18.3</td>
+</tr>
+<tr class="row">
+<td>74</td>
+<td>BB</td>
+<td><a href="/ranks/users/BB/">BARBADOS</a></td>
+<td>55</td>
+<td>96</td>
+<td>15.6</td>
+</tr>
+<tr class="row">
+<td>75</td>
+<td>IL</td>
+<td><a href="/ranks/users/IL/">ISRAEL</a></td>
+<td>115</td>
+<td>186</td>
+<td>14.5</td>
+</tr>
+<tr class="row">
+<td>76</td>
+<td>CL</td>
+<td><a href="/ranks/users/CL/">CHILE</a></td>
+<td>48</td>
+<td>193</td>
+<td>12.9</td>
+</tr>
+<tr class="row">
+<td>77</td>
+<td>AL</td>
+<td><a href="/ranks/users/AL/">ALBANIA</a></td>
+<td>89</td>
+<td>115</td>
+<td>10.9</td>
+</tr>
+<tr class="row">
+<td>78</td>
+<td>MD</td>
+<td><a href="/ranks/users/MD/">MOLDOVA, REPUBLIC OF</a></td>
+<td>39</td>
+<td>188</td>
+<td>10.6</td>
+</tr>
+<tr class="row">
+<td>79</td>
+<td>MA</td>
+<td><a href="/ranks/users/MA/">MOROCCO</a></td>
+<td>58</td>
+<td>199</td>
+<td>10.5</td>
+</tr>
+<tr class="row">
+<td>80</td>
+<td>AG</td>
+<td><a href="/ranks/users/AG/">ANTIGUA AND BARBUDA</a></td>
+<td>18</td>
+<td>54</td>
+<td>9.7</td>
+</tr>
+<tr class="row">
+<td>81</td>
+<td>LK</td>
+<td><a href="/ranks/users/LK/">SRI LANKA</a></td>
+<td>84</td>
+<td>150</td>
+<td>9.3</td>
+</tr>
+<tr class="row">
+<td>82</td>
+<td>LY</td>
+<td><a href="/ranks/users/LY/">LIBYAN ARAB JAMAHIRIYA</a></td>
+<td>4</td>
+<td>50</td>
+<td>7.7</td>
+</tr>
+<tr class="row">
+<td>83</td>
+<td>IE</td>
+<td><a href="/ranks/users/IE/">IRELAND</a></td>
+<td>71</td>
+<td>85</td>
+<td>7.5</td>
+</tr>
+<tr class="row">
+<td>84</td>
+<td>PH</td>
+<td><a href="/ranks/users/PH/">PHILIPPINES</a></td>
+<td>150</td>
+<td>149</td>
+<td>7.3</td>
+</tr>
+<tr class="row">
+<td>85</td>
+<td>AD</td>
+<td><a href="/ranks/users/AD/">ANDORRA</a></td>
+<td>33</td>
+<td>21</td>
+<td>7.2</td>
+</tr>
+<tr class="row">
+<td>86</td>
+<td>BS</td>
+<td><a href="/ranks/users/BS/">BAHAMAS</a></td>
+<td>48</td>
+<td>39</td>
+<td>6.5</td>
+</tr>
+<tr class="row">
+<td>87</td>
+<td>FO</td>
+<td><a href="/ranks/users/FO/">FAROE ISLANDS</a></td>
+<td>2</td>
+<td>31</td>
+<td>6.5</td>
+</tr>
+<tr class="row">
+<td>88</td>
+<td>GH</td>
+<td><a href="/ranks/users/GH/">GHANA</a></td>
+<td>17</td>
+<td>34</td>
+<td>6.3</td>
+</tr>
+<tr class="row">
+<td>89</td>
+<td>TC</td>
+<td><a href="/ranks/users/TC/">TURKS AND CAICOS ISLANDS</a></td>
+<td>3</td>
+<td>21</td>
+<td>6.3</td>
+</tr>
+<tr class="row">
+<td>90</td>
+<td>MY</td>
+<td><a href="/ranks/users/MY/">MALAYSIA</a></td>
+<td>123</td>
+<td>126</td>
+<td>6.2</td>
+</tr>
+<tr class="row">
+<td>91</td>
+<td>DZ</td>
+<td><a href="/ranks/users/DZ/">ALGERIA</a></td>
+<td>45</td>
+<td>42</td>
+<td>6.1</td>
+</tr>
+<tr class="row">
+<td>92</td>
+<td>GS</td>
+<td><a href="/ranks/users/GS/">SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS</a></td>
+<td>9</td>
+<td>76</td>
+<td>6.0</td>
+</tr>
+<tr class="row">
+<td>93</td>
+<td>KY</td>
+<td><a href="/ranks/users/KY/">CAYMAN ISLANDS</a></td>
+<td>3</td>
+<td>51</td>
+<td>5.8</td>
+</tr>
+<tr class="row">
+<td>94</td>
+<td>LB</td>
+<td><a href="/ranks/users/LB/">LEBANON</a></td>
+<td>33</td>
+<td>59</td>
+<td>5.5</td>
+</tr>
+<tr class="row">
+<td>95</td>
+<td>IS</td>
+<td><a href="/ranks/users/IS/">ICELAND</a></td>
+<td>35</td>
+<td>35</td>
+<td>4.2</td>
+</tr>
+<tr class="row">
+<td>96</td>
+<td>ZM</td>
+<td><a href="/ranks/users/ZM/">ZAMBIA</a></td>
+<td>13</td>
+<td>40</td>
+<td>4.2</td>
+</tr>
+<tr class="row">
+<td>97</td>
+<td>TV</td>
+<td><a href="/ranks/users/TV/">TUVALU</a></td>
+<td>5</td>
+<td>52</td>
+<td>3.8</td>
+</tr>
+<tr class="row">
+<td>98</td>
+<td>AO</td>
+<td><a href="/ranks/users/AO/">ANGOLA</a></td>
+<td>27</td>
+<td>16</td>
+<td>3.5</td>
+</tr>
+<tr class="row">
+<td>99</td>
+<td>JO</td>
+<td><a href="/ranks/users/JO/">JORDAN</a></td>
+<td>140</td>
+<td>34</td>
+<td>3.4</td>
+</tr>
+<tr class="row">
+<td>100</td>
+<td>LU</td>
+<td><a href="/ranks/users/LU/">LUXEMBOURG</a></td>
+<td>4</td>
+<td>14</td>
+<td>3.3</td>
+</tr>
+<tr class="row">
+<td>101</td>
+<td>ET</td>
+<td><a href="/ranks/users/ET/">ETHIOPIA</a></td>
+<td>12</td>
+<td>3</td>
+<td>3.1</td>
+</tr>
+<tr class="row">
+<td>102</td>
+<td>BT</td>
+<td><a href="/ranks/users/BT/">BHUTAN</a></td>
+<td>22</td>
+<td>39</td>
+<td>3.1</td>
+</tr>
+<tr class="row">
+<td>103</td>
+<td>TM</td>
+<td><a href="/ranks/users/TM/">TURKMENISTAN</a></td>
+<td>14</td>
+<td>15</td>
+<td>3.0</td>
+</tr>
+<tr class="row">
+<td>104</td>
+<td>JM</td>
+<td><a href="/ranks/users/JM/">JAMAICA</a></td>
+<td>30</td>
+<td>67</td>
+<td>2.7</td>
+</tr>
+<tr class="row">
+<td>105</td>
+<td>FJ</td>
+<td><a href="/ranks/users/FJ/">FIJI</a></td>
+<td>6</td>
+<td>14</td>
+<td>2.7</td>
+</tr>
+<tr class="row">
+<td>106</td>
+<td>UY</td>
+<td><a href="/ranks/users/UY/">URUGUAY</a></td>
+<td>9</td>
+<td>13</td>
+<td>2.7</td>
+</tr>
+<tr class="row">
+<td>107</td>
+<td>PK</td>
+<td><a href="/ranks/users/PK/">PAKISTAN</a></td>
+<td>142</td>
+<td>69</td>
+<td>2.4</td>
+</tr>
+<tr class="row">
+<td>108</td>
+<td>HM</td>
+<td><a href="/ranks/users/HM/">HEARD ISLAND AND MCDONALD ISLANDS</a></td>
+<td>9</td>
+<td>17</td>
+<td>2.4</td>
+</tr>
+<tr class="row">
+<td>109</td>
+<td>GT</td>
+<td><a href="/ranks/users/GT/">GUATEMALA</a></td>
+<td>7</td>
+<td>14</td>
+<td>2.4</td>
+</tr>
+<tr class="row">
+<td>110</td>
+<td>KP</td>
+<td><a href="/ranks/users/KP/">KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF</a></td>
+<td>14</td>
+<td>7</td>
+<td>2.4</td>
+</tr>
+<tr class="row">
+<td>111</td>
+<td>UM</td>
+<td><a href="/ranks/users/UM/">UNITED STATES MINOR OUTLYING ISLANDS</a></td>
+<td>8</td>
+<td>10</td>
+<td>2.3</td>
+</tr>
+<tr class="row">
+<td>112</td>
+<td>KW</td>
+<td><a href="/ranks/users/KW/">KUWAIT</a></td>
+<td>14</td>
+<td>34</td>
+<td>2.1</td>
+</tr>
+<tr class="row">
+<td>113</td>
+<td>AZ</td>
+<td><a href="/ranks/users/AZ/">AZERBAIJAN</a></td>
+<td>74</td>
+<td>60</td>
+<td>2.0</td>
+</tr>
+<tr class="row">
+<td>114</td>
+<td>DJ</td>
+<td><a href="/ranks/users/DJ/">DJIBOUTI</a></td>
+<td>5</td>
+<td>11</td>
+<td>2.0</td>
+</tr>
+<tr class="row">
+<td>115</td>
+<td>CR</td>
+<td><a href="/ranks/users/CR/">COSTA RICA</a></td>
+<td>10</td>
+<td>62</td>
+<td>1.9</td>
+</tr>
+<tr class="row">
+<td>116</td>
+<td>HT</td>
+<td><a href="/ranks/users/HT/">HAITI</a></td>
+<td>7</td>
+<td>4</td>
+<td>1.8</td>
+</tr>
+<tr class="row">
+<td>117</td>
+<td>CX</td>
+<td><a href="/ranks/users/CX/">CHRISTMAS ISLAND</a></td>
+<td>6</td>
+<td>9</td>
+<td>1.7</td>
+</tr>
+<tr class="row">
+<td>118</td>
+<td>BJ</td>
+<td><a href="/ranks/users/BJ/">BENIN</a></td>
+<td>15</td>
+<td>8</td>
+<td>1.7</td>
+</tr>
+<tr class="row">
+<td>119</td>
+<td>GA</td>
+<td><a href="/ranks/users/GA/">GABON</a></td>
+<td>6</td>
+<td>15</td>
+<td>1.6</td>
+</tr>
+<tr class="row">
+<td>120</td>
+<td>OM</td>
+<td><a href="/ranks/users/OM/">OMAN</a></td>
+<td>6</td>
+<td>9</td>
+<td>1.6</td>
+</tr>
+<tr class="row">
+<td>121</td>
+<td>TT</td>
+<td><a href="/ranks/users/TT/">TRINIDAD AND TOBAGO</a></td>
+<td>17</td>
+<td>41</td>
+<td>1.5</td>
+</tr>
+<tr class="row">
+<td>122</td>
+<td>UG</td>
+<td><a href="/ranks/users/UG/">UGANDA</a></td>
+<td>18</td>
+<td>24</td>
+<td>1.4</td>
+</tr>
+<tr class="row">
+<td>123</td>
+<td>BI</td>
+<td><a href="/ranks/users/BI/">BURUNDI</a></td>
+<td>4</td>
+<td>18</td>
+<td>1.4</td>
+</tr>
+<tr class="row">
+<td>124</td>
+<td>GF</td>
+<td><a href="/ranks/users/GF/">FRENCH GUIANA</a></td>
+<td>1</td>
+<td>4</td>
+<td>1.4</td>
+</tr>
+<tr class="row">
+<td>125</td>
+<td>BH</td>
+<td><a href="/ranks/users/BH/">BAHRAIN</a></td>
+<td>39</td>
+<td>19</td>
+<td>1.3</td>
+</tr>
+<tr class="row">
+<td>126</td>
+<td>AW</td>
+<td><a href="/ranks/users/AW/">ARUBA</a></td>
+<td>21</td>
+<td>8</td>
+<td>1.3</td>
+</tr>
+<tr class="row">
+<td>127</td>
+<td>BW</td>
+<td><a href="/ranks/users/BW/">BOTSWANA</a></td>
+<td>16</td>
+<td>4</td>
+<td>1.2</td>
+</tr>
+<tr class="row">
+<td>128</td>
+<td>SC</td>
+<td><a href="/ranks/users/SC/">SEYCHELLES</a></td>
+<td>1</td>
+<td>5</td>
+<td>1.1</td>
+</tr>
+<tr class="row">
+<td>129</td>
+<td>LR</td>
+<td><a href="/ranks/users/LR/">LIBERIA</a></td>
+<td>1</td>
+<td>4</td>
+<td>1.1</td>
+</tr>
+<tr class="row">
+<td>130</td>
+<td>PG</td>
+<td><a href="/ranks/users/PG/">PAPUA NEW GUINEA</a></td>
+<td>5</td>
+<td>11</td>
+<td>1.0</td>
+</tr>
+<tr class="row">
+<td>131</td>
+<td>PN</td>
+<td><a href="/ranks/users/PN/">PITCAIRN</a></td>
+<td>8</td>
+<td>6</td>
+<td>1.0</td>
+</tr>
+<tr class="row">
+<td>132</td>
+<td>KH</td>
+<td><a href="/ranks/users/KH/">CAMBODIA</a></td>
+<td>23</td>
+<td>16</td>
+<td>0.9</td>
+</tr>
+<tr class="row">
+<td>133</td>
+<td>PY</td>
+<td><a href="/ranks/users/PY/">PARAGUAY</a></td>
+<td>4</td>
+<td>7</td>
+<td>0.9</td>
+</tr>
+<tr class="row">
+<td>134</td>
+<td>QA</td>
+<td><a href="/ranks/users/QA/">QATAR</a></td>
+<td>10</td>
+<td>21</td>
+<td>0.8</td>
+</tr>
+<tr class="row">
+<td>135</td>
+<td>CI</td>
+<td><a href="/ranks/users/CI/">CÔTE D'IVOIRE</a></td>
+<td>2</td>
+<td>16</td>
+<td>0.8</td>
+</tr>
+<tr class="row">
+<td>136</td>
+<td>BV</td>
+<td><a href="/ranks/users/BV/">BOUVET ISLAND</a></td>
+<td>17</td>
+<td>3</td>
+<td>0.8</td>
+</tr>
+<tr class="row">
+<td>137</td>
+<td>IQ</td>
+<td><a href="/ranks/users/IQ/">IRAQ</a></td>
+<td>20</td>
+<td>11</td>
+<td>0.7</td>
+</tr>
+<tr class="row">
+<td>138</td>
+<td>CY</td>
+<td><a href="/ranks/users/CY/">CYPRUS</a></td>
+<td>14</td>
+<td>7</td>
+<td>0.7</td>
+</tr>
+<tr class="row">
+<td>139</td>
+<td>KM</td>
+<td><a href="/ranks/users/KM/">COMOROS</a></td>
+<td>3</td>
+<td>11</td>
+<td>0.7</td>
+</tr>
+<tr class="row">
+<td>140</td>
+<td>AI</td>
+<td><a href="/ranks/users/AI/">ANGUILLA</a></td>
+<td>11</td>
+<td>5</td>
+<td>0.7</td>
+</tr>
+<tr class="row">
+<td>141</td>
+<td>MT</td>
+<td><a href="/ranks/users/MT/">MALTA</a></td>
+<td>5</td>
+<td>9</td>
+<td>0.6</td>
+</tr>
+<tr class="row">
+<td>142</td>
+<td>IO</td>
+<td><a href="/ranks/users/IO/">BRITISH INDIAN OCEAN TERRITORY</a></td>
+<td>6</td>
+<td>19</td>
+<td>0.5</td>
+</tr>
+<tr class="row">
+<td>143</td>
+<td>YE</td>
+<td><a href="/ranks/users/YE/">YEMEN</a></td>
+<td>15</td>
+<td>11</td>
+<td>0.5</td>
+</tr>
+<tr class="row">
+<td>144</td>
+<td>VU</td>
+<td><a href="/ranks/users/VU/">VANUATU</a></td>
+<td>9</td>
+<td>8</td>
+<td>0.5</td>
+</tr>
+<tr class="row">
+<td>145</td>
+<td>LA</td>
+<td><a href="/ranks/users/LA/">LAO PEOPLE'S DEMOCRATIC REPUBLIC</a></td>
+<td>5</td>
+<td>4</td>
+<td>0.5</td>
+</tr>
+<tr class="row">
+<td>146</td>
+<td>CG</td>
+<td><a href="/ranks/users/CG/">CONGO</a></td>
+<td>7</td>
+<td>2</td>
+<td>0.5</td>
+</tr>
+<tr class="row">
+<td>147</td>
+<td>ME</td>
+<td><a href="/ranks/users/ME/">MONTENEGRO</a></td>
+<td>12</td>
+<td>16</td>
+<td>0.4</td>
+</tr>
+<tr class="row">
+<td>148</td>
+<td>HN</td>
+<td><a href="/ranks/users/HN/">HONDURAS</a></td>
+<td>5</td>
+<td>9</td>
+<td>0.4</td>
+</tr>
+<tr class="row">
+<td>149</td>
+<td>MO</td>
+<td><a href="/ranks/users/MO/">MACAO</a></td>
+<td>8</td>
+<td>9</td>
+<td>0.3</td>
+</tr>
+<tr class="row">
+<td>150</td>
+<td>NG</td>
+<td><a href="/ranks/users/NG/">NIGERIA</a></td>
+<td>26</td>
+<td>10</td>
+<td>0.3</td>
+</tr>
+<tr class="row">
+<td>151</td>
+<td>VC</td>
+<td><a href="/ranks/users/VC/">SAINT VINCENT AND THE GRENADINES</a></td>
+<td>2</td>
+<td>2</td>
+<td>0.3</td>
+</tr>
+<tr class="row">
+<td>152</td>
+<td>AE</td>
+<td><a href="/ranks/users/AE/">UNITED ARAB EMIRATES</a></td>
+<td>34</td>
+<td>8</td>
+<td>0.2</td>
+</tr>
+<tr class="row">
+<td>153</td>
+<td>MG</td>
+<td><a href="/ranks/users/MG/">MADAGASCAR</a></td>
+<td>8</td>
+<td>7</td>
+<td>0.2</td>
+</tr>
+<tr class="row">
+<td>154</td>
+<td>TL</td>
+<td><a href="/ranks/users/TL/">TIMOR-LESTE</a></td>
+<td>3</td>
+<td>5</td>
+<td>0.2</td>
+</tr>
+<tr class="row">
+<td>155</td>
+<td>MR</td>
+<td><a href="/ranks/users/MR/">MAURITANIA</a></td>
+<td>1</td>
+<td>1</td>
+<td>0.2</td>
+</tr>
+<tr class="row">
+<td>156</td>
+<td>UZ</td>
+<td><a href="/ranks/users/UZ/">UZBEKISTAN</a></td>
+<td>23</td>
+<td>9</td>
+<td>0.1</td>
+</tr>
+<tr class="row">
+<td>157</td>
+<td>SH</td>
+<td><a href="/ranks/users/SH/">SAINT HELENA</a></td>
+<td>4</td>
+<td>7</td>
+<td>0.1</td>
+</tr>
+<tr class="row">
+<td>157</td>
+<td>TZ</td>
+<td><a href="/ranks/users/TZ/">TANZANIA, UNITED REPUBLIC OF</a></td>
+<td>5</td>
+<td>7</td>
+<td>0.1</td>
+</tr>
+<tr class="row">
+<td>159</td>
+<td>TN</td>
+<td><a href="/ranks/users/TN/">TUNISIA</a></td>
+<td>9</td>
+<td>4</td>
+<td>0.1</td>
+</tr>
+<tr class="row">
+<td>160</td>
+<td>BF</td>
+<td><a href="/ranks/users/BF/">BURKINA FASO</a></td>
+<td>14</td>
+<td>3</td>
+<td>0.1</td>
+</tr>
+<tr class="row">
+<td>161</td>
+<td>FK</td>
+<td><a href="/ranks/users/FK/">FALKLAND ISLANDS (MALVINAS)</a></td>
+<td>2</td>
+<td>2</td>
+<td>0.1</td>
+</tr>
+<tr class="row">
+<td>161</td>
+<td>EC</td>
+<td><a href="/ranks/users/EC/">ECUADOR</a></td>
+<td>10</td>
+<td>2</td>
+<td>0.1</td>
+</tr>
+<tr class="row">
+<td>163</td>
+<td>VA</td>
+<td><a href="/ranks/users/VA/">HOLY SEE (VATICAN CITY STATE)</a></td>
+<td>1</td>
+<td>1</td>
+<td>0.1</td>
+</tr>
+<tr class="row">
+<td>164</td>
+<td>TG</td>
+<td><a href="/ranks/users/TG/">TOGO</a></td>
+<td>7</td>
+<td>5</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>165</td>
+<td>BM</td>
+<td><a href="/ranks/users/BM/">BERMUDA</a></td>
+<td>21</td>
+<td>4</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>165</td>
+<td>SA</td>
+<td><a href="/ranks/users/SA/">SAUDI ARABIA</a></td>
+<td>14</td>
+<td>4</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>165</td>
+<td>MH</td>
+<td><a href="/ranks/users/MH/">MARSHALL ISLANDS</a></td>
+<td>1</td>
+<td>4</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>165</td>
+<td>MU</td>
+<td><a href="/ranks/users/MU/">MAURITIUS</a></td>
+<td>9</td>
+<td>4</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>165</td>
+<td>MQ</td>
+<td><a href="/ranks/users/MQ/">MARTINIQUE</a></td>
+<td>1</td>
+<td>4</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>165</td>
+<td>PR</td>
+<td><a href="/ranks/users/PR/">PUERTO RICO</a></td>
+<td>10</td>
+<td>4</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>171</td>
+<td>PS</td>
+<td><a href="/ranks/users/PS/">PALESTINIAN TERRITORY, OCCUPIED</a></td>
+<td>40</td>
+<td>3</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>171</td>
+<td>MC</td>
+<td><a href="/ranks/users/MC/">MONACO</a></td>
+<td>9</td>
+<td>3</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>171</td>
+<td>SV</td>
+<td><a href="/ranks/users/SV/">EL SALVADOR</a></td>
+<td>3</td>
+<td>3</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>174</td>
+<td>GP</td>
+<td><a href="/ranks/users/GP/">GUADELOUPE</a></td>
+<td>2</td>
+<td>2</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>174</td>
+<td>MW</td>
+<td><a href="/ranks/users/MW/">MALAWI</a></td>
+<td>1</td>
+<td>2</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>174</td>
+<td>CK</td>
+<td><a href="/ranks/users/CK/">COOK ISLANDS</a></td>
+<td>4</td>
+<td>2</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>174</td>
+<td>SN</td>
+<td><a href="/ranks/users/SN/">SENEGAL</a></td>
+<td>2</td>
+<td>2</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>174</td>
+<td>KE</td>
+<td><a href="/ranks/users/KE/">KENYA</a></td>
+<td>17</td>
+<td>2</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>MZ</td>
+<td><a href="/ranks/users/MZ/">MOZAMBIQUE</a></td>
+<td>4</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>SJ</td>
+<td><a href="/ranks/users/SJ/">SVALBARD AND JAN MAYEN</a></td>
+<td>2</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>KI</td>
+<td><a href="/ranks/users/KI/">KIRIBATI</a></td>
+<td>2</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>CD</td>
+<td><a href="/ranks/users/CD/">CONGO, THE DEMOCRATIC REPUBLIC OF THE</a></td>
+<td>5</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>LS</td>
+<td><a href="/ranks/users/LS/">LESOTHO</a></td>
+<td>2</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>PM</td>
+<td><a href="/ranks/users/PM/">SAINT PIERRE AND MIQUELON</a></td>
+<td>2</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>BZ</td>
+<td><a href="/ranks/users/BZ/">BELIZE</a></td>
+<td>10</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>MM</td>
+<td><a href="/ranks/users/MM/">MYANMAR</a></td>
+<td>9</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>PA</td>
+<td><a href="/ranks/users/PA/">PANAMA</a></td>
+<td>1</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>SD</td>
+<td><a href="/ranks/users/SD/">SUDAN</a></td>
+<td>4</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>GU</td>
+<td><a href="/ranks/users/GU/">GUAM</a></td>
+<td>1</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>NI</td>
+<td><a href="/ranks/users/NI/">NICARAGUA</a></td>
+<td>3</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>NA</td>
+<td><a href="/ranks/users/NA/">NAMIBIA</a></td>
+<td>2</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>179</td>
+<td>VG</td>
+<td><a href="/ranks/users/VG/">VIRGIN ISLANDS, BRITISH</a></td>
+<td>16</td>
+<td>1</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>WS</td>
+<td><a href="/ranks/users/WS/">SAMOA</a></td>
+<td>3</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>GQ</td>
+<td><a href="/ranks/users/GQ/">EQUATORIAL GUINEA</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>TD</td>
+<td><a href="/ranks/users/TD/">CHAD</a></td>
+<td>3</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>NE</td>
+<td><a href="/ranks/users/NE/">NIGER</a></td>
+<td>2</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>DM</td>
+<td><a href="/ranks/users/DM/">DOMINICA</a></td>
+<td>3</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>MV</td>
+<td><a href="/ranks/users/MV/">MALDIVES</a></td>
+<td>2</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>CM</td>
+<td><a href="/ranks/users/CM/">CAMEROON</a></td>
+<td>2</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>GI</td>
+<td><a href="/ranks/users/GI/">GIBRALTAR</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>BN</td>
+<td><a href="/ranks/users/BN/">BRUNEI DARUSSALAM</a></td>
+<td>3</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>VI</td>
+<td><a href="/ranks/users/VI/">VIRGIN ISLANDS, U.S.</a></td>
+<td>7</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>MS</td>
+<td><a href="/ranks/users/MS/">MONTSERRAT</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>GY</td>
+<td><a href="/ranks/users/GY/">GUYANA</a></td>
+<td>4</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>MP</td>
+<td><a href="/ranks/users/MP/">NORTHERN MARIANA ISLANDS</a></td>
+<td>2</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>SB</td>
+<td><a href="/ranks/users/SB/">SOLOMON ISLANDS</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>TK</td>
+<td><a href="/ranks/users/TK/">TOKELAU</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>TJ</td>
+<td><a href="/ranks/users/TJ/">TAJIKISTAN</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>SM</td>
+<td><a href="/ranks/users/SM/">SAN MARINO</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>SZ</td>
+<td><a href="/ranks/users/SZ/">SWAZILAND</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>KN</td>
+<td><a href="/ranks/users/KN/">SAINT KITTS AND NEVIS</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>GN</td>
+<td><a href="/ranks/users/GN/">GUINEA</a></td>
+<td>2</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>ML</td>
+<td><a href="/ranks/users/ML/">MALI</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>RE</td>
+<td><a href="/ranks/users/RE/">RÉUNION</a></td>
+<td>2</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>WF</td>
+<td><a href="/ranks/users/WF/">WALLIS AND FUTUNA</a></td>
+<td>4</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>FM</td>
+<td><a href="/ranks/users/FM/">MICRONESIA, FEDERATED STATES OF</a></td>
+<td>2</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>CC</td>
+<td><a href="/ranks/users/CC/">COCOS (KEELING) ISLANDS</a></td>
+<td>4</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>CF</td>
+<td><a href="/ranks/users/CF/">CENTRAL AFRICAN REPUBLIC</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>RW</td>
+<td><a href="/ranks/users/RW/">RWANDA</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>SO</td>
+<td><a href="/ranks/users/SO/">SOMALIA</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>TO</td>
+<td><a href="/ranks/users/TO/">TONGA</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>SL</td>
+<td><a href="/ranks/users/SL/">SIERRA LEONE</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>ST</td>
+<td><a href="/ranks/users/ST/">SAO TOME AND PRINCIPE</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>PW</td>
+<td><a href="/ranks/users/PW/">PALAU</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>YT</td>
+<td><a href="/ranks/users/YT/">MAYOTTE</a></td>
+<td>2</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>LC</td>
+<td><a href="/ranks/users/LC/">SAINT LUCIA</a></td>
+<td>1</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>GW</td>
+<td><a href="/ranks/users/GW/">GUINEA-BISSAU</a></td>
+<td>3</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>NU</td>
+<td><a href="/ranks/users/NU/">NIUE</a></td>
+<td>2</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>CV</td>
+<td><a href="/ranks/users/CV/">CAPE VERDE</a></td>
+<td>4</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>NC</td>
+<td><a href="/ranks/users/NC/">NEW CALEDONIA</a></td>
+<td>2</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="row">
+<td>193</td>
+<td>EH</td>
+<td><a href="/ranks/users/EH/">WESTERN SAHARA</a></td>
+<td>4</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+</table>
+        </td>
+<tr>
+        <td style="padding:0px" colspan="2"><center>
+                
+</center></td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" class="footer">
+
+<script language="javascript" type="text/javascript">
+<!--
+function swapSheet(sheet, caller) {
+    document.getElementById('theme').href=sheet;
+    document.cookie="css_0="+sheet+"; path=/;";
+    caller.href="#bottom";
+}
+
+function setWidth(w, caller) {
+    document.getElementById('maintable').style.width=w;
+    document.cookie="res="+w+"; path=/;";
+    caller.href="#bottom";
+}
+
+
+
+//-->
+
+</script>
+        <table width="100%">
+    <tr>
+	<td align="left" width=10% class="cfooter">
+	<a href="/info/">About SPOJ</a>
+	</td>
+	<td align="center" class="cfooter">
+	    width:
+	    <a href="/?rsl=855px"  onClick="setWidth('855px', this)">900</a>
+	    <a href="/?rsl=980px"  onClick="setWidth('980px', this)">1024</a>
+	    <a href="/?rsl=100%" onClick="setWidth('100%', this)">Full</a>
+	    &nbsp;&nbsp;
+	    theme:
+	    <a href="/?css=/themes/skin1.css" onClick="swapSheet('/themes/skin1.css', this)">olive</a>
+	    <a href="/?css=/themes/skin2.css" onClick="swapSheet('/themes/skin2.css', this)">banana</a>
+	    <a href="/?css=/themes/skin3.css" onClick="swapSheet('/themes/skin3.css', this)">plum</a>
+	</td>
+		<td align="center" class="cfooter">
+		 <span title="The discussion channel of the Sphere Online Judge community.">
+		 <a href="irc://irc.freenode.net/spoj"><b>#spoj</b> at freenode</a>
+		 </span>
+	</td>
+		<td width=10% class="cfooter" style="text-align:right">
+		<a href="/rss/" ><img src="/gfx/rss10x10.gif" border=0>&nbsp;RSS</a>&nbsp;
+	</div>
+	</td>
+    </tr>
+    </table>
+    </tr></table>
+</center>
+<div style="font-size:10px; margin-top:4px; color: rgb(85,80,95);"><center>
+<a href="http://www.spoj.pl" style="color:black">SPOJ</a>
+System &copy; 2011
+<a href="http://sphere-research.com" style="color:black">Sphere Research Labs | Projekty informatyczne i aplikacje na zamówienie</a>. 
+All Rights Reserved.</center></div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-10507872-1']);
+      _gaq.push(['_trackPageview']);
+        (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		      })();
+		      </script>
+		      
+
+<script type="text/javascript">
+function _enabled() {
+	$.ajax({url: "/ad.php?adb=1"});
+}
+function _disabled() {}
+var _abdDetectedFnc = '_enabled';
+</script>
+<script type="text/javascript" src="/gfx/adblockdetector.js"></script>
+
+</body>
+</html>

@@ -29,6 +29,7 @@ import logging
 def CrawlCountry(country_list):
   if not country_list:
     deferred.defer(ProblemCrawl, 'http://www.spoj.pl/problems/classical/', [])
+    return
   code, name = country_list[0]
   url = 'http://www.spoj.pl/ranks/users/%s' % code
   logging.info('parsing %s', name)
