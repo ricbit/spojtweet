@@ -25,6 +25,7 @@ import cgi
 import urllib
 import random
 import hashlib
+import Cookie
 
 from google.appengine.ext import db
 from google.appengine.api import users
@@ -69,6 +70,16 @@ class TwitterPage(webapp.RequestHandler):
     self.redirect('%s?oauth_token=%s' %
         (pythontwitter.SIGNIN_URL, temp_data.oauth_key))
 
+def SetCookie(headers, name, value, secure=False):
+  cookie = Cookie.SimpleCookie()
+  cookie[name] = value
+  if secure:
+    cookie[name]['secure'] = True
+  cookie[name]['domain'] = 'spojtweet.appspot.com'
+  cookie[name]['path'] = '/'
+  cookie_output = cookie.output(header='') + '; httponly'
+  headers.add_header('set-cookie', cookie_output)
+
 class TwitterAuthPage(webapp.RequestHandler):
   def get(self, temp_id):
     temp_data = model.OAuthData.get_by_id(int(temp_id))
@@ -92,7 +103,12 @@ class TwitterAuthPage(webapp.RequestHandler):
         key_name=access_token['user_id'],
         twitter_screen_name=access_token['screen_name'],
         session_id=hashlib.sha1(str(random.getrandbits(256))).hexdigest(),
-        session_start=datetime.datetime.now()).put()
+        session_start=datetime.datetime.now())
+    preferences.put()
+    SetCookie(self.response.headers,
+        'uid', preferences.twitter_screen_name)
+    SetCookie(self.response.headers,
+        'sid', preferences.session_id, secure=True)
     self.response.out.write('Welcome ' + access_token['screen_name'])
 
 class SendTweetPage(webapp.RequestHandler):
