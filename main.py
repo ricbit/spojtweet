@@ -47,7 +47,7 @@ class NotFoundPage(webapp.RequestHandler):
 app = webapp.WSGIApplication(
           [('/', MainPage),
 	   ('/user/([^/]+)', user_page.UserPage),
-	   ('/refresh/([^/]+)', refresh_user_page.RefreshUserPage),
+	   ('/refresh/([^/]+)', refresh_user.RefreshUserPage),
 	   ('/crawl', crawler.CrawlCountryPage),
 	   ('/admin', admin.AdminPage),
 	   ('/admin/keys/(.*?)/(.*?)/', admin.SetKeyPage),

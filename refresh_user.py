@@ -41,7 +41,7 @@ class RefreshUser():
       self.Measure(self.WriteDatastore, 'Write Datastore Time')
       self.log += ('Finished updating <a href="/user/%s">user %s</a>' %
                    (user, user))
-      return self.log
+      return self.spojuser, self.log
     except RefreshException:
       pass
 
@@ -138,11 +138,11 @@ class RefreshUser():
     self.badges = badge.GrantBadges(self.metadata)
 
   def WriteDatastore(self):
-    user = model.SpojUser(
+    self.spojuser = model.SpojUser(
         key_name=self.user, name=self.name, country=self.country,
 	badges=self.badges, last_update=datetime.datetime.now(),
 	version=model.VERSION)
-    user_rpc = db.put_async(user)
+    user_rpc = db.put_async(self.spojuser)
     metadata = model.SpojUserMetadata(
         key_name=self.user, problems=self.metadata.problems,
 	country_position=self.country_position, first_place=self.first_place)
@@ -152,5 +152,5 @@ class RefreshUser():
 
 class RefreshUserPage(webapp.RequestHandler):
   def get(self, user):
-    log = RefreshUser().refresh(user)
+    spojuser, log = RefreshUser().refresh(user)
     self.response.out.write(log)

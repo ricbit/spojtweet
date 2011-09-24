@@ -16,6 +16,7 @@
 
 __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 
+import logging
 import os
 
 from google.appengine.api import memcache
@@ -25,6 +26,7 @@ from google.appengine.ext.webapp import template
 
 import model
 import parser
+import refresh_user
 
 class UserPage(webapp.RequestHandler):
   def RenderPage(self, user):
@@ -32,9 +34,9 @@ class UserPage(webapp.RequestHandler):
     if (spojuser is None or
         spojuser.version is None or
 	spojuser.version < model.VERSION):
-      self.response.out.write(
-          'Please <a href="/refresh/%s">refresh user %s</a>' % (user, user))
-      return
+      spojuser, refresh_info = refresh_user.RefreshUser().refresh(user)
+      logging.info(refresh_info)
+
     path = os.path.join(os.path.dirname(__file__), 'user.html')
     badge_value_names = {
       1: 'gold',
