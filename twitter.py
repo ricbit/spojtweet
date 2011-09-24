@@ -72,9 +72,10 @@ class TwitterPage(webapp.RequestHandler):
 class TwitterAuthPage(webapp.RequestHandler):
   def get(self, temp_id):
     temp_data = model.OAuthData.get_by_id(int(temp_id))
-    if temp_data.oauth_key != self.request.get('oauth_token'):
-      self.response.out.write('Not authorized.')
+    if (temp_data is None or
+        temp_data.oauth_key != self.request.get('oauth_token')):
       self.error(401)
+      self.response.out.write('401 Not authorized.')
       return
     token = oauth.Token(temp_data.oauth_key, temp_data.oauth_secret)
     token.set_verifier(self.request.get('oauth_verifier'))
@@ -97,8 +98,8 @@ class TwitterAuthPage(webapp.RequestHandler):
 class SendTweetPage(webapp.RequestHandler):
   def get(self, username):
     if not users.is_current_user_admin():
-      self.response.out.write('Not authorized.')
       self.error(401)
+      self.response.out.write('401 Not authorized.')
       return
     app_keys = GetAppKeys()
     self.response.out.write(str(app_keys) + '<p>')
