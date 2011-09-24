@@ -29,26 +29,27 @@ import model
 class RefreshException(Exception):
   pass
 
-class RefreshUserPage(webapp.RequestHandler):
-  def get(self, user):
+class RefreshUser():
+  def refresh(self, user):
     try:
       self.user = user
+      self.log = ''
       self.Measure(self.LoadSpojUserPages, 'Loading Time')
       self.Measure(self.ParseSpojUserPages, 'Parsing Time')
       self.Measure(self.CreateUserProblems, 'Create UserProblems Time')
       self.Measure(self.GrantBadges, 'Grant Badges Time')
       self.Measure(self.WriteDatastore, 'Write Datastore Time')
-      user_link = ('Finished updating <a href="/user/%s">user %s</a>' %
+      self.log += ('Finished updating <a href="/user/%s">user %s</a>' %
                    (user, user))
-      self.response.out.write(user_link)
+      return self.log
     except RefreshException:
-      self.Page404()
+      pass
 
   def Measure(self, method, message):
     before = datetime.datetime.now()
     method()
     after = datetime.datetime.now()
-    self.response.out.write("%s: %s<br>" % (message, str(after - before)))
+    self.log += "%s: %s<br>" % (message, str(after - before))
 
   def LoadSpojUserPages(self):
     try:
@@ -149,5 +150,7 @@ class RefreshUserPage(webapp.RequestHandler):
     user_rpc.check_success()
     metadata_rpc.check_success()
 
-  def Page404(self):
-    self.error(404)
+class RefreshUserPage(webapp.RequestHandler):
+  def get(self, user):
+    log = RefreshUser().refresh(user)
+    self.response.out.write(log)
