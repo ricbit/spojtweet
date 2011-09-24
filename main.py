@@ -30,40 +30,14 @@ from google.appengine.ext import db
 
 import admin
 import crawler
-import model
 import parser
 import refresh_user_page
 import twitter
+import user
 
 class MainPage(webapp.RequestHandler):
   def get(self):
     self.response.out.write('Under construction')
-
-class UserPage(webapp.RequestHandler):
-  def get(self, user):
-    spojuser = model.SpojUser.get_by_key_name(user)
-    if (spojuser is None or
-        spojuser.version is None or
-	spojuser.version < model.VERSION):
-      self.response.out.write(
-          'Please <a href="/refresh/%s">refresh user %s</a>' % (user, user))
-      return
-    path = os.path.join(os.path.dirname(__file__), 'user.html')
-    badge_value_names = {
-      1: 'gold',
-      2: 'silver',
-      3: 'bronze'
-    }
-    badges = spojuser.badges[:]
-    badges.sort(key=lambda x: (x.value, x.name))
-    for badge in badges:
-      badge.value = badge_value_names[badge.value]
-    values = {
-      'name': spojuser.name,
-      'country': spojuser.country.title(),
-      'badges': badges
-    }
-    self.response.out.write(template.render(path, values))
 
 class NotFoundPage(webapp.RequestHandler):
   def get(self):
@@ -72,7 +46,7 @@ class NotFoundPage(webapp.RequestHandler):
 
 app = webapp.WSGIApplication(
           [('/', MainPage),
-	   ('/user/([^/]+)', UserPage),
+	   ('/user/([^/]+)', user.UserPage),
 	   ('/refresh/([^/]+)', refresh_user_page.RefreshUserPage),
 	   ('/crawl', crawler.CrawlCountryPage),
 	   ('/admin', admin.AdminPage),
