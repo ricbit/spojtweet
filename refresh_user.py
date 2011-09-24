@@ -135,17 +135,21 @@ class RefreshUser():
     self.metadata.country_position = self.country_position
     self.metadata.first_place = self.first_place
     self.metadata.first_place_permanent = self.forever
-    self.badges = badge.GrantBadges(self.metadata)
+    self.metadata.granted_badges, self.metadata.skipped_badges = (
+        badge.GrantBadges(self.metadata))
 
   def WriteDatastore(self):
     self.spojuser = model.SpojUser(
         key_name=self.user, name=self.name, country=self.country,
-	badges=self.badges, last_update=datetime.datetime.now(),
+	badges=self.metadata.granted_badges,
+	last_update=datetime.datetime.now(),
 	version=model.VERSION)
     user_rpc = db.put_async(self.spojuser)
     metadata = model.SpojUserMetadata(
         key_name=self.user, problems=self.metadata.problems,
-	country_position=self.country_position, first_place=self.first_place)
+	country_position=self.country_position, first_place=self.first_place,
+        granted_badges=self.metadata.granted_badges,
+	skipped_badges=self.metadata.skipped_badges)
     metadata_rpc = db.put_async(metadata)
     user_rpc.check_success()
     metadata_rpc.check_success()

@@ -88,6 +88,8 @@ class SpojUser(db.Model):
 
 class SpojUserMetadata(db.Model):
   problems = GenericListProperty(UserProblem)
+  granted_badges = GenericListProperty(badge.Badge)
+  skipped_badges = GenericListProperty(badge.Badge)
   country_position = db.IntegerProperty(indexed=False)
   first_place = db.IntegerProperty(indexed=False)
 

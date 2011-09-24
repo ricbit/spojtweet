@@ -24,8 +24,9 @@ class BadgeTest(unittest.TestCase):
 
   def testGrantBadgesForEmptyMetadata(self):
     metadata = badge.UserMetadata()
-    badges = badge.GrantBadges(metadata)
-    self.assertTrue(len(badges) == 0)
+    granted, skipped = badge.GrantBadges(metadata)
+    self.assertEquals(0, len(granted))
+    self.assertEquals(0, len(skipped))
 
 
 if __name__ == '__main__':

@@ -63,18 +63,24 @@ class UserMetadata(object):
     self.first_place = None
     self.first_place_permanent = None
     self.max_attempts_day = None
+    self.granted_badges = None
+    self.skipped_badges = None
 
 def ProgressiveBadge(count, titles, requirements, descriptions, values):
-  badge = None
+  granted = []
+  skipped = []
   badges = zip(titles, requirements, descriptions, values)
   for title, req, desc, value in badges:
     if count >= req:
-      badge = (title, desc, value)
-  return [Badge(*badge)] if badge is not None else []
+      skipped.extend(granted)
+      granted = [Badge(title, desc, value)]
+    else:
+      break
+  return granted, skipped
 
 def CountryBadge(metadata):
   if metadata.country_position is None:
-    return []
+    return [], []
   country = metadata.country.title()
   titles = ['Citizen', 'VIP', 'Leader']
   demonym = COUNTRY_DEMONYMS.get(country.upper(), country)
@@ -89,22 +95,25 @@ def CountryBadge(metadata):
       badge_titles, requirements, descriptions, values)
 
 def LanguageBadge(metadata):
-  badges = []
+  granted_badges = []
+  skipped_badges = []
   for language, count in metadata.language_count.iteritems():
     language_name = LANGUAGE_CODES.get(language, language)
     titles = ['Novice', 'User', 'Master', 'Guru']
     badge_titles = ["%s %s" % (language_name, title) for title in titles]
     requirements = [3, 10, 100, 500]
     descriptions = ["Solved %d problems in %s" % (x, language_name)
-                    for x in requirements]
+                    for x in requirements]    		    
     values = [Badge.BRONZE, Badge.BRONZE, Badge.SILVER, Badge.GOLD]
-    badges.extend(ProgressiveBadge(
-        count, badge_titles, requirements, descriptions, values))
-  return badges    
+    granted, skipped = ProgressiveBadge(
+        count, badge_titles, requirements, descriptions, values)
+    granted_badges.extend(granted)
+    skipped_badges.extend(skipped)
+  return granted_badges, skipped_badges
 
 def SolvedProblemsBadge(metadata):
   if metadata.problems is None:
-    return []
+    return [], []
   titles = ['Apprentice', 'Mage', 'Warlock']
   requirements = [10, 100, 1000]
   descriptions = ['Solved %d problems' % x for x in requirements]
@@ -123,14 +132,14 @@ def FirstPlaceBadge(metadata):
 
 def Forever(metadata):
   if metadata.first_place_permanent is None:
-    return []
+    return [], []
   badge = Badge(
       'Forever', 'First place on a problem with a time of 0.00s', Badge.GOLD)
-  return [badge] if metadata.first_place_permanent else []
+  return ([badge], []) if metadata.first_place_permanent else ([], [])
 
 def VeteranBadge(metadata):
   if metadata.problems is None:
-    return []
+    return [], []
   titles = ['Recruit', 'Soldier', 'Veteran']
   requirements = [datetime.timedelta(30),
                   datetime.timedelta(365),
@@ -141,7 +150,7 @@ def VeteranBadge(metadata):
                    for problem in metadata.problems if problem.solved]
   values = [Badge.BRONZE, Badge.SILVER, Badge.GOLD]
   if not problem_dates:
-    return []
+    return [], []
   min_date = min(problem_dates)
   max_date = max(problem_dates)
   return ProgressiveBadge(
@@ -149,58 +158,58 @@ def VeteranBadge(metadata):
 
 def SharpshooterBadge(metadata):
   if metadata.problems is None:
-    return []
+    return [], []
   count = sum(1 for problem in metadata.problems
               if problem.solved and problem.tries_before_ac == 0)
   badge = Badge(
       'Sharpshooter', 'Solved 25 problems on the first try', Badge.SILVER)
-  return [badge] if count >= 25 else []
+  return ([badge], []) if count >= 25 else([], [])
 
 def StubbornBadge(metadata):
   if metadata.problems is None:
-    return []
+    return [], []
   stubborn = any(problem.tries_before_ac >= 50 and problem.solved
                  for problem in metadata.problems)
   badge = Badge('Stubborn', 'Solved a problem after 50 attempts', Badge.BRONZE)
-  return [badge] if stubborn else []
+  return ([badge], []) if stubborn else ([], [])
 
 def Overthinker(metadata):
   if metadata.problems is None:
-    return []
+    return [], []
   year = datetime.timedelta(365)
   overthinker = any(problem.first_ac_date - problem.first_attempt_date >= year
                     for problem in metadata.problems if problem.solved)
   badge = Badge(
       'Overthinker', 'More than a year to solve a problem', Badge.BRONZE)
-  return [badge] if overthinker else []
+  return ([badge], []) if overthinker else ([], [])
 
 def Addicted(metadata):
   if metadata.max_attempts_day is None:
-    return []
+    return [], []
   badge = Badge(
       'Addicted', 'Submitted 50 attempts on the same day', Badge.BRONZE)
-  return [badge] if metadata.max_attempts_day >= 50 else []
+  return ([badge], []) if metadata.max_attempts_day >= 50 else ([], [])
 
 def Inactive(metadata):
   if metadata.problems is None:
-    return []
+    return [], []
   badge = Badge(
       'Inactive', 'More than a year without solving a problem', Badge.BRONZE)
   problem_dates = [problem.first_ac_date
                    for problem in metadata.problems if problem.solved]
   if not problem_dates:
-    return []
+    return [], []
   max_date = max(problem_dates)
   inactive = datetime.datetime.now() - max_date > datetime.timedelta(365)
-  return [badge] if inactive else []
+  return ([badge], []) if inactive else ([], [])
 
 def Blink(metadata):
   if metadata.problems is None:
-    return []
+    return [], []
   badge = Badge('Blink', 'Solved a problem with a time of 0.00s', Badge.BRONZE)
   blink = any(problem.best_time == 0
               for problem in metadata.problems if problem.solved)
-  return [badge] if blink else []
+  return ([badge], []) if blink else ([], [])
 
 BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge,
           CountryBadge, FirstPlaceBadge, VeteranBadge, Overthinker, Addicted,  
@@ -219,6 +228,9 @@ def EvalLanguageCount(problems):
 def GrantBadges(metadata):
   metadata.language_count = EvalLanguageCount(metadata.problems)
   granted_badges = []
+  skipped_badges = []
   for badge in BADGES:
-    granted_badges.extend(badge(metadata))
-  return granted_badges
+    granted, skipped = badge(metadata)
+    granted_badges.extend(granted)
+    skipped_badges.extend(skipped)
+  return granted_badges, skipped_badges
