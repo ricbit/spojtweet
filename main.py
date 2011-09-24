@@ -30,7 +30,6 @@ from google.appengine.ext import db
 
 import admin
 import crawler
-import parser
 import refresh_user
 import twitter
 import user_page
