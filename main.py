@@ -33,7 +33,7 @@ import crawler
 import parser
 import refresh_user_page
 import twitter
-import user
+import user_page
 
 class MainPage(webapp.RequestHandler):
   def get(self):
@@ -46,7 +46,7 @@ class NotFoundPage(webapp.RequestHandler):
 
 app = webapp.WSGIApplication(
           [('/', MainPage),
-	   ('/user/([^/]+)', user.UserPage),
+	   ('/user/([^/]+)', user_page.UserPage),
 	   ('/refresh/([^/]+)', refresh_user_page.RefreshUserPage),
 	   ('/crawl', crawler.CrawlCountryPage),
 	   ('/admin', admin.AdminPage),
