@@ -18,9 +18,10 @@ __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 
 import os
 
+from google.appengine.api import memcache
+from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
-from google.appengine.ext import db
 
 import model
 import parser
@@ -52,7 +53,15 @@ class UserPage(webapp.RequestHandler):
     return template.render(path, values)
 
   def get(self, user):
-    self.response.out.write(self.RenderPage(user))
+    key = '#'.join([str(model.VERSION), user])
+    page = memcache.get(key)
+    if page is not None:
+      self.response.out.write(page)
+    else:
+      page = self.RenderPage(user)
+      expires = 30 * 60
+      memcache.add(key, page, expires)
+      self.response.out.write(page)
 
 
 if __name__ == '__main__':
