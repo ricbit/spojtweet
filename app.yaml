@@ -7,6 +7,9 @@ builtins:
 - appstats: on
 
 handlers:
+- url: /(favicon.ico)
+  static_files: \1
+  upload: favicon.ico
 - url: /(login.html)
   static_files: \1
   upload: login.html
