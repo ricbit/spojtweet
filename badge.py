@@ -21,21 +21,7 @@ __author__ = [
 
 import datetime
 from country_demonyms import COUNTRY_DEMONYMS
-
-LANGUAGE_CODES = {
-  'HAS' : 'Haskell',
-  'TEX' : 'Text',
-  'C'   : 'C',
-  'C++' : 'C++',
-  'PYT' : 'Python',
-  'ASM' : 'Assembly',
-  'JAV' : 'Java',
-  'PER' : 'Perl',
-  'SCM' : 'Scheme',
-  'RUB' : 'Ruby',
-  'PAS' : 'Pascal',
-  'BF'  : 'Brainfuck'
-}
+from language_codes import LANGUAGE_CODES
 
 LANGUAGE_CONVERT = {
   'C99' : 'C'
