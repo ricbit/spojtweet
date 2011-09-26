@@ -28,7 +28,10 @@ class NewProblemEvent(Event):
 def GenerateEvents(old_metadata, new_metadata):
   event_list = []
   solved = lambda problems: set(prob.code for prob in problems if prob.solved)
-  old_solved_problems = solved(old_metadata.problems)
+  if old_metadata is not None:
+    old_solved_problems = solved(old_metadata.problems)
+  else:
+    old_solved_problems = set()
   new_solved_problems = solved(new_metadata.problems)
   for code in new_solved_problems - old_solved_problems:
     event_list.append(NewProblemEvent(code))

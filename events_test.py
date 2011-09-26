@@ -52,5 +52,16 @@ class EventsTest(unittest.TestCase):
     check = lambda code: any(event.code == code for event in event_list)
     self.assertTrue(all(check(code) for code in ['CPRIM', 'SHPATH']))
 
+  def testGenerateEventsWithOldNone(self):
+    new = self._CreateProblems(
+        solved=['TEST', 'CPRIM', 'SHPATH'], 
+	unsolved=['MUL'])
+    event_list = events.GenerateEvents(None, new)
+    self.assertTrue(all(isinstance(event, events.ProblemEvent))
+                    for event in event_list)
+    self.assertEquals(3, len(event_list))
+    check = lambda code: any(event.code == code for event in event_list)
+    self.assertTrue(all(check(code) for code in ['CPRIM', 'SHPATH', 'TEST']))
+
 if __name__ == '__main__':
   unittest.main()
