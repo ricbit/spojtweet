@@ -17,14 +17,16 @@
 __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 
 import datetime
+import logging
 
 from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.api import urlfetch
 
 import badge
-import parser
+import events
 import model
+import parser
 
 class RefreshException(Exception):
   pass
@@ -61,6 +63,8 @@ class RefreshUser():
       urlfetch.make_fetch_call(details_rpc, details_url)
       classical_key = db.Key.from_path('ProblemList', 'classical')
       classical_rpc = db.get_async(classical_key)
+      old_metadata_key = db.Key.from_path('SpojUserMetadata', self.user)
+      old_metadata_rpc = db.get_async(old_metadata_key)
       fastest_query = model.ProblemDetails.all(keys_only=True)
       self.first_place = fastest_query.filter("first_place", self.user).count()
       forever_query = model.ProblemDetails.all(keys_only=True)
@@ -69,6 +73,8 @@ class RefreshUser():
       self.classical = set(classical_rpc.get_result().problems)
       self.status_page = status_rpc.get_result().content
       self.details_page = details_rpc.get_result().content
+      self.old_metadata = old_metadata_rpc.get_result()
+      logging.info(self.old_metadata)
     except urlfetch.DownloadError:
       raise RefreshException()
 
@@ -137,6 +143,9 @@ class RefreshUser():
     self.metadata.first_place_permanent = self.forever
     self.metadata.granted_badges, self.metadata.skipped_badges = (
         badge.GrantBadges(self.metadata))
+
+  def GenerateEvents(self):
+    self.events = events.GenerateEvents(self.old_metadata, self.metadata)
 
   def WriteDatastore(self):
     self.spojuser = model.SpojUser(

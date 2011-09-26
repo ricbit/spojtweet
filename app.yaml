@@ -10,8 +10,8 @@ handlers:
 - url: /(favicon.ico)
   static_files: \1
   upload: favicon.ico
-- url: /(login.html)
-  static_files: \1
+- url: /login
+  static_files: login.html
   upload: login.html
 - url: /admin.*
   script: main.py
