@@ -21,18 +21,83 @@
   border: solid 1px #808080;
   background-color: #c0c0c0;
 }
+header {
+  display: block;
+  background-color: black;
+  width: 100%;
+  color: white;
+  height: 2em;
+}
+.header_box {
+  width: 500px;
+  margin: auto;
+  padding: 5px;
+}
+.header_box b {
+  font: bold 15px Arial, sans-serif;
+}
+.login_box {
+  float: right;
+}
+.login_box a:link, a:visited, a:hover, a:active {
+  color: #8080FF;
+  text-decoration: none;
+}
+section {
+  width: 500px;
+  margin: auto;
+  padding: 5px;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  background-color: white;
+  min-height: 100%;
+}
+footer {
+  clear: both;
+  position: absolute;
+  height: 2em;
+  margin-top: -2em;
+}
+html, body {
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+  background-color: #e0e0FF;
+  position: relative;
+}
 </style>
 <title>SpojTweet - {{name|striptags}}</title>
 </head>
 <body>
-User: {{name|striptags}} <br>
-Country: {{country|striptags}}<br><br>
-<div class="badge">
-{% for badge in badges %}
-<div class="{{badge.value}}" title="{{badge.description}}">{{badge.name}}</div>
-{% empty %}
-<p>No bagdes</p>
-{% endfor %}
-</div>
+<header>
+  <div class="header_box">
+    <b>SpojTweet</b>
+    <div class="login_box">
+      <a href="/login">Join or log in using Twitter</a>
+    </div>
+  </div>
+</header>
+<section>
+  <summary>
+  User: {{name|striptags}} <br>
+  Country: {{country|striptags}}<br><br>
+  </summary>
+  <div class="badge">
+  {% for badge in badges %}
+  <div class="{{badge.value}}" title="{{badge.description}}">
+    {{badge.name}}
+  </div>
+  {% empty %}
+  <p>No bagdes</p>
+  {% endfor %}
+  </div>
+</section>
+<footer>
+<nav>
+  <a href="">About SpojTweet</a> | 
+  <a href="">Source code</a> | 
+  <a href="">Report a bug</a>
+</nav>
+</footer>
 </body>
 </html>

@@ -56,7 +56,7 @@ class UserPage(webapp.RequestHandler):
 
   def get(self, user):
     key = '#'.join([str(model.VERSION), user])
-    page = memcache.get(key)
+    page = None # memcache.get(key)
     if page is not None:
       self.response.out.write(page)
     else:
