@@ -103,7 +103,7 @@ def TwitterAuth(temp_id, oauth_token, oauth_verifier):
       session_id=hashlib.sha1(str(random.getrandbits(256))).hexdigest(),
       session_start=datetime.datetime.now())
   preferences.put()
-  return access_token['screen_name'], preferences.session_id
+  return access_token['user_id'], preferences.session_id
 
 class SendTweetPage(webapp.RequestHandler):
   def get(self, username):

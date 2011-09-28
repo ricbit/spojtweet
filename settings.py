@@ -35,11 +35,11 @@ class TwitterLoginPage(webapp.RequestHandler):
 
 class TwitterAuthPage(webapp.RequestHandler):
   def get(self, temp_id):
-    twitter_username, session_id = twitter.TwitterAuth(
+    twitter_id, session_id = twitter.TwitterAuth(
         temp_id, self.request.get('oauth_token'),
         self.request.get('oauth_verifier'))
     twitter.SetCookie(self.response.headers,
-        'uid', twitter_username, secure=True)
+        'uid', twitter_id, secure=True)
     twitter.SetCookie(self.response.headers,
         'sid', session_id, secure=True)
     self.redirect('/settings')
@@ -49,9 +49,15 @@ class SettingsPage(webapp.RequestHandler):
     if 'sid' not in self.request.cookies:
       self.redirect('/settings/login')
       return
+    session_id = self.request.cookies['sid']
+    twitter_id = self.request.cookies['uid']
+    preferences = model.UserPreferences.get_by_key_name(twitter_id)
+    if preferences is None:
+      self.redirect('/settings/login')
+      return
     path = os.path.join(os.path.dirname(__file__), 'settings.html')
     values = {
-        'twitter_username': self.request.cookies['uid']
+        'twitter_username': preferences.twitter_screen_name
     }
     self.response.out.write(template.render(path, values))
 
