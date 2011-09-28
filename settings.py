@@ -18,18 +18,12 @@
 
 __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 
-import datetime
-import logging
-import re
-import cgi
-import urllib
-import random
-import hashlib
-import Cookie
+import os
 
 from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.ext import webapp
+from google.appengine.ext.webapp import template
 
 import model
 import twitter
@@ -49,3 +43,15 @@ class TwitterAuthPage(webapp.RequestHandler):
     twitter.SetCookie(self.response.headers,
         'sid', session_id, secure=True)
     self.response.out.write('Welcome ' + twitter_username)
+
+class SettingsPage(webapp.RequestHandler):
+  def get(self):
+    path = os.path.join(os.path.dirname(__file__), 'settings.html')
+    values = {
+        'twitter_username': self.request.get('sid')
+    }
+    self.response.out.write(template.render(path, values))
+
+class SettingsUpdatePage(webapp.RequestHandler):
+  def post(self):
+    self.response.out.write('posted')

@@ -52,6 +52,8 @@ app = webapp.WSGIApplication(
 	   ('/admin/keys/(.*?)/(.*?)/', admin.SetKeyPage),
            ('/settings/twitter', settings.TwitterLoginPage),
            ('/settings/auth/(.*?)/', settings.TwitterAuthPage),
+           ('/settings', settings.SettingsPage),
+           ('/settings/update', settings.SettingsUpdatePage),
 	   ('/.*', NotFoundPage)],
 	  debug=True)
 
