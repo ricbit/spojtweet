@@ -86,13 +86,13 @@ def SetCookie(headers, name, value, secure=False):
   cookie_output = cookie.output(header='') + '; httponly'
   headers.add_header('set-cookie', cookie_output)
 
-def TwitterAuth(temp_id):
+def TwitterAuth(temp_id, oauth_token, oauth_verifier):
   temp_data = model.OAuthData.get_by_id(int(temp_id))
   if (temp_data is None or
-      temp_data.oauth_key != self.request.get('oauth_token')):
+      temp_data.oauth_key != oauth_token):
     raise TwitterError()
   token = oauth.Token(temp_data.oauth_key, temp_data.oauth_secret)
-  token.set_verifier(self.request.get('oauth_verifier'))
+  token.set_verifier(oauth_verifier)
   consumer = GetAppConsumer()
   client = oauth.Client(consumer, token)
   response, content = client.request(pythontwitter.ACCESS_TOKEN_URL, 'POST')
@@ -108,15 +108,17 @@ def TwitterAuth(temp_id):
       session_id=hashlib.sha1(str(random.getrandbits(256))).hexdigest(),
       session_start=datetime.datetime.now())
   preferences.put()
-  SetCookie(self.response.headers,
-      'uid', preferences.twitter_screen_name)
-  SetCookie(self.response.headers,
-      'sid', preferences.session_id, secure=True)
-  return access_token('screen_name')
+  return access_token['screen_name'], preferences.session_id
 
 class TwitterAuthPage(webapp.RequestHandler):
   def get(self, temp_id):
-    twitter_username = TwitterAuth(temp_id)
+    twitter_username, session_id = TwitterAuth(
+        temp_id, self.request.get('oauth_token'),
+        self.request.get('oauth_verifier'))
+    SetCookie(self.response.headers,
+        'uid', twitter_username)
+    SetCookie(self.response.headers,
+        'sid', session_id, secure=True)
     self.response.out.write('Welcome ' + twitter_username)
 
 class SendTweetPage(webapp.RequestHandler):
