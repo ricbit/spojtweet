@@ -10,7 +10,7 @@ handlers:
 - url: /(favicon.ico)
   static_files: \1
   upload: favicon.ico
-- url: /login
+- url: /settings/login
   static_files: login.html
   upload: login.html
 - url: /admin.*
