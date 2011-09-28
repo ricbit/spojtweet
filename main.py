@@ -23,10 +23,10 @@ import urllib2
 from google.appengine.dist import use_library
 use_library('django', '1.2')
 
+from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
-from google.appengine.ext import db
 
 import admin
 import crawler
@@ -50,9 +50,8 @@ app = webapp.WSGIApplication(
 	   ('/crawl', crawler.CrawlCountryPage),
 	   ('/admin', admin.AdminPage),
 	   ('/admin/keys/(.*?)/(.*?)/', admin.SetKeyPage),
-	   ('/twitter', twitter.TwitterPage),
-	   ('/twitter/auth/(.*?)/', twitter.TwitterAuthPage),
-	   ('/twitter/send/(.*?)/', twitter.SendTweetPage),
+           ('/settings/twitter/', settings.TwitterLoginPage),
+           ('/settings/auth/', settings.TwitterAuthPage),
 	   ('/.*', NotFoundPage)],
 	  debug=True)
 
