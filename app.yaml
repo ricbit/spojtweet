@@ -16,7 +16,7 @@ handlers:
 - url: /admin.*
   script: main.py
   login: admin
-- url: /twitter.*
+- url: /settings.*
   script: main.py
   secure: always
 - url: /.*

@@ -59,7 +59,7 @@ def TwitterLogin():
   client = oauth.Client(consumer)
   temp_key = model.OAuthData().put()
   body = urllib.urlencode(
-      {'oauth_callback': 'http://spojtweet.appspot.com/twitter/auth/%s/' %
+      {'oauth_callback': 'http://spojtweet.appspot.com/settings/auth/%s/' %
                          str(temp_key.id())})
   response, content = client.request(
       pythontwitter.REQUEST_TOKEN_URL, 'POST', body=body)
@@ -71,18 +71,13 @@ def TwitterLogin():
   temp_data.put()
   return '%s?oauth_token=%s' % (pythontwitter.SIGNIN_URL, temp_data.oauth_key)
 
-class TwitterPage(webapp.RequestHandler):
-  def get(self):
-    redirect_url = TwitterLogin()
-    self.redirect(redirect_url)
-
 def SetCookie(headers, name, value, secure=False):
   cookie = Cookie.SimpleCookie()
   cookie[name] = value
   if secure:
     cookie[name]['secure'] = True
   cookie[name]['domain'] = 'spojtweet.appspot.com'
-  cookie[name]['path'] = '/'
+  cookie[name]['path'] = '/settings'
   cookie_output = cookie.output(header='') + '; httponly'
   headers.add_header('set-cookie', cookie_output)
 
@@ -109,17 +104,6 @@ def TwitterAuth(temp_id, oauth_token, oauth_verifier):
       session_start=datetime.datetime.now())
   preferences.put()
   return access_token['screen_name'], preferences.session_id
-
-class TwitterAuthPage(webapp.RequestHandler):
-  def get(self, temp_id):
-    twitter_username, session_id = TwitterAuth(
-        temp_id, self.request.get('oauth_token'),
-        self.request.get('oauth_verifier'))
-    SetCookie(self.response.headers,
-        'uid', twitter_username)
-    SetCookie(self.response.headers,
-        'sid', session_id, secure=True)
-    self.response.out.write('Welcome ' + twitter_username)
 
 class SendTweetPage(webapp.RequestHandler):
   def get(self, username):

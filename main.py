@@ -31,7 +31,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 import admin
 import crawler
 import refresh_user
-import twitter
+import settings
 import user_page
 
 class MainPage(webapp.RequestHandler):
@@ -50,8 +50,8 @@ app = webapp.WSGIApplication(
 	   ('/crawl', crawler.CrawlCountryPage),
 	   ('/admin', admin.AdminPage),
 	   ('/admin/keys/(.*?)/(.*?)/', admin.SetKeyPage),
-           ('/settings/twitter/', settings.TwitterLoginPage),
-           ('/settings/auth/', settings.TwitterAuthPage),
+           ('/settings/twitter', settings.TwitterLoginPage),
+           ('/settings/auth/(.*?)/', settings.TwitterAuthPage),
 	   ('/.*', NotFoundPage)],
 	  debug=True)
 
