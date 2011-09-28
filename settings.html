@@ -4,17 +4,22 @@
 </style>
 </head>
 <body>
-  <p>Welcome {{twitter_username}}</p>
+  <p><b>SpojTweet Settings</b></p>
   <form action="settings/update" method="post">
-    <input type="text" name="spojuser">
-    <br>
-    <input type="checkbox" name="send_solution" value="Solution">
-    Tweet when I solve a new problem.
-    <br>
-    <input type="checkbox" name="send_badge" value="Badge">
-    Tweet when I earn a new badge.
-    <br>
-    <input type="submit" value="Submit">
+    <table><tr>
+      <td>Twitter username:</td>
+      <td>{{twitter_username}}</td>
+    </tr><tr>
+      <td>Spoj username:</td>
+      <td><input type="text" name="spojuser" value="{{spoj_username}}"></td>
+    </tr><tr>
+      <td>Tweet when I solve a new problem.</td>
+      <td><input type="checkbox" name="send_solution" checked></td>
+    </tr><tr>
+      <td>Tweet when I earn a new badge.</td>
+      <td><input type="checkbox" name="send_badge" checked></td>
+    </tr></table>
+    <input type="submit" value="Update">
   </form>
 </div>
 </body>

@@ -60,9 +60,13 @@ class SettingsPage(webapp.RequestHandler):
     if datetime.datetime.now() - preferences.session_start > session_expires:
       self.redirect('/settings/login')
       return
+    spoj_user = preferences.spoj_user
+    if spoj_user is None:
+      spoj_user = ''
     path = os.path.join(os.path.dirname(__file__), 'settings.html')
     values = {
-        'twitter_username': preferences.twitter_screen_name
+        'twitter_username': preferences.twitter_screen_name,
+ 	'spoj_username': spoj_user
     }
     self.response.out.write(template.render(path, values))
 
