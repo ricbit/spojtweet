@@ -18,6 +18,7 @@
 
 __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 
+import datetime
 import os
 
 from google.appengine.ext import db
@@ -53,6 +54,10 @@ class SettingsPage(webapp.RequestHandler):
     twitter_id = self.request.cookies['uid']
     preferences = model.UserPreferences.get_by_key_name(twitter_id)
     if preferences is None:
+      self.redirect('/settings/login')
+      return
+    session_expires = datetime.timedelta(0, 10*60)
+    if datetime.datetime.now() - preferences.session_start > session_expires:
       self.redirect('/settings/login')
       return
     path = os.path.join(os.path.dirname(__file__), 'settings.html')
