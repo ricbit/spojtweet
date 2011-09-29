@@ -53,7 +53,7 @@ class SettingsPage(webapp.RequestHandler):
     session_id = self.request.cookies['sid']
     twitter_id = self.request.cookies['uid']
     preferences = model.UserPreferences.get_by_key_name(twitter_id)
-    if preferences is None:
+    if preferences is None or preferences.session_id != session_id:
       self.redirect('/settings/login')
       return
     session_expires = datetime.timedelta(0, 10*60)
