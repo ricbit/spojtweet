@@ -137,5 +137,5 @@ class UserPreferences(db.Model):
   session_id = db.StringProperty(indexed=False)
   session_start = db.DateTimeProperty(indexed=False)
   spoj_user = db.StringProperty()
-  post_on_problem_solved = db.BooleanProperty(indexed=False)
-  post_on_badge_granted = db.BooleanProperty(indexed=False)
+  send_solution = db.BooleanProperty(indexed=False)
+  send_badge = db.BooleanProperty(indexed=False)

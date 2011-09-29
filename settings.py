@@ -70,7 +70,9 @@ class SettingsPage(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'settings.html')
     values = {
         'twitter_username': preferences.twitter_screen_name,
- 	'spoj_username': spoj_user
+ 	'spoj_username': spoj_user,
+	'send_badge': 'checked' if preferences.send_badge else '',
+	'send_solution': 'checked' if preferences.send_solution else ''
     }
     self.response.out.write(template.render(path, values))
 
@@ -81,9 +83,7 @@ class SettingsUpdatePage(webapp.RequestHandler):
       self.redirect('/settings/login')
       return      
     preferences.spoj_user = self.request.get('spoj_user')
-    preferences.post_on_problem_solved = (
-        self.request.get('send_solution') == 'on')
-    preferences.post_on_badge_granted = (
-        self.request.get('send_badge') == 'on')
+    preferences.send_solution = self.request.get('send_solution') == 'on'
+    preferences.send_badge = self.request.get('send_badge') == 'on'
     preferences.put()
     self.redirect('/settings')
