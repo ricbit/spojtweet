@@ -97,11 +97,18 @@ def TwitterAuth(temp_id, oauth_token, oauth_verifier):
       oauth_secret=access_token['oauth_token_secret'])
   user_keys.put()
   temp_data.delete()
-  preferences = model.UserPreferences(
-      key_name=access_token['user_id'],
-      twitter_screen_name=access_token['screen_name'],
-      session_id=hashlib.sha1(str(random.getrandbits(256))).hexdigest(),
-      session_start=datetime.datetime.now())
+  preferences = model.UserPreferences.get_by_key_name(access_token['user_id'])
+  session_id = hashlib.sha1(str(random.getrandbits(256))).hexdigest()
+  session_start = datetime.datetime.now()
+  if preferences is None:
+    preferences = model.UserPreferences(
+	key_name=access_token['user_id'],
+	twitter_screen_name=access_token['screen_name'],
+	session_id=session_id,
+	session_start=session_start)
+  else:
+    preferences.session_id = session_id
+    preferences.session_start = session_start
   preferences.put()
   return access_token['user_id'], preferences.session_id
 
