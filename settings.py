@@ -45,21 +45,25 @@ class TwitterAuthPage(webapp.RequestHandler):
         'sid', session_id, secure=True)
     self.redirect('/settings')
 
+def ValidSession(request):
+  if 'sid' not in request.cookies:
+    return None
+  session_id = request.cookies['sid']
+  twitter_id = request.cookies['uid']
+  preferences = model.UserPreferences.get_by_key_name(twitter_id)
+  if preferences is None or preferences.session_id != session_id:
+    return None
+  session_expires = datetime.timedelta(0, 10*60)
+  if datetime.datetime.now() - preferences.session_start > session_expires:
+    return None
+  return preferences
+
 class SettingsPage(webapp.RequestHandler):
   def get(self):
-    if 'sid' not in self.request.cookies:
+    preferences = ValidSession(self.request)
+    if preferences is None:
       self.redirect('/settings/login')
-      return
-    session_id = self.request.cookies['sid']
-    twitter_id = self.request.cookies['uid']
-    preferences = model.UserPreferences.get_by_key_name(twitter_id)
-    if preferences is None or preferences.session_id != session_id:
-      self.redirect('/settings/login')
-      return
-    session_expires = datetime.timedelta(0, 10*60)
-    if datetime.datetime.now() - preferences.session_start > session_expires:
-      self.redirect('/settings/login')
-      return
+      return      
     spoj_user = preferences.spoj_user
     if spoj_user is None:
       spoj_user = ''
@@ -72,4 +76,14 @@ class SettingsPage(webapp.RequestHandler):
 
 class SettingsUpdatePage(webapp.RequestHandler):
   def post(self):
-    self.response.out.write('posted')
+    preferences = ValidSession(self.request)
+    if preferences is None:
+      self.redirect('/settings/login')
+      return      
+    preferences.spoj_user = self.request.get('spoj_user')
+    preferences.post_on_problem_solved = (
+        self.request.get('send_solution') == 'on')
+    preferences.post_on_badge_granted = (
+        self.request.get('send_badge') == 'on')
+    preferences.put()
+    self.redirect('/settings')
