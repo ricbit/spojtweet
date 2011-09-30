@@ -52,6 +52,8 @@ class UserMetadata(object):
     self.granted_badges = None
     self.skipped_badges = None
 
+NO_BADGES = ([], [])
+
 def ProgressiveBadge(count, titles, requirements, descriptions, values):
   granted = []
   skipped = []
@@ -66,7 +68,7 @@ def ProgressiveBadge(count, titles, requirements, descriptions, values):
 
 def CountryBadge(metadata):
   if metadata.country_position is None:
-    return [], []
+    return NO_BADGES
   country = metadata.country.title()
   titles = ['Citizen', 'VIP', 'Leader']
   demonym = COUNTRY_DEMONYMS.get(country.upper(), country)
@@ -99,7 +101,7 @@ def LanguageBadge(metadata):
 
 def SolvedProblemsBadge(metadata):
   if metadata.problems is None:
-    return [], []
+    return NO_BADGES
   titles = ['Apprentice', 'Mage', 'Warlock']
   requirements = [10, 100, 1000]
   descriptions = ['Solved %d problems' % x for x in requirements]
@@ -118,14 +120,14 @@ def FirstPlaceBadge(metadata):
 
 def Forever(metadata):
   if metadata.first_place_permanent is None:
-    return [], []
+    return NO_BADGES
   badge = Badge(
       'Forever', 'First place on a problem with a time of 0.00s', Badge.GOLD)
-  return ([badge], []) if metadata.first_place_permanent else ([], [])
+  return ([badge], []) if metadata.first_place_permanent else (NO_BADGES)
 
 def VeteranBadge(metadata):
   if metadata.problems is None:
-    return [], []
+    return NO_BADGES
   titles = ['Recruit', 'Soldier', 'Veteran']
   requirements = [datetime.timedelta(30),
                   datetime.timedelta(365),
@@ -136,7 +138,7 @@ def VeteranBadge(metadata):
                    for problem in metadata.problems if problem.solved]
   values = [Badge.BRONZE, Badge.SILVER, Badge.GOLD]
   if not problem_dates:
-    return [], []
+    return NO_BADGES
   min_date = min(problem_dates)
   max_date = max(problem_dates)
   return ProgressiveBadge(
@@ -144,58 +146,58 @@ def VeteranBadge(metadata):
 
 def SharpshooterBadge(metadata):
   if metadata.problems is None:
-    return [], []
+    return NO_BADGES
   count = sum(1 for problem in metadata.problems
               if problem.solved and problem.tries_before_ac == 0)
   badge = Badge(
       'Sharpshooter', 'Solved 25 problems on the first try', Badge.SILVER)
-  return ([badge], []) if count >= 25 else([], [])
+  return ([badge], []) if count >= 25 else(NO_BADGES)
 
 def StubbornBadge(metadata):
   if metadata.problems is None:
-    return [], []
+    return NO_BADGES
   stubborn = any(problem.tries_before_ac >= 50 and problem.solved
                  for problem in metadata.problems)
   badge = Badge('Stubborn', 'Solved a problem after 50 attempts', Badge.BRONZE)
-  return ([badge], []) if stubborn else ([], [])
+  return ([badge], []) if stubborn else (NO_BADGES)
 
 def Overthinker(metadata):
   if metadata.problems is None:
-    return [], []
+    return NO_BADGES
   year = datetime.timedelta(365)
   overthinker = any(problem.first_ac_date - problem.first_attempt_date >= year
                     for problem in metadata.problems if problem.solved)
   badge = Badge(
       'Overthinker', 'More than a year to solve a problem', Badge.BRONZE)
-  return ([badge], []) if overthinker else ([], [])
+  return ([badge], []) if overthinker else (NO_BADGES)
 
 def Addicted(metadata):
   if metadata.max_attempts_day is None:
-    return [], []
+    return NO_BADGES
   badge = Badge(
       'Addicted', 'Submitted 50 attempts on the same day', Badge.BRONZE)
-  return ([badge], []) if metadata.max_attempts_day >= 50 else ([], [])
+  return ([badge], []) if metadata.max_attempts_day >= 50 else (NO_BADGES)
 
 def Inactive(metadata):
   if metadata.problems is None:
-    return [], []
+    return NO_BADGES
   badge = Badge(
       'Inactive', 'More than a year without solving a problem', Badge.BRONZE)
   problem_dates = [problem.first_ac_date
                    for problem in metadata.problems if problem.solved]
   if not problem_dates:
-    return [], []
+    return NO_BADGES
   max_date = max(problem_dates)
   inactive = datetime.datetime.now() - max_date > datetime.timedelta(365)
-  return ([badge], []) if inactive else ([], [])
+  return ([badge], []) if inactive else (NO_BADGES)
 
 def Blink(metadata):
   if metadata.problems is None:
-    return [], []
+    return NO_BADGES
   badge = Badge('Blink', 'Solved a problem with a time of 0.00s', Badge.BRONZE)
   blink = any(problem.best_time == 0
               for problem in metadata.problems if problem.solved)
-  return ([badge], []) if blink else ([], [])
+  return ([badge], []) if blink else (NO_BADGES)
 
 BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge,
           CountryBadge, FirstPlaceBadge, VeteranBadge, Overthinker, Addicted,  
