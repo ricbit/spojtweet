@@ -18,6 +18,7 @@ __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 
 import logging
 import os
+import utils
 
 from google.appengine.api import memcache
 from google.appengine.ext import db
@@ -37,7 +38,7 @@ class UserPage(webapp.RequestHandler):
       spojuser, refresh_info = refresh_user.RefreshUser().refresh(user)
       logging.info(refresh_info)
 
-    path = os.path.join(os.path.dirname(__file__), 'user.html')
+    path = utils.LoadTemplate('user.html')
     badge_value_names = {
       1: 'gold',
       2: 'silver',

@@ -20,9 +20,10 @@ __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 
 import datetime
 import os
+import utils
 
-from google.appengine.ext import db
 from google.appengine.api import users
+from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 
@@ -67,7 +68,7 @@ class SettingsPage(webapp.RequestHandler):
     spoj_user = preferences.spoj_user
     if spoj_user is None:
       spoj_user = ''
-    path = os.path.join(os.path.dirname(__file__), 'settings.html')
+    path = utils.LoadTemplate('settings.html')
     values = {
         'twitter_username': preferences.twitter_screen_name,
  	'spoj_username': spoj_user,
