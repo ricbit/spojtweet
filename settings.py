@@ -87,4 +87,15 @@ class SettingsUpdatePage(webapp.RequestHandler):
     preferences.send_solution = self.request.get('send_solution') == 'on'
     preferences.send_badge = self.request.get('send_badge') == 'on'
     preferences.put()
-    self.redirect('/settings')
+    path = utils.LoadTemplate('updated.html')
+    actions = []
+    if preferences.send_solution:
+      actions.append('Solved a new problem.')
+    if preferences.send_badge:
+      actions.append('Earned a new badge.')
+    value = {
+        'spoj_user': preferences.spoj_user,
+        'twitter_user': preferences.twitter_screen_name,
+        'actions': actions
+    }
+    self.response.out.write(template.render(path, value))

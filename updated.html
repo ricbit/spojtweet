@@ -1,0 +1,16 @@
+<html>
+<body>
+<p>Your settings have been updated.</p>
+<p>Twitter user @{{twitter_user}} will tweet every time
+Spoj user {{spoj_user}} has:</p>
+<ul>
+{% for action in actions %}
+<li>{{action}}</li>
+{% empty %}
+<li>Won't tweet at all</li>
+{% endfor %}
+</ul>
+<p><a href="/settings">Go back to settings page</a> | 
+<a href="/user/{{spoj_user}}">Go to your user page</a></p>
+</body>
+</html>
