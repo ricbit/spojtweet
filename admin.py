@@ -38,8 +38,8 @@ class SetKeyPage(webapp.RequestHandler):
       return
     data = model.OAuthData(
         key_name='#app',
-	oauth_key=consumer_key,
-	oauth_secret=consumer_secret).put()
+        oauth_key=consumer_key,
+        oauth_secret=consumer_secret).put()
     self.response.out.write('Updated keys.')
 
 if __name__ == '__main__':

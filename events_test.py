@@ -30,21 +30,21 @@ class EventsTest(unittest.TestCase):
     metadata.problems = []
     def AddProblem(problems, is_solved):
       for code in problems:
-	problem = Generic()
-	problem.code = code
-	problem.solved = is_solved
-	metadata.problems.append(problem)
-    AddProblem(solved, True)	
-    AddProblem(unsolved, False)	
+        problem = Generic()
+        problem.code = code
+        problem.solved = is_solved
+        metadata.problems.append(problem)
+    AddProblem(solved, True)    
+    AddProblem(unsolved, False) 
     return metadata
 
   def testGenerateEvents(self):
     old = self._CreateProblems(
         solved=['TEST', 'MUL'],
-	unsolved=['PRIM', 'CPRIM'])
+        unsolved=['PRIM', 'CPRIM'])
     new = self._CreateProblems(
         solved=['TEST', 'CPRIM', 'SHPATH'], 
-	unsolved=['MUL'])
+        unsolved=['MUL'])
     event_list = events.GenerateEvents(old, new)
     self.assertTrue(all(isinstance(event, events.ProblemEvent))
                     for event in event_list)
@@ -55,7 +55,7 @@ class EventsTest(unittest.TestCase):
   def testGenerateEventsWithOldNone(self):
     new = self._CreateProblems(
         solved=['TEST', 'CPRIM', 'SHPATH'], 
-	unsolved=['MUL'])
+        unsolved=['MUL'])
     event_list = events.GenerateEvents(None, new)
     self.assertTrue(all(isinstance(event, events.ProblemEvent))
                     for event in event_list)

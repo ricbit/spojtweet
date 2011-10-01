@@ -102,10 +102,10 @@ def TwitterAuth(temp_id, oauth_token, oauth_verifier):
   session_start = datetime.datetime.now()
   if preferences is None:
     preferences = model.UserPreferences(
-	key_name=access_token['user_id'],
-	twitter_screen_name=access_token['screen_name'],
-	session_id=session_id,
-	session_start=session_start)
+        key_name=access_token['user_id'],
+        twitter_screen_name=access_token['screen_name'],
+        session_id=session_id,
+        session_start=session_start)
   else:
     preferences.session_id = session_id
     preferences.session_start = session_start

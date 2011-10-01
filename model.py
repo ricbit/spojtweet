@@ -26,12 +26,12 @@ VERSION = 7
 
 class UserProblem(object):
   def __init__(self, code,
-	       solved=False,
+               solved=False,
                languages=None,
-	       tries_before_ac=None,
+               tries_before_ac=None,
                first_attempt_date=None,
-	       first_ac_date=None,
-	       best_time=None):
+               first_ac_date=None,
+               best_time=None):
     self.code = code
     self.solved = solved
     self.languages = languages
@@ -39,11 +39,11 @@ class UserProblem(object):
     self.first_attempt_date = first_attempt_date
     self.first_ac_date = first_ac_date
     self.best_time = best_time
-  
+
   def __str__(self):
     return ",".join(str(i) for i in
         [self.code, self.solved, self.languages, self.tries_before_ac,
-	 self.first_attempt_date, self.first_ac_date, self.best_time])
+         self.first_attempt_date, self.first_ac_date, self.best_time])
 
 
 class GenericListProperty(db.Property):

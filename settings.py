@@ -64,16 +64,16 @@ class SettingsPage(webapp.RequestHandler):
     preferences = ValidSession(self.request)
     if preferences is None:
       self.redirect('/settings/login')
-      return      
+      return
     spoj_user = preferences.spoj_user
     if spoj_user is None:
       spoj_user = ''
     path = utils.LoadTemplate('settings.html')
     values = {
         'twitter_username': preferences.twitter_screen_name,
- 	'spoj_username': spoj_user,
-	'send_badge': 'checked' if preferences.send_badge else '',
-	'send_solution': 'checked' if preferences.send_solution else ''
+        'spoj_username': spoj_user,
+        'send_badge': 'checked' if preferences.send_badge else '',
+        'send_solution': 'checked' if preferences.send_solution else ''
     }
     self.response.out.write(template.render(path, values))
 
@@ -82,7 +82,7 @@ class SettingsUpdatePage(webapp.RequestHandler):
     preferences = ValidSession(self.request)
     if preferences is None:
       self.redirect('/settings/login')
-      return      
+      return
     preferences.spoj_user = self.request.get('spoj_user')
     preferences.send_solution = self.request.get('send_solution') == 'on'
     preferences.send_badge = self.request.get('send_badge') == 'on'

@@ -82,7 +82,7 @@ def CountryBadge(metadata):
   requirements = [-100, -10, -1]
   descriptions = ['Top 100 problem solvers from ' + country,
                   'Top 10 problem solvers from ' + country,
-		  'Best problem solver from ' + country]
+                  'Best problem solver from ' + country]
   values = [Badge.BRONZE, Badge.SILVER, Badge.GOLD]
   return ProgressiveBadge(
       -metadata.country_position,
@@ -97,7 +97,7 @@ def LanguageBadge(metadata):
     badge_titles = ["%s %s" % (language_name, title) for title in titles]
     requirements = [3, 10, 100, 500]
     descriptions = ["Solved %d problems in %s" % (x, language_name)
-                    for x in requirements]    		    
+                    for x in requirements]                  
     values = [Badge.BRONZE, Badge.BRONZE, Badge.SILVER, Badge.GOLD]
     granted, skipped = ProgressiveBadge(
         count, badge_titles, requirements, descriptions, values)
@@ -207,7 +207,7 @@ def Blink(metadata):
 
 BADGES = [LanguageBadge, SolvedProblemsBadge, SharpshooterBadge, StubbornBadge,
           CountryBadge, FirstPlaceBadge, VeteranBadge, Overthinker, Addicted,  
-	  Inactive, Blink, Forever]
+          Inactive, Blink, Forever]
 
 def EvalLanguageCount(problems):
   if problems is None:

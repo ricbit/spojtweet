@@ -45,17 +45,17 @@ class NotFoundPage(webapp.RequestHandler):
 
 app = webapp.WSGIApplication(
           [('/', MainPage),
-	   ('/user/([^/]+)', user_page.UserPage),
-	   ('/refresh/([^/]+)', refresh_user.RefreshUserPage),
-	   ('/crawl', crawler.CrawlCountryPage),
-	   ('/admin', admin.AdminPage),
-	   ('/admin/keys/(.*?)/(.*?)/', admin.SetKeyPage),
+           ('/user/([^/]+)', user_page.UserPage),
+           ('/refresh/([^/]+)', refresh_user.RefreshUserPage),
+           ('/crawl', crawler.CrawlCountryPage),
+           ('/admin', admin.AdminPage),
+           ('/admin/keys/(.*?)/(.*?)/', admin.SetKeyPage),
            ('/settings/twitter', settings.TwitterLoginPage),
            ('/settings/auth/(.*?)/', settings.TwitterAuthPage),
            ('/settings', settings.SettingsPage),
            ('/settings/update', settings.SettingsUpdatePage),
-	   ('/.*', NotFoundPage)],
-	  debug=True)
+           ('/.*', NotFoundPage)],
+          debug=True)
 
 def main():
   run_wsgi_app(app)

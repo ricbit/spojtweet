@@ -86,7 +86,7 @@ class RefreshUser():
       self.country_position = None
       for user in country_info.users:
         if user.name == self.user:
-	  self.country_position = user.position
+          self.country_position = user.position
     except parser.ParseError:
       raise RefreshException()
 
@@ -100,18 +100,18 @@ class RefreshUser():
     for date, status, language, time in properties:
       date_map[date.date()] = 1 + date_map.get(date.date(), 0)
       if solved:
-	if status == 'AC':
-	  languages.add(language)
-	  if time < best_time:
-	    best_time = time
+        if status == 'AC':
+          languages.add(language)
+          if time < best_time:
+            best_time = time
       else:
-	if status == 'AC':
-	  solved = True
-	  languages.add(language)
-	  first_ac_date = date
-	  best_time = time
-	else:
-	  tries_before_ac += 1
+        if status == 'AC':
+          solved = True
+          languages.add(language)
+          first_ac_date = date
+          best_time = time
+        else:
+          tries_before_ac += 1
     problem = model.UserProblem(code=code)
     problem.languages = list(languages)
     problem.tries_before_ac = tries_before_ac
@@ -129,7 +129,7 @@ class RefreshUser():
     for code, properties in self.problems.iteritems():
       # Skip problems not in classical set.
       if code not in self.classical:
-	continue
+        continue
       properties.sort()
       problem = self._EvalSingleProblem(code, properties, date_map)
       self.metadata.problems.append(problem)
@@ -150,15 +150,15 @@ class RefreshUser():
   def WriteDatastore(self):
     self.spojuser = model.SpojUser(
         key_name=self.user, name=self.name, country=self.country,
-	badges=self.metadata.granted_badges,
-	last_update=datetime.datetime.now(),
-	version=model.VERSION)
+        badges=self.metadata.granted_badges,
+        last_update=datetime.datetime.now(),
+        version=model.VERSION)
     user_rpc = db.put_async(self.spojuser)
     metadata = model.SpojUserMetadata(
         key_name=self.user, problems=self.metadata.problems,
-	country_position=self.country_position, first_place=self.first_place,
+        country_position=self.country_position, first_place=self.first_place,
         granted_badges=self.metadata.granted_badges,
-	skipped_badges=self.metadata.skipped_badges)
+        skipped_badges=self.metadata.skipped_badges)
     metadata_rpc = db.put_async(metadata)
     user_rpc.check_success()
     metadata_rpc.check_success()
