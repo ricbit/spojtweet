@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <style>
 .badge div {
-  margin: 5px 5px;
+  margin: 5px 10px 5px 0px;
   padding: 5px;
   cursor: default;
   float: left;
@@ -19,8 +19,8 @@
   background-color: #e6b43c;
 }
 .silver {
-  border: solid 1px #808080;
-  background-color: #c0c0c0;
+  border: solid 1px #888;
+  background-color: #CCC;
 }
 header {
   display: block;
@@ -28,7 +28,6 @@ header {
   width: 100%;
   color: white;
   height: 40px;
-  z-index: 1;
 }
 .header_box {
   width: 820px;
@@ -37,7 +36,8 @@ header {
 }
 .header_box b {
   font-size: 20px;
-  padding: 18px;
+  font-weight: normal;
+  padding: 18px 15px 15px;
   line-height: 1px;
   display: block;
   float: left;
@@ -48,6 +48,7 @@ header {
   margin-top: 5px;
   margin-right: 10px;
   background-color: #0064CD;
+  background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
   background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
   border-radius: 5px;
   font-size: 13px;
@@ -80,16 +81,20 @@ html, body {
   font-family: Helvetica, Arial, sans-serif;
 }
 .content {
-  padding: 10px;
+  padding: 15px;
 }
 summary {
-  padding: 1em;
+  padding: 15px;
   background-color: whiteSmoke;
   border-bottom: 1px solid #DDD;
   display: block;
 }
 .name {
-  font: bold 20px Arial, sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+}
+h2 {
+  font-size: 20px;
 }
 nav {
   color: black;
@@ -97,7 +102,7 @@ nav {
   font-size: 13px;
 }
 .country {
-  color: #606060;
+  color: #666;
 }
 </style>
 <title>SpojTweet - {{name|striptags}}</title>
@@ -113,10 +118,11 @@ nav {
 </header>
 <section>
   <summary>
-  <b class="name">{{name|striptags}}</b><br>
-  <span class="country">{{country|striptags}}</span>
+    <b class="name">{{name|striptags}}</b><br>
+    <span class="country">{{country|striptags}}</span>
   </summary>
   <div class="content">
+    <h2>Badges</h2>
     <div class="badge">
     {% for badge in badges %}
     <div class="{{badge.value}}" title="{{badge.description}}">
