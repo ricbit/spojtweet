@@ -24,64 +24,79 @@
 }
 header {
   display: block;
-  background-color: black;
+  background-color: #222;
   width: 100%;
   color: white;
-  height: 2em;
-  position: absolute;
-  margin-top: 2em;
+  height: 40px;
+  z-index: 1;
 }
 .header_box {
-  width: 500px;
+  width: 820px;
+  height: 40px;
   margin: auto;
-  padding: 5px;
 }
 .header_box b {
-  font: bold 15px Arial, sans-serif;
+  font-size: 20px;
+  padding: 18px;
+  line-height: 1px;
+  display: block;
+  float: left;
 }
 .login_box {
   float: right;
+  padding: 4px 14px 6px;
+  margin-top: 5px;
+  margin-right: 10px;
+  background-color: #0064CD;
+  background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
+  border-radius: 5px;
+  font-size: 13px;
 }
-.login_box a:link, a:visited, a:hover, a:active {
-  color: #8080FF;
+.login_box a:link, .login_box a:visited, .login_box a:active {
+  color: white;
   text-decoration: none;
 }
+.login_box a:hover {
+  color: cyan;
+}
 section {
-  width: 500px;
+  width: 820px;
   margin: auto;
   background-color: white;
-  min-height: 100%;
-  padding-top: 2em;
-  margin-top: -2em;
+  border: 1px solid #DDD;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 footer {
   clear: both;
-  position: absolute;
   height: 2em;
-  margin-top: -2em;
-  background-color: black;
   width: 100%;
+  padding-top: 2em;
 }
 html, body {
   padding: 0px;
   margin: 0px;
-  height: 100%;
-  background-color: #e0e0FF;
+  background-color: #EEE;
+  font-family: Helvetica, Arial, sans-serif;
 }
 .content {
-  position: relative;
-  height: 100%
+  padding: 10px;
 }
 summary {
-  margin-top: 2em;
   padding: 1em;
+  background-color: whiteSmoke;
+  border-bottom: 1px solid #DDD;
 }
 .name {
   font: bold 20px Arial, sans-serif;
 }
 nav {
-  margin: auto;
-  width: 500px;
+  color: black;
+  text-align: center;
+  font-size: 13px;
+}
+.country {
+  color: #606060;
 }
 </style>
 <title>SpojTweet - {{name|striptags}}</title>
@@ -97,19 +112,20 @@ nav {
 </header>
 <section>
   <summary>
-  <b class="name">{{name|striptags}}</b> <br>
-  Country: {{country|striptags}}<br><br>
+  <b class="name">{{name|striptags}}</b><br>
+  <span class="country">{{country|striptags}}</span>
   </summary>
-  <div class="badge">
-  {% for badge in badges %}
-  <div class="{{badge.value}}" title="{{badge.description}}">
-    {{badge.name}}
+  <div class="content">
+    <div class="badge">
+    {% for badge in badges %}
+    <div class="{{badge.value}}" title="{{badge.description}}">
+      {{badge.name}}
+    </div>
+    {% empty %}
+    <p>No bagdes</p>
+    {% endfor %}
+    </div>
   </div>
-  {% empty %}
-  <p>No bagdes</p>
-  {% endfor %}
-  </div>
-</section>
 <footer>
 <nav>
   <a href="">About SpojTweet</a> | 
@@ -117,5 +133,6 @@ nav {
   <a href="">Report a bug</a>
 </nav>
 </footer>
+</section>
 </body>
 </html>
