@@ -10,6 +10,9 @@ handlers:
 - url: /(favicon.ico)
   static_files: \1
   upload: favicon.ico
+- url: /(spojtweet.css)
+  static_files: \1
+  upload: spojtweet.css
 - url: /settings/login
   static_files: login.html
   upload: login.html
