@@ -139,3 +139,6 @@ class UserPreferences(db.Model):
   spoj_user = db.StringProperty()
   send_solution = db.BooleanProperty(indexed=False)
   send_badge = db.BooleanProperty(indexed=False)
+
+class CrawlingInfo(db.Model):
+  crawling = db.BooleanProperty(indexed=False)

@@ -32,6 +32,9 @@ class RefreshException(Exception):
   pass
 
 class RefreshUser():
+  def __init__(self):
+    self.update_events = False
+
   def refresh(self, user):
     try:
       self.user = user
@@ -40,6 +43,8 @@ class RefreshUser():
       self.Measure(self.ParseSpojUserPages, 'Parsing Time')
       self.Measure(self.CreateUserProblems, 'Create UserProblems Time')
       self.Measure(self.GrantBadges, 'Grant Badges Time')
+      if self.update_events:
+        self.Measure(self.GenerateEvents, 'Generate Events')
       self.Measure(self.WriteDatastore, 'Write Datastore Time')
       self.log += ('Finished updating <a href="/user/%s">user %s</a>' %
                    (user, user))
@@ -53,6 +58,10 @@ class RefreshUser():
     after = datetime.datetime.now()
     self.log += "%s: %s<br>" % (message, str(after - before))
 
+  def _GetDatastoreAsync(self, model, key):
+    key = db.Key.from_path(model, key)
+    return db.get_async(key)
+
   def LoadSpojUserPages(self):
     try:
       status_url = 'http://www.spoj.pl/users/%s' % self.user
@@ -61,10 +70,9 @@ class RefreshUser():
       details_url = 'http://www.spoj.pl/status/%s/signedlist/' % self.user
       details_rpc = urlfetch.create_rpc()
       urlfetch.make_fetch_call(details_rpc, details_url)
-      classical_key = db.Key.from_path('ProblemList', 'classical')
-      classical_rpc = db.get_async(classical_key)
-      old_metadata_key = db.Key.from_path('SpojUserMetadata', self.user)
-      old_metadata_rpc = db.get_async(old_metadata_key)
+      classical_rpc = self._GetDatastoreAsync('ProblemList', 'classical')
+      old_metadata_rpc = self._GetDatastoreAsync('SpojUserMetadata', self.user)
+      crawling_rpc = self._GetDatastoreAsync('CrawlingInfo', 'info')
       fastest_query = model.ProblemDetails.all(keys_only=True)
       self.first_place = fastest_query.filter("first_place", self.user).count()
       forever_query = model.ProblemDetails.all(keys_only=True)
@@ -74,6 +82,9 @@ class RefreshUser():
       self.status_page = status_rpc.get_result().content
       self.details_page = details_rpc.get_result().content
       self.old_metadata = old_metadata_rpc.get_result()
+      crawling_info = crawling_rpc.get_result()
+      if crawling_info is None or crawling_info.crawling:
+        self.update_events = True
       logging.info(self.old_metadata)
     except urlfetch.DownloadError:
       raise RefreshException()

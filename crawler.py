@@ -49,6 +49,8 @@ def StartCountryCrawl():
 
 def CrawlProblems(problem_list):
   if not problem_list:
+    info = model.CrawlingInfo(key_name='info', crawling=False)
+    info.put()
     return
   code = problem_list[0]
   logging.info('crawling problem %s', code)
@@ -77,6 +79,8 @@ def ProblemCrawl(url, problem_list):
 class CrawlCountryPage(webapp.RequestHandler):
   def get(self):
     if users.is_current_user_admin():
+      info = model.CrawlingInfo(key_name='info', crawling=True)
+      info.put()
       deferred.defer(StartCountryCrawl)
       self.response.out.write('launched')
     else:
