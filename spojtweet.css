@@ -40,22 +40,21 @@ header {
   display: block;
   float: left;
 }
-.login_box {
+.header_box a {
   float: right;
   padding: 4px 14px 6px;
   margin-top: 5px;
   margin-right: 10px;
   background-color: #0064CD;
-  background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
   background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
   border-radius: 5px;
   font-size: 13px;
 }
-.login_box a:link, .login_box a:visited, .login_box a:active {
+.header_box a:link, .header_box a:visited, .header_box a:active {
   color: white;
-  text-decoration: none;
 }
-.login_box a:hover {
+.header_box a:hover {
   color: cyan;
 }
 section {
