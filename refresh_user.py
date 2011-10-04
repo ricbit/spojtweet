@@ -27,6 +27,7 @@ import badge
 import events
 import model
 import parser
+import utils
 
 class RefreshException(Exception):
   pass
@@ -58,34 +59,24 @@ class RefreshUser():
     after = datetime.datetime.now()
     self.log += "%s: %s<br>" % (message, str(after - before))
 
-  def _GetDatastoreAsync(self, model, key):
-    key = db.Key.from_path(model, key)
-    return db.get_async(key)
-
   def LoadSpojUserPages(self):
     try:
       status_url = 'http://www.spoj.pl/users/%s' % self.user
-      status_rpc = urlfetch.create_rpc()
-      urlfetch.make_fetch_call(status_rpc, status_url)
       details_url = 'http://www.spoj.pl/status/%s/signedlist/' % self.user
-      details_rpc = urlfetch.create_rpc()
-      urlfetch.make_fetch_call(details_rpc, details_url)
-      classical_rpc = self._GetDatastoreAsync('ProblemList', 'classical')
-      old_metadata_rpc = self._GetDatastoreAsync('SpojUserMetadata', self.user)
-      crawling_rpc = self._GetDatastoreAsync('CrawlingInfo', 'info')
-      fastest_query = model.ProblemDetails.all(keys_only=True)
-      self.first_place = fastest_query.filter("first_place", self.user).count()
-      forever_query = model.ProblemDetails.all(keys_only=True)
-      self.forever = forever_query.filter(
-          "first_place_permanent", self.user).count()
-      self.classical = set(classical_rpc.get_result().problems)
-      self.status_page = status_rpc.get_result().content
-      self.details_page = details_rpc.get_result().content
-      self.old_metadata = old_metadata_rpc.get_result()
-      crawling_info = crawling_rpc.get_result()
-      if crawling_info is None or crawling_info.crawling:
+      fetcher = utils.ParallelFetch(
+          first_place=utils.QueryCount(
+              model.ProblemDetails, 'first_place', self.user),
+          forever=utils.QueryCount(
+              model.ProblemDetails, 'first_place_permanent', self.user),
+          status_page=utils.FetchUrl(status_url),
+          details_page=utils.FetchUrl(details_url),
+          classical_list=utils.GetModel('ProblemList', 'classical'),
+          old_metadata=utils.GetModel('SpojUserMetadata', self.user),
+          crawling=utils.GetModel('CrawlingInfo', 'info'))
+      self.__dict__.update(fetcher.run())
+      self.classical = set(self.classical_list.problems)
+      if self.crawling is None or self.crawling.crawling:
         self.update_events = True
-      logging.info(self.old_metadata)
     except urlfetch.DownloadError:
       raise RefreshException()
 
