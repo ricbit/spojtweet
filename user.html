@@ -12,12 +12,12 @@
     <a href="/settings/login">Join or log in using Twitter</a>
   </div>
 </header>
-<section>
-  <summary>
+<div class="content">
+  <div class="user">
     <b class="name">{{name|striptags}}</b><br>
     <span class="country">{{country|striptags}}</span>
-  </summary>
-  <div class="content">
+  </div>
+  <section>
     <h2>Badges</h2>
     <div class="badge">
     {% for badge in badges %}
@@ -28,8 +28,8 @@
     <p>No bagdes</p>
     {% endfor %}
     </div>
-  </div>
-</section>
+  </section>
+</div>
 <footer>
 <nav>
   <a href="">About SpojTweet</a> | 

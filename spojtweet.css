@@ -57,7 +57,7 @@ header {
 .header_box a:hover {
   color: cyan;
 }
-section {
+.content {
   width: 820px;
   margin: auto;
   background-color: white;
@@ -65,7 +65,7 @@ section {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
-section:after {
+.content:after {
   clear: both;
   content: '';
   padding-bottom: 1em;
@@ -82,10 +82,10 @@ html, body {
   background-color: #EEE;
   font-family: Helvetica, Arial, sans-serif;
 }
-.content {
+section {
   padding: 15px;
 }
-summary {
+.user {
   padding: 15px;
   background-color: whiteSmoke;
   border-bottom: 1px solid #DDD;
