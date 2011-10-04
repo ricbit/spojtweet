@@ -1,3 +1,6 @@
+a {
+  text-decoration: none;
+}
 .badge div {
   margin: 5px 10px 5px 0px;
   padding: 5px;
@@ -63,11 +66,16 @@ section {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
-footer {
+section:after {
   clear: both;
+  content: '';
+  padding-bottom: 1em;
+  display: block;
+}
+footer {
   height: 2em;
   width: 100%;
-  padding-top: 2em;
+  margin-top: 1em;
 }
 html, body {
   padding: 0px;
