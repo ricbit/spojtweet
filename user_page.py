@@ -29,8 +29,12 @@ import model
 import parser
 import refresh_user
 
-def RenderPage(user, events):
+def RenderPage(user, eventid):
   spojuser = model.SpojUser.get_by_key_name(user)
+  if eventid is not None:
+    events = model.Event.get_by_id(int(eventid)).event_list
+  else:
+    events = []
   if (spojuser is None or
       spojuser.version is None or
       spojuser.version < model.VERSION):
@@ -50,7 +54,8 @@ def RenderPage(user, events):
   values = {
     'name': spojuser.name,
     'country': spojuser.country.title(),
-    'badges': badges
+    'badges': badges,
+    'events': events
   }
   return template.render(path, values)
 
