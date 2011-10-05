@@ -29,39 +29,51 @@ import model
 import parser
 import refresh_user
 
+def RenderPage(user, events):
+  spojuser = model.SpojUser.get_by_key_name(user)
+  if (spojuser is None or
+      spojuser.version is None or
+      spojuser.version < model.VERSION):
+    spojuser, refresh_info = refresh_user.RefreshUser().refresh(user)
+    logging.info(refresh_info)
+
+  path = utils.LoadTemplate('user.html')
+  badge_value_names = {
+    1: 'gold',
+    2: 'silver',
+    3: 'bronze'
+  }
+  badges = spojuser.badges[:]
+  badges.sort(key=lambda x: (x.value, x.name))
+  for badge in badges:
+    badge.value = badge_value_names[badge.value]
+  values = {
+    'name': spojuser.name,
+    'country': spojuser.country.title(),
+    'badges': badges
+  }
+  return template.render(path, values)
+
 class UserPage(webapp.RequestHandler):
-  def RenderPage(self, user):
-    spojuser = model.SpojUser.get_by_key_name(user)
-    if (spojuser is None or
-        spojuser.version is None or
-	spojuser.version < model.VERSION):
-      spojuser, refresh_info = refresh_user.RefreshUser().refresh(user)
-      logging.info(refresh_info)
-
-    path = utils.LoadTemplate('user.html')
-    badge_value_names = {
-      1: 'gold',
-      2: 'silver',
-      3: 'bronze'
-    }
-    badges = spojuser.badges[:]
-    badges.sort(key=lambda x: (x.value, x.name))
-    for badge in badges:
-      badge.value = badge_value_names[badge.value]
-    values = {
-      'name': spojuser.name,
-      'country': spojuser.country.title(),
-      'badges': badges
-    }
-    return template.render(path, values)
-
   def get(self, user):
     key = '#'.join([str(model.VERSION), user])
     page = None # memcache.get(key)
     if page is not None:
       self.response.out.write(page)
     else:
-      page = self.RenderPage(user)
+      page = RenderPage(user, None)
+      expires = 30 * 60
+      memcache.add(key, page, expires)
+      self.response.out.write(page)
+
+class UserEventPage(webapp.RequestHandler):
+  def get(self, user, eventid):
+    key = '#'.join([str(model.VERSION), user])
+    page = None # memcache.get(key)
+    if page is not None:
+      self.response.out.write(page)
+    else:
+      page = RenderPage(user, eventid)
       expires = 30 * 60
       memcache.add(key, page, expires)
       self.response.out.write(page)
