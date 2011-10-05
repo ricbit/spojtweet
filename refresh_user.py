@@ -19,9 +19,10 @@ __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 import datetime
 import logging
 
-from google.appengine.ext import db
-from google.appengine.ext import webapp
 from google.appengine.api import urlfetch
+from google.appengine.ext import db
+from google.appengine.ext import deferred
+from google.appengine.ext import webapp
 
 import badge
 import events
@@ -31,6 +32,11 @@ import utils
 
 class RefreshException(Exception):
   pass
+
+def PostEvents(user, events):
+  event = model.Event(user=user, event_list=events)
+  event.put()
+  logging.info(event.key)
 
 class RefreshUser():
   def __init__(self):
@@ -148,6 +154,9 @@ class RefreshUser():
 
   def GenerateEvents(self):
     self.events = events.GenerateEvents(self.old_metadata, self.metadata)
+    logging.info(self.events)
+    if self.events:
+      deferred.defer(PostEvents, self.user, self.events)
 
   def WriteDatastore(self):
     self.spojuser = model.SpojUser(
@@ -156,14 +165,16 @@ class RefreshUser():
         last_update=datetime.datetime.now(),
         version=model.VERSION)
     user_rpc = db.put_async(self.spojuser)
-    metadata = model.SpojUserMetadata(
-        key_name=self.user, problems=self.metadata.problems,
-        country_position=self.country_position, first_place=self.first_place,
-        granted_badges=self.metadata.granted_badges,
-        skipped_badges=self.metadata.skipped_badges)
-    metadata_rpc = db.put_async(metadata)
+    if self.update_events:
+      metadata = model.SpojUserMetadata(
+          key_name=self.user, problems=self.metadata.problems,
+          country_position=self.country_position, first_place=self.first_place,
+          granted_badges=self.metadata.granted_badges,
+          skipped_badges=self.metadata.skipped_badges)
+      metadata_rpc = db.put_async(metadata)
     user_rpc.check_success()
-    metadata_rpc.check_success()
+    if self.update_events:
+      metadata_rpc.check_success()
 
 class RefreshUserPage(webapp.RequestHandler):
   def get(self, user):

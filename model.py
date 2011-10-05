@@ -21,6 +21,7 @@ import pickle
 from google.appengine.ext import db
 
 import badge
+import events
 
 VERSION = 7
 
@@ -142,3 +143,7 @@ class UserPreferences(db.Model):
 
 class CrawlingInfo(db.Model):
   crawling = db.BooleanProperty(indexed=False)
+
+class Event(db.Model):
+  user = db.StringProperty(indexed=False)
+  event_list = GenericListProperty(events.Event)
