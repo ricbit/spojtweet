@@ -75,8 +75,15 @@ footer {
   height: 2em;
   width: 100%;
   margin-top: 1em;
+  color: black;
+  text-align: center;
+  font-size: 13px;
 }
-html, body {
+html {
+  padding: 0px;
+  margin: 0px;
+}
+body {
   padding: 0px;
   margin: 0px;
   background-color: #EEE;
@@ -97,11 +104,6 @@ section {
 }
 h2 {
   font-size: 20px;
-}
-nav {
-  color: black;
-  text-align: center;
-  font-size: 13px;
 }
 .country {
   color: #666;
