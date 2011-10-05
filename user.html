@@ -18,7 +18,14 @@
     <span class="country">{{country|striptags}}</span>
   </div>
   {% if events %}
-  <p>I can has events</p>
+    <div class="event">
+      <p>{{name|striptags}} has just solved the following problems!</p>
+      <p>
+      {% for event in events %}
+        <a href="http://www.spoj.pl/problems/{{event.code}}">{{event.code}}</a>
+      {% endfor %}
+      </p>
+    </div>
   {% endif %}
   <section>
     <h2>Badges</h2>
