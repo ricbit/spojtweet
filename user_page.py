@@ -32,9 +32,12 @@ import refresh_user
 def RenderPage(user, eventid):
   spojuser = model.SpojUser.get_by_key_name(user)
   if eventid is not None:
-    events = model.Event.get_by_id(int(eventid)).event_list
+    events = model.Event.get_by_id(int(eventid))
+    if user != events.user:
+      raise Exception()
+    event_list = events.event_list
   else:
-    events = []
+    event_list = []
   if (spojuser is None or
       spojuser.version is None or
       spojuser.version < model.VERSION):
@@ -55,7 +58,7 @@ def RenderPage(user, eventid):
     'name': spojuser.name,
     'country': spojuser.country.title(),
     'badges': badges,
-    'events': events
+    'events': event_list
   }
   return template.render(path, values)
 
