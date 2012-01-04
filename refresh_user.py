@@ -81,7 +81,7 @@ class RefreshUser():
           crawling=utils.GetModel('CrawlingInfo', 'info'))
       self.__dict__.update(fetcher.run())
       self.classical = set(self.classical_list.problems)
-      if self.crawling is None or self.crawling.crawling:
+      if self.crawling is None or not self.crawling.crawling:
         self.update_events = True
     except urlfetch.DownloadError:
       raise RefreshException()
