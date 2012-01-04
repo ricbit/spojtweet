@@ -129,7 +129,7 @@ class RefreshUser():
       problem.best_time = best_time
       problem.first_ac_date = first_ac_date
     return problem
-  
+
   def CreateUserProblems(self):
     self.metadata = badge.UserMetadata()
     self.metadata.problems = []
@@ -171,10 +171,11 @@ class RefreshUser():
           country_position=self.country_position, first_place=self.first_place,
           granted_badges=self.metadata.granted_badges,
           skipped_badges=self.metadata.skipped_badges)
-      metadata_rpc = db.put_async(metadata)
+      #metadata_rpc = db.put_async(metadata)
     user_rpc.check_success()
     if self.update_events:
-      metadata_rpc.check_success()
+      pass
+      #metadata_rpc.check_success()
 
 class RefreshUserPage(webapp.RequestHandler):
   def get(self, user):
