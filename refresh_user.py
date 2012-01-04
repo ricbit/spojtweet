@@ -28,15 +28,26 @@ import badge
 import events
 import model
 import parser
+import shortener
+import twitter
 import utils
 
 class RefreshException(Exception):
   pass
 
-def PostEvents(user, events):
-  event = model.Event(user=user, event_list=events)
-  event.put()
-  logging.info(event.key)
+def PostEvents(spoj_user, events):
+  event = model.Event(user=spoj_user, event_list=events)
+  key = event.put()
+  logging.info('Event key: %d', key.id())
+  logging.info('Event user: %s', spoj_user)
+  short_url = shortener.Shorten(
+      'http://spojtweet.appspot.com/user/%s/%d' % (spoj_user, key.id()))
+  query = model.UserPreferences.all()
+  query.filter('spoj_user', spoj_user)
+  logging.info(short_url)
+  user = list(query.run())[0]
+  twitter.SendTweet(user.key().name(),
+                    "Solved problem X %s #spojtweet" % short_url)
 
 class RefreshUser():
   def __init__(self):

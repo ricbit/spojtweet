@@ -16,8 +16,7 @@
 
 __author__ =  'ricbit@google.com (Ricardo Bittencourt)'
 
-import json
-
+from django.utils import simplejson as json
 from google.appengine.api import urlfetch
 
 def Shorten(url):

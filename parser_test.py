@@ -74,7 +74,7 @@ class ParserTest(unittest.TestCase):
       self.assertEquals(2, len(country))
       self.assertEquals(2, len(country[0]))
       self.assertTrue(isinstance(country[1], unicode))
-    
+
 
 if __name__ == '__main__':
   unittest.main()

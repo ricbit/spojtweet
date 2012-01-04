@@ -112,24 +112,16 @@ def TwitterAuth(temp_id, oauth_token, oauth_verifier):
   preferences.put()
   return access_token['user_id'], preferences.session_id
 
-class SendTweetPage(webapp.RequestHandler):
-  def get(self, username):
-    if not users.is_current_user_admin():
-      self.error(401)
-      self.response.out.write('401 Not authorized.')
-      return
-    app_keys = GetAppKeys()
-    self.response.out.write(str(app_keys) + '<p>')
-    user_keys = model.OAuthData.get_by_key_name(username)
-    api = pythontwitter.Api(
-        consumer_key=app_keys.oauth_key,
-        consumer_secret=app_keys.oauth_secret,
-        access_token_key=user_keys.oauth_key,
-        access_token_secret=user_keys.oauth_secret,
-        cache=None)
-    api.PostUpdate(
-        'Se você consegue ler isso, minha implementação de oauth funciona.')
-    self.response.out.write('posted')
+def SendTweet(twitter_userid, message):
+  app_keys = GetAppKeys()
+  user_keys = model.OAuthData.get_by_key_name(twitter_userid)
+  api = pythontwitter.Api(
+      consumer_key=app_keys.oauth_key,
+      consumer_secret=app_keys.oauth_secret,
+      access_token_key=user_keys.oauth_key,
+      access_token_secret=user_keys.oauth_secret,
+      cache=None)
+  api.PostUpdate(message)
 
 if __name__ == '__main__':
   Test()
