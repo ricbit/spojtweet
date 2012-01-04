@@ -35,6 +35,19 @@ import utils
 class RefreshException(Exception):
   pass
 
+def PostTweet(user, events, short_url):
+  # Skip if the user doesn't want to tweet every solution.
+  if not user.send_solution:
+    return
+
+  if len(events) == 1:
+    message = "I solved problem %s on SPOJ! %s #spojtweet" % (
+        events[0].code, short_url)
+  else:
+    message = "I solved problems %s on SPOJ! %s #spojtweet" % (
+        ",".join(event.code for event in events), short_url)
+  twitter.SendTweet(user.key().name(), message)
+
 def PostEvents(spoj_user, events):
   event = model.Event(user=spoj_user, event_list=events)
   key = event.put()
@@ -45,9 +58,8 @@ def PostEvents(spoj_user, events):
   query = model.UserPreferences.all()
   query.filter('spoj_user', spoj_user)
   logging.info(short_url)
-  user = list(query.run())[0]
-  twitter.SendTweet(user.key().name(),
-                    "Solved problem X %s #spojtweet" % short_url)
+  for user in query.run():
+    deferred.defer(PostTweet, user, events, short_url)
 
 class RefreshUser():
   def __init__(self):
