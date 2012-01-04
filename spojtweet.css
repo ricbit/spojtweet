@@ -111,8 +111,8 @@ h2 {
 .event {
   margin: 15px;
   padding: 10px;
-  border: 1px dashed orange;
-  background-color: yellow;
+  border: 1px dashed green;
+  background-color: lightgreen;
 }
 .event p {
   margin: 0px;
