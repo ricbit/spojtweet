@@ -66,7 +66,7 @@ def RenderPage(user, eventid):
 class UserPage(webapp.RequestHandler):
   def get(self, user):
     key = '#'.join([str(model.VERSION), user])
-    page = None # memcache.get(key)
+    page = memcache.get(key)
     if page is not None:
       self.response.out.write(page)
     else:
@@ -78,7 +78,7 @@ class UserPage(webapp.RequestHandler):
 class UserEventPage(webapp.RequestHandler):
   def get(self, user, eventid):
     key = '#'.join([str(model.VERSION), user])
-    page = None # memcache.get(key)
+    page = memcache.get(key)
     if page is not None:
       self.response.out.write(page)
     else:
