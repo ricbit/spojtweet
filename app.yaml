@@ -7,6 +7,9 @@ builtins:
 - appstats: on
 
 handlers:
+- url: /(robots.txt)
+  static_files: \1
+  upload: robots.txt
 - url: /(favicon.ico)
   static_files: \1
   upload: favicon.ico
