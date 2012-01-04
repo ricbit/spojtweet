@@ -38,6 +38,7 @@ def RenderPage(user, eventid):
     event_list = events.event_list
   else:
     event_list = []
+  event_list.sort(key=lambda event: event.code)
   if (spojuser is None or
       spojuser.version is None or
       spojuser.version < model.VERSION):
