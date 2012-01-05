@@ -78,11 +78,8 @@ def ProblemCrawl(url, problem_list):
 
 class CrawlCountryPage(webapp.RequestHandler):
   def get(self):
-    if users.is_current_user_admin():
-      info = model.CrawlingInfo(key_name='info', crawling=True)
-      info.put()
-      deferred.defer(StartCountryCrawl)
-      self.response.out.write('launched')
-    else:
-      self.response.out.write(
-          'Only <a href="/admin">admin</a> can launch a crawl.')
+    info = model.CrawlingInfo(key_name='info', crawling=True)
+    info.put()
+    deferred.defer(StartCountryCrawl)
+    self.response.out.write('launched')
+
