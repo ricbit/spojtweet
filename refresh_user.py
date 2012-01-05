@@ -194,11 +194,10 @@ class RefreshUser():
           country_position=self.country_position, first_place=self.first_place,
           granted_badges=self.metadata.granted_badges,
           skipped_badges=self.metadata.skipped_badges)
-      #metadata_rpc = db.put_async(metadata)
+      metadata_rpc = db.put_async(metadata)
     user_rpc.check_success()
     if self.update_events:
-      pass
-      #metadata_rpc.check_success()
+      metadata_rpc.check_success()
 
 class RefreshUserPage(webapp.RequestHandler):
   def get(self, user):

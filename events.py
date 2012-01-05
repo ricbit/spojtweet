@@ -26,13 +26,14 @@ class NewProblemEvent(Event):
     self.code = code
 
 def GenerateEvents(old_metadata, new_metadata):
+  # Don't generate events in the first refresh of a user.
+  if old_metadata is None:
+    return []
+
   event_list = []
   solved = lambda problems: set(prob.code for prob in problems if prob.solved)
 
-  old_solved_problems = set()
-  if old_metadata is not None:
-    old_solved_problems = solved(old_metadata.problems)
-
+  old_solved_problems = solved(old_metadata.problems)
   new_solved_problems = solved(new_metadata.problems)
   for code in new_solved_problems - old_solved_problems:
     event_list.append(NewProblemEvent(code))

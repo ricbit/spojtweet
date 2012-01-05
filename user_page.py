@@ -83,7 +83,7 @@ class UserEventPage(webapp.RequestHandler):
     self.response.out.write('')
 
   def get(self, user, eventid):
-    key = '#'.join([str(model.VERSION), user])
+    key = '#'.join([str(model.VERSION), user, eventid])
     page = memcache.get(key)
     if page is not None:
       self.response.out.write(page)
