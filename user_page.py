@@ -64,6 +64,9 @@ def RenderPage(user, eventid):
   return template.render(path, values)
 
 class UserPage(webapp.RequestHandler):
+  def head(self, user):
+    self.response.out.write('')
+
   def get(self, user):
     key = '#'.join([str(model.VERSION), user])
     page = memcache.get(key)
@@ -76,6 +79,9 @@ class UserPage(webapp.RequestHandler):
       self.response.out.write(page)
 
 class UserEventPage(webapp.RequestHandler):
+  def head(self, user, eventid):
+    self.response.out.write('')
+
   def get(self, user, eventid):
     key = '#'.join([str(model.VERSION), user])
     page = memcache.get(key)
