@@ -29,12 +29,18 @@ import model
 import parser
 import refresh_user
 
+class UserNotFound(Exception):
+  pass
+
+class MismatchedEvent(Exception):
+  pass
+
 def RenderPage(user, eventid):
   spojuser = model.SpojUser.get_by_key_name(user)
   if eventid is not None:
     events = model.Event.get_by_id(int(eventid))
     if user != events.user:
-      raise Exception()
+      raise MismatchedEvent()
     event_list = events.event_list
   else:
     event_list = []
@@ -42,7 +48,10 @@ def RenderPage(user, eventid):
   if (spojuser is None or
       spojuser.version is None or
       spojuser.version < model.VERSION):
-    spojuser, refresh_info = refresh_user.RefreshUser().refresh(user)
+    answer = refresh_user.RefreshUser().refresh(user)
+    if answer is None:
+      raise UserNotFound()
+    spojuser, refresh_info = answer
     logging.info(refresh_info)
 
   path = utils.LoadTemplate('user.html')
@@ -63,36 +72,44 @@ def RenderPage(user, eventid):
   }
   return template.render(path, values)
 
+def GetUserPage(user, eventid):
+  try:
+    key_list = [str(model.VERSION), user]
+    if eventid is not None:
+      key_list.append(eventid)
+    key = '#'.join(key_list)
+    page = memcache.get(key)
+    if page is not None:
+      logging.info('Retrieving user %s, event %s from memcache.', user, eventid)
+      return page, 200
+    else:
+      logging.info('Rendering user %s, event %s.', user, eventid)
+      page = RenderPage(user, eventid)
+      expires = 30 * 60
+      memcache.add(key, page, expires)
+      return page, 200
+  except UserNotFound:
+    return 'User not found.', 404
+  except MismatchedEvent:
+    return 'Bad URL.', 404
+
 class UserPage(webapp.RequestHandler):
   def head(self, user):
     self.response.out.write('')
 
   def get(self, user):
-    key = '#'.join([str(model.VERSION), user])
-    page = memcache.get(key)
-    if page is not None:
-      self.response.out.write(page)
-    else:
-      page = RenderPage(user, None)
-      expires = 30 * 60
-      memcache.add(key, page, expires)
-      self.response.out.write(page)
+    page, status = GetUserPage(user, None)
+    self.response.set_status(status)
+    self.response.out.write(page)
 
 class UserEventPage(webapp.RequestHandler):
   def head(self, user, eventid):
     self.response.out.write('')
 
   def get(self, user, eventid):
-    key = '#'.join([str(model.VERSION), user, eventid])
-    page = memcache.get(key)
-    if page is not None:
-      self.response.out.write(page)
-    else:
-      page = RenderPage(user, eventid)
-      expires = 30 * 60
-      memcache.add(key, page, expires)
-      self.response.out.write(page)
-
+    page, status = GetUserPage(user, eventid)
+    self.response.set_status(status)
+    self.response.out.write(page)
 
 if __name__ == '__main__':
   main()
