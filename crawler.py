@@ -92,6 +92,7 @@ def CrawlUser(users):
     return
   logging.info('Refreshing user %s', users[0])
   user = model.UserPreferences.get_by_key_name(users[0])
+  logging.info('Spoj user %s', user.spoj_user)
   refresh_user.RefreshUser().refresh(user.spoj_user)
   deferred.defer(CrawlUser, users[1:])
 
