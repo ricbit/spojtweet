@@ -32,8 +32,8 @@ def CrawlCountry(country_list):
     deferred.defer(ProblemCrawl, 'http://www.spoj.pl/problems/classical/', [])
     return
   code, name = country_list[0]
+  logging.info('Crawling country: %s', name)
   url = 'http://www.spoj.pl/ranks/users/%s' % code
-  logging.info('parsing %s', name)
   text = urlfetch.fetch(url).content
   user_list = parser.ParseCountryPage(text)
   users = []
@@ -43,6 +43,7 @@ def CrawlCountry(country_list):
   deferred.defer(CrawlCountry, country_list[1:])
 
 def StartCountryCrawl():
+  logging.info('Starting country crawling.')
   country_url = 'http://www.spoj.pl/ranks/countries/'
   country_page = urlfetch.fetch(country_url).content
   country_list = parser.ParseCountryList(country_page)
@@ -50,11 +51,12 @@ def StartCountryCrawl():
 
 def CrawlProblems(problem_list):
   if not problem_list:
+    logging.info('Stopping crawling.')
     info = model.CrawlingInfo(key_name='info', crawling=False)
     info.put()
     return
   code = problem_list[0]
-  logging.info('crawling problem %s', code)
+  logging.info('Crawling problem %s', code)
   problem_url = 'http://www.spoj.pl/ranks/' + code
   problem_page = urlfetch.fetch(problem_url, deadline=60).content
   details = parser.ParseProblemDetails(problem_page)
@@ -63,12 +65,13 @@ def CrawlProblems(problem_list):
   deferred.defer(CrawlProblems, problem_list[1:])
 
 def SaveProblemList(problem_list):
+  logging.info('Saving problem list.')
   problems = model.ProblemList(key_name='classical', problems=problem_list)
   problems.put()
   deferred.defer(CrawlProblems, problem_list)
 
 def ProblemCrawl(url, problem_list):
-  logging.info('crawling %s', url)
+  logging.info('Crawling problem list: %s', url)
   problem_page = urlfetch.fetch(url).content
   next_link, problems = parser.ParseProblemList(problem_page)
   problem_list.extend(problems)
@@ -81,20 +84,21 @@ class CrawlCountryPage(webapp.RequestHandler):
   def get(self):
     info = model.CrawlingInfo(key_name='info', crawling=True)
     info.put()
-    deferred.defer(StartCountryCrawl)
     logging.info('Launched daily crawl.')
+    deferred.defer(StartCountryCrawl)
 
 def CrawlUser(users):
   if not users:
     return
+  logging.info('Refreshing user %s', users[0])
   user = model.UserPreferences.get_by_key_name(users[0])
-  logging.info('Refreshing user %s', user.spoj_user)
   refresh_user.RefreshUser().refresh(user.spoj_user)
   deferred.defer(CrawlUser, users[1:])
 
 class CrawlRegisteredUsers(webapp.RequestHandler):
   def get(self):
+    logging.info('Crawling registered users.')
     query = model.UserPreferences.all(keys_only=True)
     users = [key.name() for key in query.run()]
+    logging.debug('User list: %s', users)
     deferred.defer(CrawlUser, users)
-    logging.info('Crawling registered users.')
