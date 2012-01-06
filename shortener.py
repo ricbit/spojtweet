@@ -16,6 +16,9 @@
 
 __author__ =  'ricbit@google.com (Ricardo Bittencourt)'
 
+from google.appengine.dist import use_library
+use_library('django', '1.2')
+
 from django.utils import simplejson as json
 from google.appengine.api import urlfetch
 

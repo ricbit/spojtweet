@@ -19,7 +19,7 @@ handlers:
 - url: /settings/login
   static_files: login.html
   upload: login.html
-- url: /crawl
+- url: /crawl.*
   script: main.py
   login: admin
 - url: /admin.*

@@ -2,3 +2,6 @@ cron:
 - description: daily refresh of countries and problems.
   url: /crawl
   schedule: every day 00:00
+- description: hourly refresh of registered users.
+  url: /crawl/users
+  schedule: every 1 hours

@@ -49,6 +49,7 @@ app = webapp.WSGIApplication(
            ('/user/([^/]+)/(\d+)', user_page.UserEventPage),
            ('/refresh/([^/]+)', refresh_user.RefreshUserPage),
            ('/crawl', crawler.CrawlCountryPage),
+           ('/crawl/users', crawler.CrawlRegisteredUsers),
            ('/admin', admin.AdminPage),
            ('/admin/keys/(.*?)/(.*?)/', admin.SetKeyPage),
            ('/settings/twitter', settings.TwitterLoginPage),

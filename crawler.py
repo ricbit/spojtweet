@@ -25,6 +25,7 @@ from google.appengine.api import users
 import model
 import parser
 import logging
+import refresh_user
 
 def CrawlCountry(country_list):
   if not country_list:
@@ -81,5 +82,19 @@ class CrawlCountryPage(webapp.RequestHandler):
     info = model.CrawlingInfo(key_name='info', crawling=True)
     info.put()
     deferred.defer(StartCountryCrawl)
-    self.response.out.write('launched')
+    logging.info('Launched daily crawl.')
 
+def CrawlUser(users):
+  if not users:
+    return
+  user = model.UserPreferences.get_by_key_name(users[0])
+  logging.info('Refreshing user %s', user.spoj_user)
+  refresh_user.RefreshUser().refresh(user.spoj_user)
+  deferred.defer(CrawlUser, users[1:])
+
+class CrawlRegisteredUsers(webapp.RequestHandler):
+  def get(self):
+    query = model.UserPreferences.all(keys_only=True)
+    users = [key.name() for key in query.run()]
+    deferred.defer(CrawlUser, users)
+    logging.info('Crawling registered users.')
