@@ -49,15 +49,13 @@ def PostTweet(user, events, short_url):
   twitter.SendTweet(user.key().name(), message)
 
 def PostEvents(spoj_user, events):
+  logging.info('Posting event for spoj user: %s', spoj_user)
   event = model.Event(user=spoj_user, event_list=events)
   key = event.put()
-  logging.info('Event key: %d', key.id())
-  logging.info('Event user: %s', spoj_user)
   short_url = shortener.Shorten(
       'http://spojtweet.appspot.com/user/%s/%d' % (spoj_user, key.id()))
   query = model.UserPreferences.all()
   query.filter('spoj_user', spoj_user)
-  logging.info(short_url)
   for user in query.run():
     deferred.defer(PostTweet, user, events, short_url)
 
@@ -177,7 +175,6 @@ class RefreshUser():
 
   def GenerateEvents(self):
     self.events = events.GenerateEvents(self.old_metadata, self.metadata)
-    logging.info(self.events)
     if self.events:
       deferred.defer(PostEvents, self.user, self.events)
 

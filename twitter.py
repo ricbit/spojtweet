@@ -113,6 +113,8 @@ def TwitterAuth(temp_id, oauth_token, oauth_verifier):
   return access_token['user_id'], preferences.session_id
 
 def SendTweet(twitter_userid, message):
+  logging.info('Posting to user %s the following tweet: %s',
+               twitter_userid, message)
   app_keys = GetAppKeys()
   user_keys = model.OAuthData.get_by_key_name(twitter_userid)
   api = pythontwitter.Api(
