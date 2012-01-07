@@ -10,6 +10,9 @@ handlers:
 - url: /(robots.txt)
   static_files: \1
   upload: robots.txt
+- url: /(spojtweet_bird.jpg)
+  static_files: \1
+  upload: spojtweet_bird.jpg
 - url: /(favicon.ico)
   static_files: \1
   upload: favicon.ico
