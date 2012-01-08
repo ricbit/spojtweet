@@ -47,6 +47,7 @@ app = webapp.WSGIApplication(
           [('/', MainPage),
            ('/user/([^/]+)', user_page.UserPage),
            ('/user/([^/]+)/(\d+)', user_page.UserEventPage),
+           ('/search/user', user_page.SearchUserPage),
            ('/refresh/([^/]+)', refresh_user.RefreshUserPage),
            ('/crawl', crawler.CrawlCountryPage),
            ('/crawl/users', crawler.CrawlRegisteredUsers),

@@ -22,6 +22,9 @@ handlers:
 - url: /(spojtweet.css)
   static_files: \1
   upload: spojtweet.css
+- url: /
+  static_files: root.html
+  upload: root.html
 - url: /settings/login
   static_files: login.html
   upload: login.html

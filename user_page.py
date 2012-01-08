@@ -111,5 +111,9 @@ class UserEventPage(webapp.RequestHandler):
     self.response.set_status(status)
     self.response.out.write(page)
 
+class SearchUserPage(webapp.RequestHandler):
+  def post(self):
+    self.redirect("/user/" + self.request.get('spoj_user'))
+
 if __name__ == '__main__':
   main()

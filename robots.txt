@@ -3,4 +3,5 @@ Disallow: /admin
 Disallow: /settings
 Disallow: /refresh
 Disallow: /crawl
+Disallow: /search
 Disallow: /_ah
