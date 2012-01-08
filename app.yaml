@@ -13,9 +13,9 @@ handlers:
 - url: /(spojtweet_bird.jpg)
   static_files: \1
   upload: spojtweet_bird.jpg
-- url: /(footer.html)
+- url: /(root.html)
   static_files: \1
-  upload: footer.html
+  upload: root.html
 - url: /(favicon.ico)
   static_files: \1
   upload: favicon.ico

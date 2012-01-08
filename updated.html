@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="/spojtweet.css" rel="stylesheet" type="text/css">
-<title>SpojTweet - {{name|striptags}}</title>
+<title>SpojTweet</title>
 </head>
 <body>
 <header>
@@ -15,8 +15,8 @@
 <section>
 <h1>Congratulations!</h1>
 <p>Your settings have been updated.</p>
-<p>Twitter user @{{twitter_user}} will tweet every time
-SPOJ user {{spoj_user}} has:</p>
+<p>Twitter user <b>@{{twitter_user}}</b> will tweet every time
+SPOJ user <b>{{spoj_user|striptags}}</b> has:</p>
 <ul>
 {% for action in actions %}
 <li>{{action}}</li>
