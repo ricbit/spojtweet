@@ -1,8 +1,22 @@
+<!doctype html>
 <html>
+<head>
+<meta charset="UTF-8">
+<link href="/spojtweet.css" rel="stylesheet" type="text/css">
+<title>SpojTweet - {{name|striptags}}</title>
+</head>
 <body>
+<header>
+  <div class="header_box">
+    <b>SpojTweet</b>
+  </div>
+</header>
+<div class="content">
+<section>
+<h1>Congratulations!</h1>
 <p>Your settings have been updated.</p>
 <p>Twitter user @{{twitter_user}} will tweet every time
-Spoj user {{spoj_user}} has:</p>
+SPOJ user {{spoj_user}} has:</p>
 <ul>
 {% for action in actions %}
 <li>{{action}}</li>
@@ -12,5 +26,12 @@ Spoj user {{spoj_user}} has:</p>
 </ul>
 <p><a href="/settings">Go back to settings page</a> | 
 <a href="/user/{{spoj_user}}">Go to your user page</a></p>
+</section>
+</div>
+<footer>
+  <a href="/">About SpojTweet</a> |
+  <a href="http://code.google.com/p/spojtweet/">Source code</a> |
+  <a href="http://code.google.com/p/spojtweet/issues/list">Report a bug</a>
+</footer>
 </body>
 </html>
