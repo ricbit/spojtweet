@@ -94,7 +94,7 @@ body {
 section {
   margin: 15px;
 }
-.user {
+.user, .title {
   padding: 15px;
   background-color: whiteSmoke;
   border-bottom: 1px solid #DDD;
@@ -119,6 +119,9 @@ h2 {
 .event p {
   margin: 0px;
 }
-h1 {
+.title {
   margin-bottom: 1.5em;
+}
+.settings_button {
+  margin-top: 1em;
 }

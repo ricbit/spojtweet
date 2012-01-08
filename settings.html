@@ -1,10 +1,19 @@
+<!doctype html>
 <html>
 <head>
-<style type='text/css'>
-</style>
+<meta charset="UTF-8">
+<link href="/spojtweet.css" rel="stylesheet" type="text/css">
+<title>SpojTweet - {{name|striptags}}</title>
 </head>
 <body>
-  <p><b>SpojTweet Settings</b></p>
+<header>
+  <div class="header_box">
+     <b>SpojTweet</b>
+  </div>
+</header>
+<div class="content">
+<section>
+<h1>SpojTweet Settings</h1>
   <form action="settings/update" method="post">
     <table><tr>
       <td>Twitter username:</td>
@@ -13,14 +22,21 @@
       <td>Spoj username:</td>
       <td><input type="text" name="spoj_user" value="{{spoj_username}}"></td>
     </tr><tr>
-      <td>Tweet when I solve a new problem.</td>
+      <td>Tweet when I solve a new problem:</td>
       <td><input type="checkbox" name="send_solution" {{send_solution}}></td>
     </tr><tr>
-      <td>Tweet when I earn a new badge.</td>
+      <td>Tweet when I earn a new badge:</td>
       <td><input type="checkbox" name="send_badge" {{send_badge}}></td>
     </tr></table>
-    <input type="submit" value="Update">
+    <input class="settings_button" type="submit" value="Update">
+    <p><small>You can get back and change your settings at any time.</small></p>
   </form>
+</section>
 </div>
+<footer>
+  <a href="/">About SpojTweet</a> |
+  <a href="http://code.google.com/p/spojtweet/">Source code</a> |
+  <a href="http://code.google.com/p/spojtweet/issues/list">Report a bug</a>
+</footer>
 </body>
 </html>
