@@ -76,8 +76,9 @@ class RefreshUser():
       if self.update_events:
         self.Measure(self.GenerateEvents, 'Generate Events')
       self.Measure(self.WriteDatastore, 'Write Datastore Time')
-      self.log += ('Finished updating <a href="/user/%s">user %s</a>' %
-                   (user, user))
+      self.log += (
+          'Finished updating <a href="/user/%s?nocache=1">user %s</a>' %
+          (user, user))
       return self.spojuser, self.log
     except RefreshException:
       pass
@@ -173,13 +174,16 @@ class RefreshUser():
     self.language_chart = self._BuildLanguageChart(language_count)
 
   def _BuildLanguageChart(self, language_count):
-    counts = ','.join(str(i) for i in language_count.itervalues())
-    names = '|'.join(language_codes.LANGUAGE_CODES.get(i, i)
-                     for i in language_count.iterkeys())
+    languages = language_count.items()
+    languages.sort(key=lambda x: x[1], reverse=True)
+    counts = ','.join(str(i[1]) for i in languages)
+    names = '|'.join(language_codes.LANGUAGE_CODES.get(i[0], i[0])
+                     for i in languages)
     url = {'chs': '350x150',
            'chd': 't:%s' % counts,
            'chl': '%s' % names,
-           'cht': 'p3'}
+           'cht': 'p3',
+           'chco': 'FFFF10,505050,E6B43C'}
     return 'http://chart.apis.google.com/chart?' + urllib.urlencode(url) 
 
   def GrantBadges(self):
