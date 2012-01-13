@@ -18,6 +18,7 @@ __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 
 import datetime
 import logging
+import urllib
 
 from google.appengine.api import urlfetch
 from google.appengine.ext import db
@@ -26,6 +27,7 @@ from google.appengine.ext import webapp
 
 import badge
 import events
+import language_codes
 import model
 import parser
 import shortener
@@ -155,6 +157,7 @@ class RefreshUser():
     self.metadata = badge.UserMetadata()
     self.metadata.problems = []
     date_map = {}
+    language_count = {}
     for code, properties in self.problems.iteritems():
       # Skip problems not in classical set.
       if code not in self.classical:
@@ -162,8 +165,22 @@ class RefreshUser():
       properties.sort()
       problem = self._EvalSingleProblem(code, properties, date_map)
       self.metadata.problems.append(problem)
+      if problem.solved:
+        for language in problem.languages:
+          language_count[language] = 1 + language_count.get(language, 0)
     self.metadata.max_attempts_day = (
         max(date_map.values()) if date_map else None)
+    self.language_chart = self._BuildLanguageChart(language_count)
+
+  def _BuildLanguageChart(self, language_count):
+    counts = ','.join(str(i) for i in language_count.itervalues())
+    names = '|'.join(language_codes.LANGUAGE_CODES.get(i, i)
+                     for i in language_count.iterkeys())
+    url = {'chs': '350x150',
+           'chd': 't:%s' % counts,
+           'chl': '%s' % names,
+           'cht': 'p3'}
+    return 'http://chart.apis.google.com/chart?' + urllib.urlencode(url) 
 
   def GrantBadges(self):
     self.metadata.country = self.country
@@ -183,7 +200,8 @@ class RefreshUser():
         key_name=self.user, name=self.name, country=self.country,
         badges=self.metadata.granted_badges,
         last_update=datetime.datetime.now(),
-        version=model.VERSION)
+        version=model.VERSION,
+        language_chart=self.language_chart)
     user_rpc = db.put_async(self.spojuser)
     if self.update_events:
       metadata = model.SpojUserMetadata(

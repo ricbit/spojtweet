@@ -68,18 +68,19 @@ def RenderPage(user, eventid):
     'name': spojuser.name,
     'country': spojuser.country.title(),
     'badges': badges,
-    'events': event_list
+    'events': event_list,
+    'language_chart': spojuser.language_chart
   }
   return template.render(path, values)
 
-def GetUserPage(user, eventid):
+def GetUserPage(user, eventid, nocache):
   try:
     key_list = [str(model.VERSION), user]
     if eventid is not None:
       key_list.append(eventid)
     key = '#'.join(key_list)
     page = memcache.get(key)
-    if page is not None:
+    if page is not None and not nocache:
       logging.info('Retrieving user %s, event %s from memcache.', user, eventid)
       return page, 200
     else:
@@ -98,7 +99,7 @@ class UserPage(webapp.RequestHandler):
     self.response.out.write('')
 
   def get(self, user):
-    page, status = GetUserPage(user, None)
+    page, status = GetUserPage(user, None, self.request.get('nocache'))
     self.response.set_status(status)
     self.response.out.write(page)
 
@@ -107,7 +108,7 @@ class UserEventPage(webapp.RequestHandler):
     self.response.out.write('')
 
   def get(self, user, eventid):
-    page, status = GetUserPage(user, eventid)
+    page, status = GetUserPage(user, eventid, self.request.get('nocache'))
     self.response.set_status(status)
     self.response.out.write(page)
 

@@ -23,7 +23,7 @@ from google.appengine.ext import db
 import badge
 import events
 
-VERSION = 8
+VERSION = 10
 
 class UserProblem(object):
   def __init__(self, code,
@@ -80,6 +80,7 @@ class SpojUser(db.Model):
   last_update = db.DateTimeProperty(indexed=False)
   badges = GenericListProperty(badge.Badge)
   version = db.IntegerProperty(indexed=False)
+  language_chart = db.TextProperty(indexed=False)
 
   def __str__(self):
     return ",".join([self.name, self.country,
