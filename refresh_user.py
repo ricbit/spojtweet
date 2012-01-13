@@ -168,7 +168,8 @@ class RefreshUser():
       self.metadata.problems.append(problem)
       if problem.solved:
         for language in problem.languages:
-          language_count[language] = 1 + language_count.get(language, 0)
+          langcode = language_codes.LANGUAGE_CONVERT.get(language, language)
+          language_count[langcode] = 1 + language_count.get(langcode, 0)
     self.metadata.max_attempts_day = (
         max(date_map.values()) if date_map else None)
     self.language_chart = self._BuildLanguageChart(language_count)

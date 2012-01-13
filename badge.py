@@ -21,11 +21,8 @@ __author__ = [
 
 import datetime
 from country_demonyms import COUNTRY_DEMONYMS
+from language_codes import LANGUAGE_CONVERT
 from language_codes import LANGUAGE_CODES
-
-LANGUAGE_CONVERT = {
-  'C99' : 'C'
-}
 
 class Badge(object):
   BRONZE = 3

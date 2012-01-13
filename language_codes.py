@@ -16,10 +16,15 @@
 
 __author__ =  'ricbit@google.com (Ricardo Bittencourt)'
 
+LANGUAGE_CONVERT = {
+    'C99' : 'C'
+}
+
 LANGUAGE_CODES = {
   'HAS' : 'Haskell',
   'TEX' : 'Text',
   'C'   : 'C',
+  'C99' : 'C',
   'C++' : 'C++',
   'PYT' : 'Python',
   'ASM' : 'Assembly',
