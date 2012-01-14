@@ -204,27 +204,20 @@ class RefreshUser():
 
   def _BuildTimeline(self, timeline):
     timeline.sort()
-    start_date = timeline[0]
-    end_date = timeline[-1]
-    start_year = timeline[0].year
-    end_year = timeline[-1].year
-    dates = []
-    problems = []
-    count = 0
-    for date in timeline:
-      count += 1
+    start_date, end_date = timeline[0], timeline[-1]
+    start_year, end_year = start_date.year, end_date.year
+    dates, problems = [], []
+    for count, date in enumerate(timeline):
       dates.append((date - start_date).days)
-      problems.append(count)
-    dates = dates[::len(dates)/300 + 1]
-    problems = problems[::len(problems)/300 + 1]
-    line = ','.join([self._Encode(dates), self._Encode(problems)])
-    minval = timeline[0]
-    maxval = timeline[-1]
+      problems.append(count + 1)
+    trim_dates = dates[::len(dates)/300 + 1] + dates[-1]
+    trim_problems = problems[::len(problems)/300 + 1] + problems[-1]
+    line = ','.join([self._Encode(trim_dates), self._Encode(trim_problems)])
     axisticks = [] 
     years = range(start_year + 1, end_year + 1) 
     for year in years:
       date = datetime.datetime(year, 1, 1)
-      scaled = (date - minval).days * 100 / (maxval - minval).days
+      scaled = (date - start_date).days * 100 / (end_date - start_date).days
       axisticks.append(scaled)
     url = {'chs': '350x150',
            'chd': 'e:%s' % line,
