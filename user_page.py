@@ -69,7 +69,8 @@ def RenderPage(user, eventid):
     'country': spojuser.country.title(),
     'badges': badges,
     'events': event_list,
-    'language_chart': spojuser.language_chart
+    'language_chart': spojuser.language_chart,
+    'timeline': spojuser.timeline
   }
   return template.render(path, values)
 

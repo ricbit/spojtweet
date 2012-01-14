@@ -18,6 +18,7 @@ __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 
 import datetime
 import logging
+import string
 import urllib
 
 from google.appengine.api import urlfetch
@@ -159,6 +160,7 @@ class RefreshUser():
     self.metadata.problems = []
     date_map = {}
     language_count = {}
+    timeline = []
     for code, properties in self.problems.iteritems():
       # Skip problems not in classical set.
       if code not in self.classical:
@@ -170,9 +172,11 @@ class RefreshUser():
         for language in problem.languages:
           langcode = language_codes.LANGUAGE_CONVERT.get(language, language)
           language_count[langcode] = 1 + language_count.get(langcode, 0)
+        timeline.append(problem.first_ac_date)
     self.metadata.max_attempts_day = (
         max(date_map.values()) if date_map else None)
     self.language_chart = self._BuildLanguageChart(language_count)
+    self.timeline = self._BuildTimeline(timeline)
 
   def _BuildLanguageChart(self, language_count):
     languages = language_count.items()
@@ -185,6 +189,51 @@ class RefreshUser():
            'chl': '%s' % names,
            'cht': 'p3',
            'chco': 'FFFF10,505050,E6B43C'}
+    return 'http://chart.apis.google.com/chart?' + urllib.urlencode(url)
+    
+  def _Encode(self, series):
+    code = ''.join([string.uppercase, string.lowercase, string.digits, '-.'])
+    output = []
+    minval = series[0]
+    maxval = series[-1]
+    for data in series:
+      scaled = (data - minval) * 4095 / (maxval - minval)
+      output.append(code[scaled / 64])
+      output.append(code[scaled % 64])
+    return ''.join(output)
+
+  def _BuildTimeline(self, timeline):
+    timeline.sort()
+    start_date = timeline[0]
+    end_date = timeline[-1]
+    start_year = timeline[0].year
+    end_year = timeline[-1].year
+    dates = []
+    problems = []
+    count = 0
+    for date in timeline:
+      count += 1
+      dates.append((date - start_date).days)
+      problems.append(count)
+    line = ','.join([self._Encode(dates), self._Encode(problems)])
+    minval = timeline[0]
+    maxval = timeline[-1]
+    axisticks = [] 
+    years = range(start_year + 1, end_year + 1) 
+    for year in years:
+      date = datetime.datetime(year, 1, 1)
+      scaled = (date - minval).days * 100 / (maxval - minval).days
+      axisticks.append(scaled)
+    url = {'chs': '350x150',
+           'chd': 'e:%s' % line,
+           'chxt': 'x,y',
+           'chxr': '1,%d,%d' % (0, count),
+           'chxp': '0,%s' % ','.join(str(i) for i in axisticks),
+           'chxl': '0:|%s' % '|'.join(str(i) for i in years),
+           'chxtc': '0,-130',
+           'chxs': '0,505050,13,0,lt,D0D0D0,505050|'
+                   '1,505050,13,0,lt,505050,505050',
+           'cht': 'lxy'}
     return 'http://chart.apis.google.com/chart?' + urllib.urlencode(url) 
 
   def GrantBadges(self):
@@ -206,7 +255,8 @@ class RefreshUser():
         badges=self.metadata.granted_badges,
         last_update=datetime.datetime.now(),
         version=model.VERSION,
-        language_chart=self.language_chart)
+        language_chart=self.language_chart,
+        timeline=self.timeline)
     user_rpc = db.put_async(self.spojuser)
     if self.update_events:
       metadata = model.SpojUserMetadata(
