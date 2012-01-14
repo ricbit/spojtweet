@@ -215,6 +215,8 @@ class RefreshUser():
       count += 1
       dates.append((date - start_date).days)
       problems.append(count)
+    dates = dates[::len(dates)/300 + 1]
+    problems = problems[::len(problems)/300 + 1]
     line = ','.join([self._Encode(dates), self._Encode(problems)])
     minval = timeline[0]
     maxval = timeline[-1]
