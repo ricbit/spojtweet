@@ -41,12 +41,12 @@ def ParseStatusPage(text):
   match = NAME_RE.search(text)
   if match is None:
     raise ParseError()
-  name = Unquote(match.group(1).strip().decode('iso-8859-1'))
+  name = Unquote(match.group(1).strip().decode('iso-8859-2'))
 
   match = COUNTRY_RE.search(text)
   if match is None:
     raise ParseError()
-  country = match.group(1).strip().decode('iso-8859-1')
+  country = match.group(1).strip().decode('iso-8859-2')
 
   return name, country
 
@@ -66,7 +66,7 @@ def ParseDetailsPage(usertext):
 
 def ParseCountryList(text):
   country_list = COUNTRY_LIST_RE.findall(text)
-  return [(code, name.decode('iso-8859-1')) for code, name in country_list]
+  return [(code, name.decode('iso-8859-2')) for code, name in country_list]
 
 def ParseCountryPage(text):
   user_list = USER_LIST_RE.findall(text.replace('\n', ''))
@@ -85,7 +85,7 @@ def ParseProblemDetails(text):
   match = PROBLEM_STATS_RE.search(text)
   if match is None:
     raise ParseError()
-  details = {'name': match.group(1).decode('iso-8859-1')}
+  details = {'name': match.group(1).decode('iso-8859-2')}
   stats = ['users_accepted', 'submissions', 'accepted', 'wrong_answer',
            'compile_error', 'runtime_error', 'time_limit_exceeded']
   regexp = '(?s)lightrow\">' + ''.join('.*?(?P<%s>\d+)' % s for s in stats)
