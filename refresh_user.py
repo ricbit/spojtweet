@@ -196,8 +196,11 @@ class RefreshUser():
     output = []
     minval = series[0]
     maxval = series[-1]
+    interval = maxval - minval
+    if not interval:
+      interval = 1
     for data in series:
-      scaled = (data - minval) * 4095 / (maxval - minval)
+      scaled = (data - minval) * 4095 / interval
       output.append(code[scaled / 64])
       output.append(code[scaled % 64])
     return ''.join(output)
@@ -210,20 +213,20 @@ class RefreshUser():
     for count, date in enumerate(timeline):
       dates.append((date - start_date).days)
       problems.append(count + 1)
-    trim_dates = dates[::len(dates)/300 + 1] + dates[-1]
-    trim_problems = problems[::len(problems)/300 + 1] + problems[-1]
+    trim_dates = dates[::len(dates)/300 + 1] + [dates[-1]]
+    trim_problems = problems[::len(problems)/300 + 1] + [problems[-1]]
     line = ','.join([self._Encode(trim_dates), self._Encode(trim_problems)])
-    axisticks = [] 
+    axis_ticks = [] 
     years = range(start_year + 1, end_year + 1) 
     for year in years:
       date = datetime.datetime(year, 1, 1)
       scaled = (date - start_date).days * 100 / (end_date - start_date).days
-      axisticks.append(scaled)
+      axis_ticks.append(scaled)
     url = {'chs': '350x150',
            'chd': 'e:%s' % line,
            'chxt': 'x,y',
            'chxr': '1,%d,%d' % (0, count),
-           'chxp': '0,%s' % ','.join(str(i) for i in axisticks),
+           'chxp': '0,%s' % ','.join(str(i) for i in axis_ticks),
            'chxl': '0:|%s' % '|'.join(str(i) for i in years),
            'chxtc': '0,-130',
            'chxs': '0,505050,13,0,lt,D0D0D0,505050|'
