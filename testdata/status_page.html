@@ -1,0 +1,727 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+
+<title>Sphere Online Judge (SPOJ)  - User marspeople</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2" id="metatag">
+<META NAME="Keywords" CONTENT="programming, language, algorithm, spoj, contest, contester, Java, C#, Pascal, C, C++, python, ruby, caml, ocaml, perl, haskell, lisp, prolog, fortran, assembler, asembler, functional, online, judge, problem, problemset, ACM">
+
+<link href="/gfx/favicon.png" rel="shortcut icon" type="image/x-icon">
+<link href="/rss/" rel="alternate" type="application/rss+xml" title="RSS Feed">
+<link href="/themes/common.css" rel="stylesheet" type="text/css" id="theme">
+<link href="/style.css" rel="stylesheet" type="text/css" id="theme">
+<link href="/themes/tooltips.css" rel="stylesheet" type="text/css" id="theme">
+<script type='text/javascript' src='/gfx/jquery.js'></script>
+<script type="text/javascript" src="/gfx/jquery.timers.js"></script>
+<script type="text/javascript" src="/gfx/jquery.cookie.js"></script> 
+<style type="text/css">
+<!--
+.maintable {width: 855px;} 
+-->
+</style>
+<script type="text/javascript" language="javascript">
+<!--
+function UnCryptMailto(s) {
+	var n=0;
+	var r="";
+	for(var i=0;i<s.length;i++) {		
+		n=s.charCodeAt(i); 
+		if (n>=8364) {n = 128;}
+		r += String.fromCharCode(n+(2));	
+	}
+	return r;
+}
+function linkTo_UnCryptMailto(s)	{
+	location.href=UnCryptMailto(s);
+}
+// -->
+</script>
+
+<script type="text/javascript">
+function recordOutboundLink(link, category, action) {
+  try {
+    var pageTracker=_gat._getTracker("UA-XXXXX-X");
+    pageTracker._trackEvent(category, action);
+    setTimeout('document.location = "' + link.href + '"', 100)
+  }catch(err){}
+}
+</script>
+
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushCpp.js"></script>
+	<script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushCSharp.js"></script>
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushJava.js"></script>
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushPhp.js"></script>
+    <script type="text/javascript" src="/gfx/SyntaxHighlighter/scripts/shBrushPython.js"></script>
+	<link type="text/css" rel="stylesheet" href="/gfx/SyntaxHighlighter/styles/shCore.css"/>
+	<link type="text/css" rel="stylesheet" href="/gfx/SyntaxHighlighter/styles/shThemeDefault.css"/>
+	
+	<script type="text/javascript">
+		SyntaxHighlighter.all();
+	</script>
+	
+
+		<meta property="og:type" content="spoj-pl:problem"/>
+	<meta property="og:site_name" content="Spoj.pl"/>
+    <meta property="og:image" content="http://www.spoj.pl/gfx/spoj-fb.jpg"/>
+
+</head>
+<body>
+<center>
+<table cellpadding="10" cellspacing="0" class="maintable" id="maintable">
+<tr>
+    <td colspan="2" class="header">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+		<td class="headerleft"/>
+		<td class="headercenter">
+<h1><IMG alt="Sphere Online Judge" title="Sphere Online Judge" src="/gfx/sphere-spoj-small.png" border=0 style="margin-top:-4px;margin-bottom:-4px"></h1>
+
+		<div style="position: relative; width: 807px;">
+		<div style="position: absolute; left: -192px; top: 8px;"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-4453360425583535";
+/* Spoj - wiezowiec */
+google_ad_slot = "2703472077";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+		</div>
+		</td>
+		<td class="headerright"/>
+	</tr>
+	</table>
+    </td>
+</tr>
+<tr><td class="menu" width="92" valign="top">
+
+	
+<div class="section">
+	
+<form name="login"  action="http://www.spoj.pl/users/marspeople/" method="post" 
+onsubmit="if(document.login.ssl.checked) document.login.action='https://www.spoj.pl/users/marspeople/'" style="margin-bottom: 18px"> 
+User: <input name="login_user" type="text" style="width: 85px;" class="form"><BR>
+Password: <input name="password" type="password" style="width: 85px;" class="form"><BR>
+<div style="font-size: 10px;">
+<script language="javascript" type="text/javascript">
+<!--
+    document.write('<input type="checkbox" name="ssl" id="ssl" /><label for="ssl">secure</label><br/>');
+//-->
+</script>
+<div title="Keep me signed in for today">
+<input type="checkbox" name="autologin" value="1" id="autologin" /><label for="autologin">for today</label>
+</div>
+<!--Keep me signed in for today-->
+</div>
+<input name="submit" type="submit" value="Log In" class="button" style="width: 85px; margin-bottom: 10px;">
+
+</form>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	if( $.cookie('ssl') == '1' ){
+		$("#ssl").attr('checked', true);
+	}
+	$("#ssl").change(function(){
+		if($(this).is(':checked')){
+			$.cookie('ssl', '1');
+		} else {
+			$.cookie('ssl', '0');
+		}
+	});
+});
+</script>
+
+</div>
+<div class="menucmd"><a href="/register">register</a><br><a href="/tutorials">tutorials</a><br><br><a href="/status">status</a><br><a href="/submit">submit</a><br><a href="/problems/classical/">problems</a><br><a href="/search">search</a><br><br><a href="/">news</a><br><a href="/contests">contests</a><br><a href="/ranks/">ranks</a><br><br><a href="/forum">forum</a><br><a href="/tools">tools</a><br><a href="/credits">credits</a><br><hr></div><a href="/problems/classical/"></a><br>
+
+	<div class="time">
+Server time:</div>
+<div class="time">
+2012-01-14
+<br>
+<b>20 : 58 : 34</b>
+</div>
+
+</td><td style="width: 748px; padding:0px;" valign="top" class="content0">
+        <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+                <td style="padding:0px;" colspan="2"><center>
+                                
+                </center></td>
+        </tr>
+        <tr>
+                <td class="content" width="99%" style="padding: 10px"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-4453360425583535";
+/* Spoj - baner gĂłrny */
+google_ad_slot = "5796055248";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<H3> Marcelo Galv&#227;o Póvoa's user data </H3>
+
+<p align="center"><b>Current world rank: <a href="/ranks/users/start=200">#227</a></b><br><br>
+(72.1 points)</p>
+<p>
+<table cellspacing="10" align="center">
+<tr>
+    <td align="right"><i>Username:</i></td>
+    <td align="left"><i><font color="brown">marspeople</font></i></td>
+</tr>
+<tr>
+    <td align="right">Country:</td>
+    <td>BRAZIL</td>
+</tr>
+<tr>
+    <td align="right">Institution:</td>
+    <td>IC - Unicamp</td>
+</tr>
+<tr>
+    <td  align="right">Motto/URL:</td>
+    <td><a href="#" onclick="this.href='http://www.students.ic.unicamp.br/~ra082115'" onmouseover="this.href='http://www.students.ic.unicamp.br/~ra082115'">http://www.students.ic.unicamp.br/~ra082115</a></td>
+</tr>
+
+
+
+
+</table>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4453360425583535";
+/* Spoj - baner gĂłrny */
+google_ad_slot = "5796055248";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<p/>
+<table class="problems" width="90%">
+<tr class="row">
+<td>Problems solved</td>
+<td>Solutions submitted</td>
+<td>Solutions accepted</td>
+<td>Wrong Answer</td>
+<td>Compile Error</td>
+<td>Runtime Error</td>
+<td>Time Limit Exceeded</td>
+</tr>
+<tr class="lightrow">
+<td><b>292</b></td>
+<td>1363</td>
+<td>609</td>
+<td>419</td>
+<td>28</td>
+<td>79</td>
+<td>227</td>
+</tr>
+</table>
+<p>
+<a href="/status/marspeople/">History of submissions</a><br>
+(<a href="/status/marspeople/signedlist/">plaintext version</a>)</p>
+
+<p align="left">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>List of solved classical problems:</b>
+<br>
+<table width="91%" align="center">
+<tr>
+<td align="left" width="14%"><a href="/status/ABCDEF,marspeople/">ABCDEF</a></td>
+<td align="left" width="14%"><a href="/status/BOOKS1,marspeople/">BOOKS1</a></td>
+<td align="left" width="14%"><a href="/status/CZ_PROB1,marspeople/">CZ_PROB1</a></td>
+<td align="left" width="14%"><a href="/status/GNY07E,marspeople/">GNY07E</a></td>
+<td align="left" width="14%"><a href="/status/MAYA,marspeople/">MAYA</a></td>
+<td align="left" width="14%"><a href="/status/PLONK,marspeople/">PLONK</a></td>
+<td align="left" width="14%"><a href="/status/SCYPHER,marspeople/">SCYPHER</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ABSYS,marspeople/">ABSYS</a></td>
+<td align="left" width="14%"><a href="/status/BOXES,marspeople/">BOXES</a></td>
+<td align="left" width="14%"><a href="/status/DANGER,marspeople/">DANGER</a></td>
+<td align="left" width="14%"><a href="/status/GNY07F,marspeople/">GNY07F</a></td>
+<td align="left" width="14%"><a href="/status/MAZE,marspeople/">MAZE</a></td>
+<td align="left" width="14%"><a href="/status/PLSEARCH,marspeople/">PLSEARCH</a></td>
+<td align="left" width="14%"><a href="/status/SEQ,marspeople/">SEQ</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ACODE,marspeople/">ACODE</a></td>
+<td align="left" width="14%"><a href="/status/BRCKTS,marspeople/">BRCKTS</a></td>
+<td align="left" width="14%"><a href="/status/DEPOSIT,marspeople/">DEPOSIT</a></td>
+<td align="left" width="14%"><a href="/status/GNY07H,marspeople/">GNY07H</a></td>
+<td align="left" width="14%"><a href="/status/MCHAOS,marspeople/">MCHAOS</a></td>
+<td align="left" width="14%"><a href="/status/POKER,marspeople/">POKER</a></td>
+<td align="left" width="14%"><a href="/status/SERVICE,marspeople/">SERVICE</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ACPC10E,marspeople/">ACPC10E</a></td>
+<td align="left" width="14%"><a href="/status/BRIDGES2,marspeople/">BRIDGES2</a></td>
+<td align="left" width="14%"><a href="/status/DFLOOR,marspeople/">DFLOOR</a></td>
+<td align="left" width="14%"><a href="/status/GREEDULM,marspeople/">GREEDULM</a></td>
+<td align="left" width="14%"><a href="/status/MCOINS,marspeople/">MCOINS</a></td>
+<td align="left" width="14%"><a href="/status/POLEVAL,marspeople/">POLEVAL</a></td>
+<td align="left" width="14%"><a href="/status/SHOP,marspeople/">SHOP</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ACS,marspeople/">ACS</a></td>
+<td align="left" width="14%"><a href="/status/BROKEN,marspeople/">BROKEN</a></td>
+<td align="left" width="14%"><a href="/status/DIV15,marspeople/">DIV15</a></td>
+<td align="left" width="14%"><a href="/status/GS,marspeople/">GS</a></td>
+<td align="left" width="14%"><a href="/status/MICEMAZE,marspeople/">MICEMAZE</a></td>
+<td align="left" width="14%"><a href="/status/POLYEQ,marspeople/">POLYEQ</a></td>
+<td align="left" width="14%"><a href="/status/SHPATH,marspeople/">SHPATH</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ACT,marspeople/">ACT</a></td>
+<td align="left" width="14%"><a href="/status/BROUL,marspeople/">BROUL</a></td>
+<td align="left" width="14%"><a href="/status/DIVSUM,marspeople/">DIVSUM</a></td>
+<td align="left" width="14%"><a href="/status/GSS1,marspeople/">GSS1</a></td>
+<td align="left" width="14%"><a href="/status/MINCOUNT,marspeople/">MINCOUNT</a></td>
+<td align="left" width="14%"><a href="/status/PON,marspeople/">PON</a></td>
+<td align="left" width="14%"><a href="/status/SQDANCE,marspeople/">SQDANCE</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ADDREV,marspeople/">ADDREV</a></td>
+<td align="left" width="14%"><a href="/status/BRPAR,marspeople/">BRPAR</a></td>
+<td align="left" width="14%"><a href="/status/DOCTOR,marspeople/">DOCTOR</a></td>
+<td align="left" width="14%"><a href="/status/GSS3,marspeople/">GSS3</a></td>
+<td align="left" width="14%"><a href="/status/MINVEST,marspeople/">MINVEST</a></td>
+<td align="left" width="14%"><a href="/status/POTHOLE,marspeople/">POTHOLE</a></td>
+<td align="left" width="14%"><a href="/status/SQRBR,marspeople/">SQRBR</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/AGGRCOW,marspeople/">AGGRCOW</a></td>
+<td align="left" width="14%"><a href="/status/BST,marspeople/">BST</a></td>
+<td align="left" width="14%"><a href="/status/DSUBSEQ,marspeople/">DSUBSEQ</a></td>
+<td align="left" width="14%"><a href="/status/GUESSING,marspeople/">GUESSING</a></td>
+<td align="left" width="14%"><a href="/status/MIXTURES,marspeople/">MIXTURES</a></td>
+<td align="left" width="14%"><a href="/status/POUR1,marspeople/">POUR1</a></td>
+<td align="left" width="14%"><a href="/status/SSORT,marspeople/">SSORT</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ALL,marspeople/">ALL</a></td>
+<td align="left" width="14%"><a href="/status/BUGLIFE,marspeople/">BUGLIFE</a></td>
+<td align="left" width="14%"><a href="/status/DTT,marspeople/">DTT</a></td>
+<td align="left" width="14%"><a href="/status/HANGOVER,marspeople/">HANGOVER</a></td>
+<td align="left" width="14%"><a href="/status/MKJUMPS,marspeople/">MKJUMPS</a></td>
+<td align="left" width="14%"><a href="/status/PPATH,marspeople/">PPATH</a></td>
+<td align="left" width="14%"><a href="/status/STABLEMP,marspeople/">STABLEMP</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/AMBM,marspeople/">AMBM</a></td>
+<td align="left" width="14%"><a href="/status/BWHEELER,marspeople/">BWHEELER</a></td>
+<td align="left" width="14%"><a href="/status/DYZIO,marspeople/">DYZIO</a></td>
+<td align="left" width="14%"><a href="/status/HASHIT,marspeople/">HASHIT</a></td>
+<td align="left" width="14%"><a href="/status/MKLABELS,marspeople/">MKLABELS</a></td>
+<td align="left" width="14%"><a href="/status/PQUEUE,marspeople/">PQUEUE</a></td>
+<td align="left" width="14%"><a href="/status/STAMPS,marspeople/">STAMPS</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/AMCODES,marspeople/">AMCODES</a></td>
+<td align="left" width="14%"><a href="/status/CANDY,marspeople/">CANDY</a></td>
+<td align="left" width="14%"><a href="/status/EASYPROB,marspeople/">EASYPROB</a></td>
+<td align="left" width="14%"><a href="/status/HIKE,marspeople/">HIKE</a></td>
+<td align="left" width="14%"><a href="/status/MKMONEY,marspeople/">MKMONEY</a></td>
+<td align="left" width="14%"><a href="/status/PRIME1,marspeople/">PRIME1</a></td>
+<td align="left" width="14%"><a href="/status/STONE,marspeople/">STONE</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC05B,marspeople/">ANARC05B</a></td>
+<td align="left" width="14%"><a href="/status/CANDY3,marspeople/">CANDY3</a></td>
+<td align="left" width="14%"><a href="/status/EBOXES,marspeople/">EBOXES</a></td>
+<td align="left" width="14%"><a href="/status/HIST2,marspeople/">HIST2</a></td>
+<td align="left" width="14%"><a href="/status/MMMGAME,marspeople/">MMMGAME</a></td>
+<td align="left" width="14%"><a href="/status/PT07Y,marspeople/">PT07Y</a></td>
+<td align="left" width="14%"><a href="/status/STPAR,marspeople/">STPAR</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC05H,marspeople/">ANARC05H</a></td>
+<td align="left" width="14%"><a href="/status/CANTON,marspeople/">CANTON</a></td>
+<td align="left" width="14%"><a href="/status/EDGE,marspeople/">EDGE</a></td>
+<td align="left" width="14%"><a href="/status/HISTOGRA,marspeople/">HISTOGRA</a></td>
+<td align="left" width="14%"><a href="/status/MNERED,marspeople/">MNERED</a></td>
+<td align="left" width="14%"><a href="/status/PT07Z,marspeople/">PT07Z</a></td>
+<td align="left" width="14%"><a href="/status/STSTRING,marspeople/">STSTRING</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC08A,marspeople/">ANARC08A</a></td>
+<td align="left" width="14%"><a href="/status/CATM,marspeople/">CATM</a></td>
+<td align="left" width="14%"><a href="/status/EDS,marspeople/">EDS</a></td>
+<td align="left" width="14%"><a href="/status/HORRIBLE,marspeople/">HORRIBLE</a></td>
+<td align="left" width="14%"><a href="/status/MORSE,marspeople/">MORSE</a></td>
+<td align="left" width="14%"><a href="/status/QKP,marspeople/">QKP</a></td>
+<td align="left" width="14%"><a href="/status/SUBS,marspeople/">SUBS</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC08B,marspeople/">ANARC08B</a></td>
+<td align="left" width="14%"><a href="/status/CERC07B,marspeople/">CERC07B</a></td>
+<td align="left" width="14%"><a href="/status/EIGHTS,marspeople/">EIGHTS</a></td>
+<td align="left" width="14%"><a href="/status/HUBULLU,marspeople/">HUBULLU</a></td>
+<td align="left" width="14%"><a href="/status/MPILOT,marspeople/">MPILOT</a></td>
+<td align="left" width="14%"><a href="/status/QUADAREA,marspeople/">QUADAREA</a></td>
+<td align="left" width="14%"><a href="/status/SUBSUMS,marspeople/">SUBSUMS</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC08D,marspeople/">ANARC08D</a></td>
+<td align="left" width="14%"><a href="/status/CERC07K,marspeople/">CERC07K</a></td>
+<td align="left" width="14%"><a href="/status/ELIM,marspeople/">ELIM</a></td>
+<td align="left" width="14%"><a href="/status/ICODER,marspeople/">ICODER</a></td>
+<td align="left" width="14%"><a href="/status/MRECAMAN,marspeople/">MRECAMAN</a></td>
+<td align="left" width="14%"><a href="/status/QUALITY,marspeople/">QUALITY</a></td>
+<td align="left" width="14%"><a href="/status/SUMFOUR,marspeople/">SUMFOUR</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC08E,marspeople/">ANARC08E</a></td>
+<td align="left" width="14%"><a href="/status/CERC07N,marspeople/">CERC07N</a></td>
+<td align="left" width="14%"><a href="/status/EMOTICON,marspeople/">EMOTICON</a></td>
+<td align="left" width="14%"><a href="/status/ICPCS,marspeople/">ICPCS</a></td>
+<td align="left" width="14%"><a href="/status/MTWALK,marspeople/">MTWALK</a></td>
+<td align="left" width="14%"><a href="/status/QUEST4,marspeople/">QUEST4</a></td>
+<td align="left" width="14%"><a href="/status/SUMITR,marspeople/">SUMITR</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC08F,marspeople/">ANARC08F</a></td>
+<td align="left" width="14%"><a href="/status/CERC07P,marspeople/">CERC07P</a></td>
+<td align="left" width="14%"><a href="/status/EMP,marspeople/">EMP</a></td>
+<td align="left" width="14%"><a href="/status/IKEYB,marspeople/">IKEYB</a></td>
+<td align="left" width="14%"><a href="/status/MULTQ3,marspeople/">MULTQ3</a></td>
+<td align="left" width="14%"><a href="/status/QUEST5,marspeople/">QUEST5</a></td>
+<td align="left" width="14%"><a href="/status/SVADA,marspeople/">SVADA</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC08G,marspeople/">ANARC08G</a></td>
+<td align="left" width="14%"><a href="/status/CERC07R,marspeople/">CERC07R</a></td>
+<td align="left" width="14%"><a href="/status/ENCONDIN,marspeople/">ENCONDIN</a></td>
+<td align="left" width="14%"><a href="/status/INCDSEQ,marspeople/">INCDSEQ</a></td>
+<td align="left" width="14%"><a href="/status/MZVRK,marspeople/">MZVRK</a></td>
+<td align="left" width="14%"><a href="/status/RABBIT1,marspeople/">RABBIT1</a></td>
+<td align="left" width="14%"><a href="/status/TCOUNT2,marspeople/">TCOUNT2</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC08H,marspeople/">ANARC08H</a></td>
+<td align="left" width="14%"><a href="/status/CFRAC2,marspeople/">CFRAC2</a></td>
+<td align="left" width="14%"><a href="/status/EQBOX,marspeople/">EQBOX</a></td>
+<td align="left" width="14%"><a href="/status/INCSEQ,marspeople/">INCSEQ</a></td>
+<td align="left" width="14%"><a href="/status/NEG2,marspeople/">NEG2</a></td>
+<td align="left" width="14%"><a href="/status/REC,marspeople/">REC</a></td>
+<td align="left" width="14%"><a href="/status/TEST,marspeople/">TEST</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC08I,marspeople/">ANARC08I</a></td>
+<td align="left" width="14%"><a href="/status/CHICAGO,marspeople/">CHICAGO</a></td>
+<td align="left" width="14%"><a href="/status/EQDIV,marspeople/">EQDIV</a></td>
+<td align="left" width="14%"><a href="/status/ITRIX_B,marspeople/">ITRIX_B</a></td>
+<td align="left" width="14%"><a href="/status/NGM,marspeople/">NGM</a></td>
+<td align="left" width="14%"><a href="/status/RENT,marspeople/">RENT</a></td>
+<td align="left" width="14%"><a href="/status/TOANDFRO,marspeople/">TOANDFRO</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC08J,marspeople/">ANARC08J</a></td>
+<td align="left" width="14%"><a href="/status/CHMAZE,marspeople/">CHMAZE</a></td>
+<td align="left" width="14%"><a href="/status/EUROPEAN,marspeople/">EUROPEAN</a></td>
+<td align="left" width="14%"><a href="/status/ITRIX_C,marspeople/">ITRIX_C</a></td>
+<td align="left" width="14%"><a href="/status/NHAY,marspeople/">NHAY</a></td>
+<td align="left" width="14%"><a href="/status/ROADNET,marspeople/">ROADNET</a></td>
+<td align="left" width="14%"><a href="/status/TOE1,marspeople/">TOE1</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC09A,marspeople/">ANARC09A</a></td>
+<td align="left" width="14%"><a href="/status/CHOCOLA,marspeople/">CHOCOLA</a></td>
+<td align="left" width="14%"><a href="/status/EXPRESS,marspeople/">EXPRESS</a></td>
+<td align="left" width="14%"><a href="/status/IVAN,marspeople/">IVAN</a></td>
+<td align="left" width="14%"><a href="/status/NICEDAY,marspeople/">NICEDAY</a></td>
+<td align="left" width="14%"><a href="/status/ROADS,marspeople/">ROADS</a></td>
+<td align="left" width="14%"><a href="/status/TOE2,marspeople/">TOE2</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC09C,marspeople/">ANARC09C</a></td>
+<td align="left" width="14%"><a href="/status/CIJEVI,marspeople/">CIJEVI</a></td>
+<td align="left" width="14%"><a href="/status/FAIRONOT,marspeople/">FAIRONOT</a></td>
+<td align="left" width="14%"><a href="/status/JAVAC,marspeople/">JAVAC</a></td>
+<td align="left" width="14%"><a href="/status/NOCHANGE,marspeople/">NOCHANGE</a></td>
+<td align="left" width="14%"><a href="/status/ROCK,marspeople/">ROCK</a></td>
+<td align="left" width="14%"><a href="/status/TRAFFICN,marspeople/">TRAFFICN</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ANARC09D,marspeople/">ANARC09D</a></td>
+<td align="left" width="14%"><a href="/status/CISTFILL,marspeople/">CISTFILL</a></td>
+<td align="left" width="14%"><a href="/status/FARMER,marspeople/">FARMER</a></td>
+<td align="left" width="14%"><a href="/status/JRIDE,marspeople/">JRIDE</a></td>
+<td align="left" width="14%"><a href="/status/NOTATRI,marspeople/">NOTATRI</a></td>
+<td align="left" width="14%"><a href="/status/SA04D,marspeople/">SA04D</a></td>
+<td align="left" width="14%"><a href="/status/TRANK,marspeople/">TRANK</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/APRIME,marspeople/">APRIME</a></td>
+<td align="left" width="14%"><a href="/status/CLEANRBT,marspeople/">CLEANRBT</a></td>
+<td align="left" width="14%"><a href="/status/FASHION,marspeople/">FASHION</a></td>
+<td align="left" width="14%"><a href="/status/JULKA,marspeople/">JULKA</a></td>
+<td align="left" width="14%"><a href="/status/NSTEPS,marspeople/">NSTEPS</a></td>
+<td align="left" width="14%"><a href="/status/SAMER08A,marspeople/">SAMER08A</a></td>
+<td align="left" width="14%"><a href="/status/TRANSMIT,marspeople/">TRANSMIT</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ARITH,marspeople/">ARITH</a></td>
+<td align="left" width="14%"><a href="/status/CLONE,marspeople/">CLONE</a></td>
+<td align="left" width="14%"><a href="/status/FCTRL,marspeople/">FCTRL</a></td>
+<td align="left" width="14%"><a href="/status/KPMATRIX,marspeople/">KPMATRIX</a></td>
+<td align="left" width="14%"><a href="/status/NSYSTEM,marspeople/">NSYSTEM</a></td>
+<td align="left" width="14%"><a href="/status/SAMER08B,marspeople/">SAMER08B</a></td>
+<td align="left" width="14%"><a href="/status/TRICOUNT,marspeople/">TRICOUNT</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ARMY,marspeople/">ARMY</a></td>
+<td align="left" width="14%"><a href="/status/CMEXPR,marspeople/">CMEXPR</a></td>
+<td align="left" width="14%"><a href="/status/FCTRL2,marspeople/">FCTRL2</a></td>
+<td align="left" width="14%"><a href="/status/KROW,marspeople/">KROW</a></td>
+<td align="left" width="14%"><a href="/status/NWERC04H,marspeople/">NWERC04H</a></td>
+<td align="left" width="14%"><a href="/status/SAMER08C,marspeople/">SAMER08C</a></td>
+<td align="left" width="14%"><a href="/status/TRIP,marspeople/">TRIP</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ASSIGN,marspeople/">ASSIGN</a></td>
+<td align="left" width="14%"><a href="/status/CNEASY,marspeople/">CNEASY</a></td>
+<td align="left" width="14%"><a href="/status/FENCE1,marspeople/">FENCE1</a></td>
+<td align="left" width="14%"><a href="/status/LABYR1,marspeople/">LABYR1</a></td>
+<td align="left" width="14%"><a href="/status/OFFSIDE,marspeople/">OFFSIDE</a></td>
+<td align="left" width="14%"><a href="/status/SAMER08D,marspeople/">SAMER08D</a></td>
+<td align="left" width="14%"><a href="/status/TRT,marspeople/">TRT</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/ASSIST,marspeople/">ASSIST</a></td>
+<td align="left" width="14%"><a href="/status/COINS,marspeople/">COINS</a></td>
+<td align="left" width="14%"><a href="/status/FISHER,marspeople/">FISHER</a></td>
+<td align="left" width="14%"><a href="/status/LAGRANGE,marspeople/">LAGRANGE</a></td>
+<td align="left" width="14%"><a href="/status/OFORTUNE,marspeople/">OFORTUNE</a></td>
+<td align="left" width="14%"><a href="/status/SAMER08E,marspeople/">SAMER08E</a></td>
+<td align="left" width="14%"><a href="/status/TWENDS,marspeople/">TWENDS</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/BABTWR,marspeople/">BABTWR</a></td>
+<td align="left" width="14%"><a href="/status/COMCB,marspeople/">COMCB</a></td>
+<td align="left" width="14%"><a href="/status/FPOLICE,marspeople/">FPOLICE</a></td>
+<td align="left" width="14%"><a href="/status/LASTDIG,marspeople/">LASTDIG</a></td>
+<td align="left" width="14%"><a href="/status/ONEZERO,marspeople/">ONEZERO</a></td>
+<td align="left" width="14%"><a href="/status/SAMER08F,marspeople/">SAMER08F</a></td>
+<td align="left" width="14%"><a href="/status/TWICE,marspeople/">TWICE</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/BASE,marspeople/">BASE</a></td>
+<td align="left" width="14%"><a href="/status/CPC,marspeople/">CPC</a></td>
+<td align="left" width="14%"><a href="/status/FREQUENT,marspeople/">FREQUENT</a></td>
+<td align="left" width="14%"><a href="/status/LAZYCOWS,marspeople/">LAZYCOWS</a></td>
+<td align="left" width="14%"><a href="/status/ONP,marspeople/">ONP</a></td>
+<td align="left" width="14%"><a href="/status/SAMER08G,marspeople/">SAMER08G</a></td>
+<td align="left" width="14%"><a href="/status/TWOSQRS,marspeople/">TWOSQRS</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/BEADS,marspeople/">BEADS</a></td>
+<td align="left" width="14%"><a href="/status/CPRIME,marspeople/">CPRIME</a></td>
+<td align="left" width="14%"><a href="/status/FSEATS,marspeople/">FSEATS</a></td>
+<td align="left" width="14%"><a href="/status/LEONARDO,marspeople/">LEONARDO</a></td>
+<td align="left" width="14%"><a href="/status/ORDERS,marspeople/">ORDERS</a></td>
+<td align="left" width="14%"><a href="/status/SAMER08H,marspeople/">SAMER08H</a></td>
+<td align="left" width="14%"><a href="/status/UCODES,marspeople/">UCODES</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/BENEFACT,marspeople/">BENEFACT</a></td>
+<td align="left" width="14%"><a href="/status/CPRMT,marspeople/">CPRMT</a></td>
+<td align="left" width="14%"><a href="/status/GALLUP,marspeople/">GALLUP</a></td>
+<td align="left" width="14%"><a href="/status/LINES,marspeople/">LINES</a></td>
+<td align="left" width="14%"><a href="/status/ORIGLIFE,marspeople/">ORIGLIFE</a></td>
+<td align="left" width="14%"><a href="/status/SAMER08I,marspeople/">SAMER08I</a></td>
+<td align="left" width="14%"><a href="/status/UJ,marspeople/">UJ</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/BILLIARD,marspeople/">BILLIARD</a></td>
+<td align="left" width="14%"><a href="/status/CRSCNTRY,marspeople/">CRSCNTRY</a></td>
+<td align="left" width="14%"><a href="/status/GALOU,marspeople/">GALOU</a></td>
+<td align="left" width="14%"><a href="/status/LIS2,marspeople/">LIS2</a></td>
+<td align="left" width="14%"><a href="/status/PALIN,marspeople/">PALIN</a></td>
+<td align="left" width="14%"><a href="/status/SAMER08J,marspeople/">SAMER08J</a></td>
+<td align="left" width="14%"><a href="/status/UPSUB,marspeople/">UPSUB</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/BINGO,marspeople/">BINGO</a></td>
+<td align="left" width="14%"><a href="/status/CRYPTO2,marspeople/">CRYPTO2</a></td>
+<td align="left" width="14%"><a href="/status/GAMEFIL,marspeople/">GAMEFIL</a></td>
+<td align="left" width="14%"><a href="/status/LISA,marspeople/">LISA</a></td>
+<td align="left" width="14%"><a href="/status/PARTY,marspeople/">PARTY</a></td>
+<td align="left" width="14%"><a href="/status/SAMER08K,marspeople/">SAMER08K</a></td>
+<td align="left" width="14%"><a href="/status/VONNY,marspeople/">VONNY</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/BINSTIRL,marspeople/">BINSTIRL</a></td>
+<td align="left" width="14%"><a href="/status/CSTREET,marspeople/">CSTREET</a></td>
+<td align="left" width="14%"><a href="/status/GEOPROB,marspeople/">GEOPROB</a></td>
+<td align="left" width="14%"><a href="/status/LITE,marspeople/">LITE</a></td>
+<td align="left" width="14%"><a href="/status/PDECODE,marspeople/">PDECODE</a></td>
+<td align="left" width="14%"><a href="/status/SBANK,marspeople/">SBANK</a></td>
+<td align="left" width="14%"><a href="/status/VPARTY,marspeople/">VPARTY</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/BISHOPS,marspeople/">BISHOPS</a></td>
+<td align="left" width="14%"><a href="/status/CTAIN,marspeople/">CTAIN</a></td>
+<td align="left" width="14%"><a href="/status/GLASNICI,marspeople/">GLASNICI</a></td>
+<td align="left" width="14%"><a href="/status/MARBLES,marspeople/">MARBLES</a></td>
+<td align="left" width="14%"><a href="/status/PERMUT1,marspeople/">PERMUT1</a></td>
+<td align="left" width="14%"><a href="/status/SC1,marspeople/">SC1</a></td>
+<td align="left" width="14%"><a href="/status/WATER,marspeople/">WATER</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/BITMAP,marspeople/">BITMAP</a></td>
+<td align="left" width="14%"><a href="/status/CTRICK,marspeople/">CTRICK</a></td>
+<td align="left" width="14%"><a href="/status/GNY07A,marspeople/">GNY07A</a></td>
+<td align="left" width="14%"><a href="/status/MARKUP,marspeople/">MARKUP</a></td>
+<td align="left" width="14%"><a href="/status/PERMUT2,marspeople/">PERMUT2</a></td>
+<td align="left" width="14%"><a href="/status/SCALES,marspeople/">SCALES</a></td>
+<td align="left" width="14%"><a href="/status/WORDS1,marspeople/">WORDS1</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/BLINNET,marspeople/">BLINNET</a></td>
+<td align="left" width="14%"><a href="/status/CUBES,marspeople/">CUBES</a></td>
+<td align="left" width="14%"><a href="/status/GNY07B,marspeople/">GNY07B</a></td>
+<td align="left" width="14%"><a href="/status/MATRIOSH,marspeople/">MATRIOSH</a></td>
+<td align="left" width="14%"><a href="/status/PFDEP,marspeople/">PFDEP</a></td>
+<td align="left" width="14%"><a href="/status/SCAVHUNT,marspeople/">SCAVHUNT</a></td>
+<td align="left" width="14%"><a href="/status/YODA,marspeople/">YODA</a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/BMJ,marspeople/">BMJ</a></td>
+<td align="left" width="14%"><a href="/status/CVJETICI,marspeople/">CVJETICI</a></td>
+<td align="left" width="14%"><a href="/status/GNY07C,marspeople/">GNY07C</a></td>
+<td align="left" width="14%"><a href="/status/MATSUM,marspeople/">MATSUM</a></td>
+<td align="left" width="14%"><a href="/status/PHIDIAS,marspeople/">PHIDIAS</a></td>
+<td align="left" width="14%"><a href="/status/SCRAPER,marspeople/">SCRAPER</a></td>
+<td align="left" width="14%"><a href="/status/,marspeople/"></a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/BOOK,marspeople/">BOOK</a></td>
+<td align="left" width="14%"><a href="/status/CYLINDER,marspeople/">CYLINDER</a></td>
+<td align="left" width="14%"><a href="/status/GNY07D,marspeople/">GNY07D</a></td>
+<td align="left" width="14%"><a href="/status/MAWORK,marspeople/">MAWORK</a></td>
+<td align="left" width="14%"><a href="/status/PIGBANK,marspeople/">PIGBANK</a></td>
+<td align="left" width="14%"><a href="/status/SCUBADIV,marspeople/">SCUBADIV</a></td>
+<td align="left" width="14%"><a href="/status/,marspeople/"></a></td>
+</tr>
+</table>
+
+
+
+<p align="left">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b title="List of problems to which solutions were submitted but none of them got AC.">TODO list of classical problems:</b>
+<br>
+<table width="91%" align="center">
+<tr>
+<td align="left" width="14%"><a href="/status/BACKUP,marspeople/">BACKUP</a></td>
+<td align="left" width="14%"><a href="/status/PERMSG,marspeople/">PERMSG</a></td>
+<td align="left" width="14%"><a href="/status/,marspeople/"></a></td>
+<td align="left" width="14%"><a href="/status/,marspeople/"></a></td>
+<td align="left" width="14%"><a href="/status/,marspeople/"></a></td>
+<td align="left" width="14%"><a href="/status/,marspeople/"></a></td>
+<td align="left" width="14%"><a href="/status/,marspeople/"></a></td>
+</tr>
+<tr>
+<td align="left" width="14%"><a href="/status/OAE,marspeople/">OAE</a></td>
+<td align="left" width="14%"><a href="/status/PT07J,marspeople/">PT07J</a></td>
+<td align="left" width="14%"><a href="/status/,marspeople/"></a></td>
+<td align="left" width="14%"><a href="/status/,marspeople/"></a></td>
+<td align="left" width="14%"><a href="/status/,marspeople/"></a></td>
+<td align="left" width="14%"><a href="/status/,marspeople/"></a></td>
+<td align="left" width="14%"><a href="/status/,marspeople/"></a></td>
+</tr>
+</table>        </td>
+<tr>
+        <td style="padding:0px" colspan="2"><center>
+                
+</center></td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" class="footer">
+<div class="a-footer"></div>
+<script language="javascript" type="text/javascript">
+<!--
+function swapSheet(sheet, caller) {
+    document.getElementById('theme').href=sheet;
+    document.cookie="css_0="+sheet+"; path=/;";
+    caller.href="#bottom";
+}
+
+function setWidth(w, caller) {
+    document.getElementById('maintable').style.width=w;
+    document.cookie="res="+w+"; path=/;";
+    caller.href="#bottom";
+}
+
+
+
+//-->
+
+</script>
+        <table width="100%">
+    <tr>
+	<td align="left" width=10% class="cfooter">
+	<a href="/info/">About SPOJ</a>
+	</td>
+	<td align="center" class="cfooter">
+	    width:
+	    <a href="/?rsl=855px"  onClick="setWidth('855px', this)">900</a>
+	    <a href="/?rsl=980px"  onClick="setWidth('980px', this)">1024</a>
+	    <a href="/?rsl=100%" onClick="setWidth('100%', this)">Full</a>
+	    &nbsp;&nbsp;
+	    theme:
+	    <a href="/?css=/themes/skin1.css" onClick="swapSheet('/themes/skin1.css', this)">olive</a>
+	    <a href="/?css=/themes/skin2.css" onClick="swapSheet('/themes/skin2.css', this)">banana</a>
+	    <a href="/?css=/themes/skin3.css" onClick="swapSheet('/themes/skin3.css', this)">plum</a>
+	    <a href="/?css=/themes/hspl.css" onClick="swapSheet('/themes/hspl.css', this)">hspl</a>
+	</td>
+		<td align="center" class="cfooter">
+		 <span title="The discussion channel of the Sphere Online Judge community.">
+		 <a href="irc://irc.freenode.net/spoj"><b>#spoj</b> at freenode</a>
+		 </span>
+	</td>
+		<td width=10% class="cfooter" style="text-align:right">
+		<a href="/rss/" ><img src="/gfx/rss10x10.gif" border=0>&nbsp;RSS</a>&nbsp;
+	</div>
+	</td>
+    </tr>
+    </table>
+    </tr></table>
+</center>
+<div class="a-header"></div>
+
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<div style="font-size:10px; margin-top:4px; color: rgb(85,80,95);"><center>
+<a href="http://www.spoj.pl" style="color:black">SPOJ</a>
+System &copy; 2012
+<a href="http://sphere-research.com" style="color:black">Sphere Research Labs | Projekty informatyczne i aplikacje na zamówienie</a>. 
+All Rights Reserved.</center></div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-10507872-1']);
+      _gaq.push(['_trackPageview']);
+        (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		      })();
+		      </script>
+		      
+</body>
+</html>

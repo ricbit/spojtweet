@@ -34,18 +34,21 @@ PROBLEM_STATS_TIME_RE = re.compile(r'(?s)status_sm.*?/users/(.*?)/\".*?statustim
 class ParseError(Exception):
   pass
 
+def Unquote(name):
+  return re.sub('&#(\d+);', lambda m: unichr(int(m.group(1))), name)
+
 def ParseStatusPage(text):
   match = NAME_RE.search(text)
-  if match == None:
+  if match is None:
     raise ParseError()
-  name = match.group(1).strip()
+  name = Unquote(match.group(1).strip().decode('iso-8859-1'))
 
   match = COUNTRY_RE.search(text)
-  if match == None:
+  if match is None:
     raise ParseError()
-  country = match.group(1).strip()
+  country = match.group(1).strip().decode('iso-8859-1')
 
-  return name.decode('iso-8859-1'), country.decode('iso-8859-1')
+  return name, country
 
 def ParseDetailsPage(usertext):
   problems = {}

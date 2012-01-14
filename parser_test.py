@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright (C) 2011 Google Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -75,6 +76,11 @@ class ParserTest(unittest.TestCase):
       self.assertEquals(2, len(country[0]))
       self.assertTrue(isinstance(country[1], unicode))
 
+  def testParseStatusPage(self):
+    text = open('testdata/status_page.html').read()
+    name, country = parser.ParseStatusPage(text)
+    self.assertEquals(u'Marcelo Galvão Póvoa', name)
+    self.assertEquals('BRAZIL', country)
 
 if __name__ == '__main__':
   unittest.main()
