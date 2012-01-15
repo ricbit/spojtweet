@@ -22,6 +22,7 @@ from google.appengine.ext import webapp
 from google.appengine.api import urlfetch
 from google.appengine.api import users
 
+import country_demonyms
 import model
 import parser
 import logging
@@ -33,6 +34,8 @@ def CrawlCountry(country_list):
     return
   code, name = country_list[0]
   logging.info('Crawling country: %s', name)
+  if name not in country_demonyms.COUNTRY_DEMONYMS:
+    logging.warning('Country %s isn\'t on country_demonyms.', name)
   url = 'http://www.spoj.pl/ranks/users/%s' % code
   text = urlfetch.fetch(url).content
   user_list = parser.ParseCountryPage(text)
