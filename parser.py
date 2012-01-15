@@ -25,11 +25,14 @@ import re
 NAME_RE = re.compile(r'(?i)<h3>(.+?)\'s user data </h3>')
 COUNTRY_RE = re.compile(r'(?is)Country:.*?<td>([^>]+?)</td>')
 COUNTRY_LIST_RE = re.compile(r'(?i)users/(..)/\">(.*?)</a>')
-USER_LIST_RE = re.compile(r'(?i)<td>(\d+)</td>.*?<td><a href=\".*?/users/(.+?)\"')
+USER_LIST_RE = re.compile(
+    r'(?i)<td>(\d+)</td>.*?<td><a href=\".*?/users/(.+?)\"')
 PROBLEM_LIST_NEXT_RE = re.compile(r'href=\"(.*?)\".*?>Next</a>')
-PROBLEM_LIST_RE = re.compile(r'problemrow.*?/problems/(\w+)/\"')
+PROBLEM_LIST_RE = re.compile(
+    r'problemrow.*?/problems/(\w+)/\".*?Value.*?\">(\d+)<')
 PROBLEM_STATS_RE = re.compile(r'/problems/.*?\">(.*?)</a> statistics')
-PROBLEM_STATS_TIME_RE = re.compile(r'(?s)status_sm.*?/users/(.*?)/\".*?statustime_.*?\".*?([0-9.]+)')
+PROBLEM_STATS_TIME_RE = re.compile(
+    r'(?s)status_sm.*?/users/(.*?)/\".*?statustime_.*?\".*?([0-9.]+)')
 
 class ParseError(Exception):
   pass
@@ -79,7 +82,7 @@ def ParseProblemList(text):
   else:
     next_link = None
   problem_list = PROBLEM_LIST_RE.findall(text.replace('\n', ''))
-  return next_link, problem_list
+  return next_link, [(a, int(b)) for a,b in problem_list]
 
 def ParseProblemDetails(text):
   match = PROBLEM_STATS_RE.search(text)

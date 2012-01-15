@@ -82,5 +82,12 @@ class ParserTest(unittest.TestCase):
     self.assertEquals(u'Marcelo Galvão Póvoa', name)
     self.assertEquals('BRAZIL', country)
 
+  def testParseProblemList(self):
+    text = open('testdata/problems.html').read()
+    next_link, problem_list = parser.ParseProblemList(text)
+    self.assertEquals(
+        'http://www.spoj.pl/problems/classical/sort=0,start=50', next_link)
+    self.assertTrue(('ARITH', 897) in problem_list)
+
 if __name__ == '__main__':
   unittest.main()

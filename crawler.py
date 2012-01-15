@@ -55,7 +55,7 @@ def CrawlProblems(problem_list):
     info = model.CrawlingInfo(key_name='info', crawling=False)
     info.put()
     return
-  code = problem_list[0]
+  code = problem_list[0][0]
   logging.info('Crawling problem %s', code)
   problem_url = 'http://www.spoj.pl/ranks/' + code
   problem_page = urlfetch.fetch(problem_url, deadline=60).content
