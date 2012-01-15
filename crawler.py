@@ -95,8 +95,12 @@ def CrawlUser(users):
     return
   logging.info('Refreshing user %s', users[0])
   user = model.UserPreferences.get_by_key_name(users[0])
-  logging.info('Spoj user %s', user.spoj_user)
-  refresh_user.RefreshUser().refresh(user.spoj_user)
+  if user:
+    logging.info('Spoj user %s', user.spoj_user)
+    refresh_user.RefreshUser().refresh(user.spoj_user)
+  else:
+    logging.info('Twitter user %s with invalid spoj info.',
+                 user.twitter_screen_name)
   deferred.defer(CrawlUser, users[1:])
 
 class CrawlRegisteredUsers(webapp.RequestHandler):
