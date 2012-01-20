@@ -190,7 +190,7 @@ class RefreshUser():
            'cht': 'p3',
            'chco': 'FFFF10,505050,E6B43C'}
     return 'http://chart.apis.google.com/chart?' + urllib.urlencode(url)
-    
+
   def _Encode(self, series):
     code = ''.join([string.uppercase, string.lowercase, string.digits, '-.'])
     output = []
@@ -206,6 +206,9 @@ class RefreshUser():
     return ''.join(output)
 
   def _BuildTimeline(self, timeline):
+    if not len(timeline):
+      return ("data:image/gif;base64,R0lGODlhAQABAPABAP///"
+              "wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw%3D%3D")
     timeline.sort()
     start_date, end_date = timeline[0], timeline[-1]
     start_year, end_year = start_date.year, end_date.year
