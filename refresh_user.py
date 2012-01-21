@@ -184,7 +184,7 @@ class RefreshUser():
     counts = ','.join(str(i[1]) for i in languages)
     names = '|'.join(language_codes.LANGUAGE_CODES.get(i[0], i[0])
                      for i in languages)
-    url = {'chs': '350x150',
+    url = {'chs': '%dx%d' % (model.CHART_WIDTH, model.CHART_HEIGHT),
            'chd': 't:%s' % counts,
            'chl': '%s' % names,
            'cht': 'p3',
@@ -225,13 +225,13 @@ class RefreshUser():
       date = datetime.datetime(year, 1, 1)
       scaled = (date - start_date).days * 100 / (end_date - start_date).days
       axis_ticks.append(scaled)
-    url = {'chs': '350x150',
+    url = {'chs': '%dx%d' % (model.CHART_WIDTH, model.CHART_HEIGHT),
            'chd': 'e:%s' % line,
            'chxt': 'x,y',
            'chxr': '1,%d,%d' % (0, count),
            'chxp': '0,%s' % ','.join(str(i) for i in axis_ticks),
            'chxl': '0:|%s' % '|'.join(str(i) for i in years),
-           'chxtc': '0,-130',
+           'chxtc': '0,-%d' % (model.CHART_HEIGHT - 20),
            'chxs': '0,505050,13,0,lt,D0D0D0,505050|'
                    '1,505050,13,0,lt,505050,505050',
            'cht': 'lxy'}
