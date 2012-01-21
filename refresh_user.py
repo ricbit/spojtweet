@@ -206,7 +206,7 @@ class RefreshUser():
     return ''.join(output)
 
   def _BuildTimeline(self, timeline):
-    if not len(timeline):
+    if not timeline:
       return ("data:image/gif;base64,R0lGODlhAQABAPABAP///"
               "wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw%3D%3D")
     timeline.sort()

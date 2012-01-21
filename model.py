@@ -23,7 +23,7 @@ from google.appengine.ext import db
 import badge
 import events
 
-VERSION = 20
+VERSION = 21
 
 class UserProblem(object):
   def __init__(self, code,
