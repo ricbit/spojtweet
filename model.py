@@ -23,7 +23,7 @@ from google.appengine.ext import db
 import badge
 import events
 
-VERSION = 28
+VERSION = 29
 
 CHART_WIDTH = 370
 CHART_HEIGHT = 170

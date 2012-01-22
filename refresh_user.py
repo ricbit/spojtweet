@@ -18,7 +18,6 @@ __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 
 import datetime
 import logging
-import math
 import string
 import urllib
 
@@ -257,10 +256,10 @@ class RefreshUser():
         # Spoj runs in poland time (GMT+1), converting to GMT.
         x.append((hour + 23) % 24 * 92 / 23 + 4)
         y.append(weekday * 90 / 6 + 5)
-        size.append(math.log(1 + punchcard[weekday][hour]))
+        size.append(punchcard[weekday][hour])
     points = [self._Encode(x, 0, 99),
               self._Encode(y, 0, 99),
-              self._Encode(size)]
+              self._Encode(size, 0, max(size))]
     weekdays = ','.join(str(i * 90 / 6 + 5) for i in xrange(7))
     hours = ','.join(str(i * 92 / 23 + 4) for i in xrange(0, 24, 6))
     axis = '|'.join(['1,' + weekdays,
