@@ -23,7 +23,7 @@ from google.appengine.ext import db
 import badge
 import events
 
-VERSION = 25
+VERSION = 28
 
 CHART_WIDTH = 370
 CHART_HEIGHT = 170
@@ -85,6 +85,7 @@ class SpojUser(db.Model):
   version = db.IntegerProperty(indexed=False)
   language_chart = db.TextProperty(indexed=False)
   timeline = db.TextProperty(indexed=False)
+  punchcard = db.TextProperty(indexed=False)
 
   def __str__(self):
     return ",".join([self.name, self.country,

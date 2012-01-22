@@ -18,6 +18,7 @@ __author__ = 'ricbit@google.com (Ricardo Bittencourt)'
 
 import datetime
 import logging
+import math
 import string
 import urllib
 
@@ -34,6 +35,9 @@ import parser
 import shortener
 import twitter
 import utils
+
+EMPTY_GIF = ("data:image/gif;base64,R0lGODlhAQABAPABAP///"
+             "wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw%3D%3D")
 
 class RefreshException(Exception):
   pass
@@ -177,6 +181,7 @@ class RefreshUser():
         max(date_map.values()) if date_map else None)
     self.language_chart = self._BuildLanguageChart(language_count)
     self.timeline = self._BuildTimeline(timeline)
+    self.punchcard = self._BuildPunchcard(timeline)
 
   def _BuildLanguageChart(self, language_count):
     languages = language_count.items()
@@ -191,24 +196,25 @@ class RefreshUser():
            'chco': 'FFFF10,505050,E6B43C'}
     return 'http://chart.apis.google.com/chart?' + urllib.urlencode(url)
 
-  def _Encode(self, series):
+  def _Encode(self, series, minval=None, maxval=None):
     code = ''.join([string.uppercase, string.lowercase, string.digits, '-.'])
     output = []
-    minval = series[0]
-    maxval = series[-1]
+    if minval is None:
+      minval = min(series)
+    if maxval is None:
+      maxval = max(series)
     interval = maxval - minval
     if not interval:
       interval = 1
     for data in series:
-      scaled = (data - minval) * 4095 / interval
+      scaled = int((data - minval) * 4095 / interval)
       output.append(code[scaled / 64])
       output.append(code[scaled % 64])
     return ''.join(output)
 
   def _BuildTimeline(self, timeline):
     if not timeline:
-      return ("data:image/gif;base64,R0lGODlhAQABAPABAP///"
-              "wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw%3D%3D")
+      return EMPTY_GIF
     timeline.sort()
     start_date, end_date = timeline[0], timeline[-1]
     start_year, end_year = start_date.year, end_date.year
@@ -218,7 +224,7 @@ class RefreshUser():
       problems.append(count + 1)
     trim_dates = dates[::len(dates)/300 + 1] + [dates[-1]]
     trim_problems = problems[::len(problems)/300 + 1] + [problems[-1]]
-    line = ','.join([self._Encode(trim_dates), self._Encode(trim_problems)])
+    line = ','.join(self._Encode(i) for i in [trim_dates, trim_problems])
     axis_ticks = [] 
     years = range(start_year + 1, end_year + 1) 
     for year in years:
@@ -235,6 +241,43 @@ class RefreshUser():
            'chxs': '0,505050,13,0,lt,D0D0D0,505050|'
                    '1,505050,13,0,lt,505050,505050',
            'cht': 'lxy'}
+    return 'http://chart.apis.google.com/chart?' + urllib.urlencode(url)
+    
+  def _BuildPunchcard(self, timeline):
+    if not timeline:
+      return EMPTY_GIF
+    punchcard = [[0] * 24 for weekday in xrange(7)]
+    for ac_date in timeline:
+      punchcard[ac_date.weekday()][ac_date.hour] += 1
+    x, y, size = [], [], []
+    for weekday in xrange(7):
+      for hour in xrange(24):
+        if not punchcard[weekday][hour]:
+          continue
+        # Spoj runs in poland time (GMT+1), converting to GMT.
+        x.append((hour + 23) % 24 * 92 / 23 + 4)
+        y.append(weekday * 90 / 6 + 5)
+        size.append(math.log(1 + punchcard[weekday][hour]))
+    points = [self._Encode(x, 0, 99),
+              self._Encode(y, 0, 99),
+              self._Encode(size)]
+    weekdays = ','.join(str(i * 90 / 6 + 5) for i in xrange(7))
+    hours = ','.join(str(i * 92 / 23 + 4) for i in xrange(0, 24, 6))
+    axis = '|'.join(['1,' + weekdays,
+                     '2,' + weekdays,
+                     '0,' + hours])
+    weekday_names = 'Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday'
+    hours_names = '|'.join('%dh' % i for i in xrange(0, 24, 6))
+    axis_names = '|'.join(['1:|%s' % weekday_names,
+                           '2:|%s' % weekday_names,
+                           '0:|%s' % hours_names])
+    url = {'chs': '%dx%d' % (model.CHART_WIDTH * 2, model.CHART_HEIGHT),
+           'chd': 'e:%s' % ','.join(points),
+           'cht': 's',
+           'chco': 'D6A43C',
+           'chxt': 'x,y,r',
+           'chxp': axis,
+           'chxl': axis_names}
     return 'http://chart.apis.google.com/chart?' + urllib.urlencode(url) 
 
   def GrantBadges(self):
@@ -257,7 +300,8 @@ class RefreshUser():
         last_update=datetime.datetime.now(),
         version=model.VERSION,
         language_chart=self.language_chart,
-        timeline=self.timeline)
+        timeline=self.timeline,
+        punchcard=self.punchcard)
     user_rpc = db.put_async(self.spojuser)
     if self.update_events:
       metadata = model.SpojUserMetadata(

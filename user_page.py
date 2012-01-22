@@ -72,7 +72,8 @@ def RenderPage(user, eventid):
     'language_chart': spojuser.language_chart,
     'timeline': spojuser.timeline,
     'chart_width': model.CHART_WIDTH,
-    'chart_height': model.CHART_HEIGHT
+    'chart_height': model.CHART_HEIGHT,
+    'punchcard': spojuser.punchcard
   }
   return template.render(path, values)
 
